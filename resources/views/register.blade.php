@@ -7,6 +7,7 @@
 			<input class="form-control" type="email" name="email" placeholder="email" id="email"><br>
 			<input class="form-control" type="password" name="password" placeholder="password" id="password"><br>
 			<select class="form-control" name="role">
+				<option value="-">Role</option>
 				<option value="admin">Admin</option>
 				<option value="member">Member</option>
 				<option value="owner">Owner Homestay</option>

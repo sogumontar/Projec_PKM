@@ -34,6 +34,7 @@ Route::get('homestay/create','homestayController@create')->name('homestay.create
 Route::post('homestay/create','homestayController@store')->name('homestay.store');
 Route::get('homestay/{id}/edit','homestayController@edit')->name('homestay.edit');
 Route::patch('homestay/{id}/edit','homestayController@update')->name('homestay.update');
+Route::get('homestay/search','homestayController@search')->name('homestay.search');
 // Route::delete('homestay/{id}/delete','homestayController@destroy')->name('homestay.delete');
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');

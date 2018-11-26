@@ -12,7 +12,14 @@ class homestayController extends Controller
     	return view('homestay.create');
     }
     public function store(Request $request){
-    	// $path= $request->file('gambar')->store('upload');
+        $file       = $request->file('gambar');
+        $fileName   = $file->getClientOriginalName();
+        // $request->file('gambar')->move("upload/",$fileName);
+    	// $gambar = $request->file('gambar');
+        $gambar = $request->file('gambar');
+         $namaFile = $gambar->getClientOriginalName();
+         $pathw= $request->file('gambar')->store('');
+         $request->file('gambar')->move('uploadgambar',$pathw);
      //    echo $path;
       //       $path= $request->file('gambar')->store('upload');
     		// $nomor_kamar=$request->input('nomor_kamar');
@@ -22,9 +29,9 @@ class homestayController extends Controller
       //       $nama=$request->input('nama');
       //       $gambarr=$request->input('gambar');
 
-        // $gambar = $request->file('gambar');
+        
         // $namaFile = $gambar->getClientOriginalName();
-        // $request->file('gambar')->move('uploadgambar',$namaFile);
+        // $request->file('gambar')->move('upload',$fileName);
         // $do = new Gambar($request->all());
         // $do->gambar=$namaFile;
         // $do->save();
@@ -34,7 +41,7 @@ class homestayController extends Controller
             'harga'=>request('harga'),
             'keterangan'=>request('keterangan'),
             'nama'=>request('nama'),
-            'gambar'=>request('gambar'),
+            'gambar'=>$pathw,
 
         ]);
 
@@ -69,8 +76,9 @@ class homestayController extends Controller
         $homestay->delete();
         return redirect()->route('homestay.view');
     }
-    public function logout(request $request){
-        $request->session()->regenerate();
-        return redirect()->route('welcome');
+    public function search(){
+        
+        $homestay = DB::SELECT("select * from homestay order by keterangan DESC");
+        return view('homestay.search',compact('homestay'));
     }
 }
