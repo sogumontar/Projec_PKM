@@ -77,13 +77,35 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Transportasi</a>
               </li>
-              <li class="nav-item active">
+             @if(Session::get('login'))
+                <li class="nav-item active">
+                  <i class="fas fa-user"></i>
+
+
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                    login
+                  </a>
+                </li>
+              @endif
+              @if(!Session::get('login'))
+                  <li class="nav-item active">
+                  <i class="fas fa-user"></i>
+
+
+                  <a class="nav-link" href="{{route('user.logout')}}" >
+                    Logout
+                  </a>
+                </li>
+                
+              @endif
+               <li class="nav-item active">
                 <i class="fas fa-user"></i>
 
 
-                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                  login
+                <a class="nav-link" href="{{route('user.reg')}}" >
+                  Register
                 </a>
+                
               </li>
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

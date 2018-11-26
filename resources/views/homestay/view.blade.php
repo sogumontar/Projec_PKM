@@ -16,10 +16,16 @@
                     <input type="" name="" value="{{ $homestays->gambar}}" class="form-control">
                     <br>
                     <a  href="{{route('homestay.edit',$homestays->id)}}" class="btn btn-primary"><button class="btn btn-primary">Updates</button></a>
-                    <br>	
-                    <form action="{{route('homestay.delete',$homestays->id)}}">
-                    	<br>
-                    	<input type="submit" value="delete" class="btn btn-danger" name="">
+                    <br>
+
+
+
+
+                    	
+                 <form method="post" action="{{route('homestay.destroy',$homestays->id)}}">
+                         {{csrf_field()}}
+                        {{ method_field('DELETE') }}
+                        <input type="submit" class="btn btn-danger"  value="delete">
                     </form>
 
                     

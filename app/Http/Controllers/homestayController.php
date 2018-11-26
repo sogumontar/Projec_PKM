@@ -65,8 +65,12 @@ class homestayController extends Controller
         return redirect()->route('homestay.view');
 
     }
-    public function delete($id){
+     public function destroy(homestay $homestay){
         $homestay->delete();
         return redirect()->route('homestay.view');
+    }
+    public function logout(request $request){
+        $request->session()->regenerate();
+        return redirect()->route('welcome');
     }
 }

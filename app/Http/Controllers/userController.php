@@ -15,6 +15,10 @@ class userController extends Controller
 
     	 DB::insert('insert into users(name,email,password) values(?,?,?)',[$nama,$email,md5($password)]);
 
+            return redirect()->route('homestay.view');
+    }
+    public function reg(){
+            return view('user.register');
 
     }
     public function login(request $request){
@@ -34,5 +38,9 @@ class userController extends Controller
     		// return redirect()->route('welcome')->with('danger','gagal');
     	}
 
+    }
+     public function logout(request $request){
+        $request->session()->regenerate();
+        return redirect()->route('welcome');
     }
 }
