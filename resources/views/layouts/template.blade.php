@@ -49,7 +49,6 @@
       </nav>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
         <a class="navbar-brand" href="#">
-          <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
         </a>
       </nav>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -75,7 +74,7 @@
                 <a class="nav-link" href="#">Pengalaman</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="#">Transportasi</a>
+                <a class="nav-link" href="{{route('kendaraan.create')}}">Transportasi</a>
               </li>
               <li class="nav-item active">
                 <i class="fas fa-user"></i>
@@ -116,7 +115,6 @@
       </nav>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
         <a class="navbar-brand" href="#">
-          <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
 
         </a>
       </nav>

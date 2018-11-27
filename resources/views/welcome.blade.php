@@ -75,9 +75,9 @@
                 <a class="nav-link" href="#">Pengalaman</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="#">Transportasi</a>
+                <a class="nav-link" href="{{route('kendaraan.create')}}">Transportasi</a>
               </li>
-             @if(Session::get('login'))
+             @if(!Session::get('login'))
                 <li class="nav-item active">
                   <i class="fas fa-user"></i>
 
@@ -87,7 +87,7 @@
                   </a>
                 </li>
               @endif
-              @if(!Session::get('login'))
+              @if(Session::get('login'))
                   <li class="nav-item active">
                   <i class="fas fa-user"></i>
 

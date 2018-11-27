@@ -38,3 +38,9 @@ Route::get('homestay/search','homestayController@search')->name('homestay.search
 // Route::delete('homestay/{id}/delete','homestayController@destroy')->name('homestay.delete');
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');
+
+
+//kendaraan
+Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.create');
+Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.store');
+Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
