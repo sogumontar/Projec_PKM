@@ -38,6 +38,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        
                         <!-- Authentication Links -->
                         @guest
                          
@@ -57,12 +58,7 @@
                             </li>
                         <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('welcome') }}">View</a>
-                                @endif
-                            </li>
-                         <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('post.create') }}">New</a>
+                                    <a class="nav-link" href="{{ route('homestay.view') }}">View</a>
                                 @endif
                             </li>
                             <li class="nav-item dropdown">

@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.app')
 <br>
 <br>
 	<div class="container">

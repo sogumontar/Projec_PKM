@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\homestay;
+use App\Auth;
+use App\record_homestay;
 class homestayController extends Controller
 {
     public function create(){
@@ -46,7 +48,7 @@ class homestayController extends Controller
         ]);
 
            // echo  DB::insert('insert into homestay(nomor_kamar,id_pemilik,harga,keterangan,nama,gambar) values(?,?,?,?,?,?)',[$nomor_kamar,$id_pemilik,$harga,$keterangan,$nama,$gambarr]);
-
+        Auth::logout();
     	return redirect()->route('homestay.create');
     }
 
@@ -80,5 +82,22 @@ class homestayController extends Controller
         
         $homestay = DB::SELECT("select * from homestay order by keterangan DESC");
         return view('homestay.search',compact('homestay'));
+    }
+    public function booking($id){
+        $homestay =homestay::find($id);
+        return view('homestay.booking',compact('homestay'));
+    }
+
+    public function bookProcess(request $request){
+        record_homestay::create([
+            'id_member'=>request('id'),
+            'id_homestay'=>request('id_home'),
+            'date'=>request('date'),
+            'jumlah_kamar'=>request('jumlah'),
+            'status'=>'pending',
+            'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+            'nomor_kamar'=>request('nomor_kamar'),
+        ]);
+        return redirect()->route('homestay.view');
     }
 }

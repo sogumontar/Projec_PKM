@@ -9,23 +9,24 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-Route::view('/register', 'register');
-Route::view('/login', 'login');
+// Route::view('/register', 'register');
+// Route::view('/login', 'login');
 Route::post('/store','userController@store')->name('user.register');
-Route::post('/register','userController@reg')->name('user.reg');
-Route::post('/login','userController@login')->name('user.login');
+Route::post('/register','userController@reg')->name('reg');
+// Route::post('/login','userController@login')->name('user.login');
+// Route::get('/logout','userController@logout')->name('user.logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/welcome', 'HomeController@index')->name('welcome');
-Route::get('/post/create', 'PostController@create')->name('post.create');
-Route::post('/post/create', 'PostController@store')->name('post.store');
-Route::get('/post','PostController@view')->name('post.view');
+// Route::get('/post/create', 'PostController@create')->name('post.create');
+// Route::post('/post/create', 'PostController@store')->name('post.store');
+// Route::get('/post','PostController@view')->name('post.view');
 
 
 //homestay
@@ -38,9 +39,17 @@ Route::get('homestay/search','homestayController@search')->name('homestay.search
 // Route::delete('homestay/{id}/delete','homestayController@destroy')->name('homestay.delete');
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');
-
+Route::get('homestay/{id}/booking','homestayController@booking')->name('homestay.booking');
+Route::post('homestay/booking','homestayController@bookProcess')->name('homestay.booking.process');
 
 //kendaraan
 Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.create');
 Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.store');
 Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
+
+//pengalaman
+Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.create');
+Route::post('pengalaman/create','pengalamanController@store')->name('pengalaman.store');
+Route::get('pengalaman/view','pengalamanController@view')->name('pengalaman.view');
+
+

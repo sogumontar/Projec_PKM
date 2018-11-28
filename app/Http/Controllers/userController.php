@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use App\Auth;
+use Session;
 
 class userController extends Controller
 {
@@ -18,7 +20,7 @@ class userController extends Controller
             return redirect()->route('homestay.view');
     }
     public function reg(){
-            return view('user.register');
+            return view('reg');
 
     }
     public function login(request $request){
@@ -31,16 +33,21 @@ class userController extends Controller
     	$config= DB::select('select id from users where email=? AND password=?',[$email,md5($password)]);
 
     	if(count($config)){
-            echo "del";
-    		// return redirect()->route('welcome')->with('succes','succes');
+            // echo "del";
+            Session::put('log',TRUE);
+            return redirect()->route('homestay.view');
+    		
     	}else{
             echo "salah";
     		// return redirect()->route('welcome')->with('danger','gagal');
     	}
 
+        // dd(\Auth::attempt([]))
+
     }
      public function logout(request $request){
         $request->session()->regenerate();
-        return redirect()->route('welcome');
+        // return redirect()->route('welcome');
+        echo "logout";
     }
 }

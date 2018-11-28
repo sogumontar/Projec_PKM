@@ -11,13 +11,13 @@
         <div class="form-group">
         </div>
         <div>
-            <a href="{{route('homestay.search')}}">sort Desc</a>
+            <a href="">sort Desc</a>
         </div>
 
         <div class="row">
 
 
-        @foreach($homestay as $homestays)
+        @foreach($kendaraan as $kendaraan)
           <div class="col-lg-4">
             <style type="text/css">
                             img {
@@ -29,23 +29,22 @@
             <div class="form-group">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <img class="card-img-top" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
+                  <img class="card-img-top" src="" alt="Card image cap">
                   <hr>
-                  <p>{{$homestays->keterangan}}</p>
+                  <p>{{$kendaraan->plat_nomor}}</p>
                   <hr>
-                  @if(Route::has('log'))
-                      <p>test</p>
-                  @endif
-                  @if(!Route::has('loga'))
-                      <p>set</p>
-                  @endif
                 </div>
                 
-                <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}" class="btn btn-primary">Booking</a>
+                <div class="col-lg-3">
+                  <form method="post" action="">
+                         {{csrf_field()}}
+                        {{ method_field('DELETE') }}
+                        <input type="submit" class="btn btn-danger"  value="delete">
+                   </form>
                </div>
                <div class="">
-                  <h5 class="card-header"> <a href="{{route('homestay.update',$homestays->id)}}" class="btn btn-primary">Update</a>
-                     <form method="post" action="{{route('homestay.destroy',$homestays->id)}}">
+                  <h5 class="card-header"> <a href="" class="btn btn-primary">Update</a>
+                     <form method="post" action="">
                          {{csrf_field()}}
                         {{ method_field('DELETE') }}
                         <input type="submit" class="btn btn-danger"  value="delete">
@@ -65,4 +64,3 @@
                     	
                  
                     <!-- <a href=""><button class="btn btn-danger">delete</button></a> -->
-                 
