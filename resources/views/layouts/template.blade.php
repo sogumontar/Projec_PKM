@@ -52,13 +52,16 @@
                 <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="#">Objek Wisata</a>
+                <a class="nav-link" href="{{route('objekWisata.view')}}">Objek Wisata</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('kendaraan.create')}}">Transportasi</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('listBook')}}">List Booking</a>
               </li>
               <li class="nav-item active">
                 <i class="fas fa-user"></i>

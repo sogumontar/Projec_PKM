@@ -35,12 +35,19 @@ Route::get('homestay/create','homestayController@create')->name('homestay.create
 Route::post('homestay/create','homestayController@store')->name('homestay.store');
 Route::get('homestay/{id}/edit','homestayController@edit')->name('homestay.edit');
 Route::patch('homestay/{id}/edit','homestayController@update')->name('homestay.update');
+Route::get('homestay/{id}/kelola','homestayController@kelola')->name('homestay.kelola');
+
+Route::patch('homestay/{id}/kelola','homestayController@rejectBooking')->name('booking.reject');
+Route::patch('homestay/{id}/listBookz','homestayController@acceptBooking')->name('accept');
+// Route::patch('homestay/{record->id}/kelola','homestayController@acceptBooking')->name('booking.accept');
+// Route::patch('homestay/{record->id}/kelola','homestayController@rejectBooking')->name('booking.reject');
 Route::get('homestay/search','homestayController@search')->name('homestay.search');
 // Route::delete('homestay/{id}/delete','homestayController@destroy')->name('homestay.delete');
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');
 Route::get('homestay/{id}/booking','homestayController@booking')->name('homestay.booking');
 Route::post('homestay/booking','homestayController@bookProcess')->name('homestay.booking.process');
+Route::get('homestay/listBook','homestayController@listBook')->name('listBook');
 
 //kendaraan
 Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.create');
@@ -52,4 +59,9 @@ Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.
 Route::post('pengalaman/create','pengalamanController@store')->name('pengalaman.store');
 Route::get('pengalaman/view','pengalamanController@view')->name('pengalaman.view');
 
+//Objek Wisata
+
+Route::get('objekWisata/create','objekWisataController@create')->name('objekWisata.create');
+Route::get('objekWisata/view','objekWisataController@view')->name('objekWisata.view');
+Route::post('objekWisata/create','objekWisataController@store')->name('objekWisata.store');
 

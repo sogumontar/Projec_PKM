@@ -48,7 +48,7 @@ class homestayController extends Controller
         ]);
 
            // echo  DB::insert('insert into homestay(nomor_kamar,id_pemilik,harga,keterangan,nama,gambar) values(?,?,?,?,?,?)',[$nomor_kamar,$id_pemilik,$harga,$keterangan,$nama,$gambarr]);
-        Auth::logout();
+        
     	return redirect()->route('homestay.create');
     }
 
@@ -59,6 +59,10 @@ class homestayController extends Controller
     public function edit($id){
         $homestay =homestay::find($id);
         return view('homestay.edit',compact('homestay'));
+    }
+    public function kelola($id){
+        $record =record_homestay::find($id);
+        return view('homestay.kelola',compact('record'));
     }
     public function update($id){
         $homestay =homestay::find($id);
@@ -88,6 +92,7 @@ class homestayController extends Controller
         return view('homestay.booking',compact('homestay'));
     }
 
+
     public function bookProcess(request $request){
         record_homestay::create([
             'id_member'=>request('id'),
@@ -100,4 +105,58 @@ class homestayController extends Controller
         ]);
         return redirect()->route('homestay.view');
     }
+    public function listBook(){
+        $record_homestay = DB::SELECT("select * from record_pemesanan_homestay");
+        return view('homestay.listBook',compact('record_homestay'));
+    }
+    public function rejectBooking($id){
+        $record_homestay1 =record_homestay::find($id);
+        $record_homestay1->update([
+            // 'id_member'=>Request('id_member'),
+            // 'id_homestay'=>Request('id_homestay'),
+            // 'date'=>request('date'),
+            // 'jumlah_kamar'=>request('jumlah_kamar'),
+            'status'=>'reject',
+            // 'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+            // 'nomor_kamar'=>request('nomor_kamar'),
+        ]); 
+        return redirect()->route('listBook')->with('succes','berhasil');
+    }
+    public function acceptBooking($id){
+        $record_homestay =record_homestay::find($id);
+        $record_homestay->update([
+           
+            'status'=>'accept',
+           
+        ]); 
+        return redirect()->route('listBook');
+    }
+    // public function rejectBooking($id){
+    //     $record_homestay=record_homestay::find($id);
+    //     $record_homestay->update([
+    //         'id_member'=>'1',
+    //         'id_homestay'=>'35',
+    //         'date'=>request('date'),
+    //         'jumlah_kamar'=>request('jumlah_kamar'),
+    //         'status'=>'reject',
+    //         'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+    //         'nomor_kamar'=>'1',
+    //     ]);
+    //     echo "del";     
+    // }
+
+    // public function acceptBooking($id){
+    //     $record=record_homestay::find($id);
+    //     $record->update([
+    //         'id_member'=>'1',
+    //         'id_homestay'=>'35',
+    //         'date'=>request('date'),
+    //         'jumlah_kamar'=>request('jumlah_kamar'),
+    //         'status'=>'accept',
+    //         'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+    //         'nomor_kamar'=>'1',
+    //     ]);
+    //     echo "del";
+    // }
+
 }
