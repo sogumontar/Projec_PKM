@@ -20,7 +20,7 @@ class homestayController extends Controller
     	// $gambar = $request->file('gambar');
         $gambar = $request->file('gambar');
          $namaFile = $gambar->getClientOriginalName();
-         $pathw= $request->file('gambar')->store('');
+         $pathw= $request->file('gambar')->store(''); 
          $request->file('gambar')->move('uploadgambar',$pathw);
      //    echo $path;
       //       $path= $request->file('gambar')->store('upload');
@@ -64,18 +64,44 @@ class homestayController extends Controller
         $record =record_homestay::find($id);
         return view('homestay.kelola',compact('record'));
     }
-    public function update($id){
+    public function update(Request $request,$id){
+
+
+
         $homestay =homestay::find($id);
+
+
+
+        // if(!$request->file('gambar')){
+        //     if(file_exists($request->file('gambar')->move(getcwd() . '/homestay/img/' . $homestay->gambar)))
+        //     {
+        //             unlink($request->file('gambar')->move(getcwd() . '/homestay/img/' . $homestay->gambar));
+        //     }
+        // }
+        
+        $r=request('gambar');
+        if($r==''){
+           
         $homestay->update([
             'nomor_kamar'=>request('nomor_kamar'),
             'id_pemilik'=>request('id_pemilik'),
             'harga'=>request('harga'),
             'keterangan'=>request('keterangan'),
             'nama'=>request('nama'),
-            'gambar'=>request('gambar'),
-        ]); 
+        ]); }else{
 
-        return redirect()->route('homestay.view');
+        $gambar = $request->file('gambar');
+         $namaFile = $gambar->getClientOriginalName();
+         $pathw= $request->file('gambar')->store(''); 
+         $request->file('gambar')->move('uploadgambar',$pathw);
+
+          $homestay->update([
+            'gambar'=>$pathw,
+        ]);
+
+        }
+
+        // return redirect()->route('homestay.view');
 
     }
      public function destroy(homestay $homestay){

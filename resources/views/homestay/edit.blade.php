@@ -2,7 +2,7 @@
 <div class="container">
         <div class="row">
             <div class="col-md-8 col-offset-2">
-                <form action="{{ route('homestay.update',$homestay->id) }}"  method="post">
+                <form action="{{ route('homestay.update',$homestay->id) }}"  method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     {{ method_field('PATCH') }}
                     <div class="form-group">
@@ -28,7 +28,8 @@
 
                     <div class="form-group">
                         <label>Gambar Homestay</label>
-                        <input type="text" class="form-control" name="gambar" value="{{$homestay->gambar}}">
+                        <img src="/uploadgambar/{{$homestay->gambar}}">
+                        <input type="file" class="form-control" name="gambar" id="gambar" >
                     </div>
                    
                     <div class="form-group">

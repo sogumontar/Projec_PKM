@@ -53,7 +53,8 @@ Route::get('homestay/listBook','homestayController@listBook')->name('listBook');
 Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.create');
 Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.store');
 Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
-
+Route::get('kendaraan/{id}/edit','kendaraanController@edit')->name('kendaraan.edit');
+Route::PATCH('kendaraan/{id}/view','kendaraanController@update')->name('kendaraan.update');
 //pengalaman
 Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.create');
 Route::post('pengalaman/create','pengalamanController@store')->name('pengalaman.store');

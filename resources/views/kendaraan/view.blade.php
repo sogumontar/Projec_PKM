@@ -36,14 +36,11 @@
                 </div>
                 
                 <div class="col-lg-3">
-                  <form method="post" action="">
-                         {{csrf_field()}}
-                        {{ method_field('DELETE') }}
-                        <input type="submit" class="btn btn-danger"  value="delete">
-                   </form>
+                  <a href="{{route('kendaraan.edit',$kendaraan->id)}}" class="btn btn-primary">Edit</a>
+                  
                </div>
                <div class="">
-                  <h5 class="card-header"> <a href="" class="btn btn-primary">Update</a>
+                  <h5 class="card-header"> <a href="" class="btn btn-primary">Delete</a>
                      <form method="post" action="">
                          {{csrf_field()}}
                         {{ method_field('DELETE') }}

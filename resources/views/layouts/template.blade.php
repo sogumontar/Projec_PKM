@@ -188,4 +188,5 @@
       <!-- <script type="tex" href="{{ asset('vendor/bootstrap/carousel.css') }}"> -->
   </body>
 </html>
+
 @yield('content')
