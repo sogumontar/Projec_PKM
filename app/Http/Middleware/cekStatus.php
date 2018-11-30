@@ -21,13 +21,13 @@ class cekStatus
         // $user = \App\User::where('email', $request->email)->first();
 
         if (Auth::user()->role == 'admin') {
-            return redirect('new');
+            return redirect('admin/new');
             // echo"admin";
         } elseif (Auth::user()->role == 'member') {
             return redirect('homestay/view');
             // echo "member";
         }else if(Auth::user()->role=='owner'){
-            return redirect('new');
+            return redirect('admin/new');
             // echo"owner";
         }
         return $next($request);

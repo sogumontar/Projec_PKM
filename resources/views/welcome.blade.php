@@ -1,6 +1,10 @@
 
 
-
+@if(Auth::user())
+  @if(Auth::user()->role=='owner')
+    return redirect()->route('homestay.view')
+  @endif
+@endif
 
 <!doctype html>
 <html lang="en">
@@ -49,9 +53,9 @@
                    
             <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @if((!Route::has('login')))
+                        @if((Auth::user()))
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
+                <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapana</a>
               </li>
                @endif
               <li class="nav-item active">
@@ -59,7 +63,7 @@
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="#">Objek Wisata</a>
+                <a class="nav-link" href="#">Objek Wisataa</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>

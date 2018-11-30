@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}">
+    <link rel="icon" type="image/png" href="/uploadgambar/1A4sQ2m4ymPLXKNyOZ17W09eLHG0iED136XmWpod.png">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <style>
@@ -45,9 +46,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <li class="nav-item active">
+          @if((Auth::user()))
+            @if(Auth::user()->role=='owner')
+              <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
               </li>
+              @endif
+          @endif
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
               </li>

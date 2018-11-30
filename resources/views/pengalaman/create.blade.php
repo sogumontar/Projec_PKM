@@ -1,5 +1,7 @@
 @extends('layouts.template')
 @section('content')
+</div>
+<br>
 <div class="container-fluid">
 	<a href="{{route('pengalaman.view')}}">Lihat daftar Pengalaman</a>
 </div>
