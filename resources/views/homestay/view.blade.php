@@ -43,13 +43,18 @@
                 
                 <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}" class="btn btn-primary">Booking</a>
                </div>
-               <div class="">
-                  <h5 class="card-header"> <a href="{{route('homestay.update',$homestays->id)}}" class="btn btn-primary">Update</a>
+               <div class="container">
+                <div class="col-lg-3">
+                 <a href="{{route('homestay.update',$homestays->id)}}" class="btn btn-primary">Update</a>
+                  
+                </div>
+                <div class="col-lg-1">
                      <form method="post" action="{{route('homestay.destroy',$homestays->id)}}">
                          {{csrf_field()}}
                         {{ method_field('DELETE') }}
                         <input type="submit" class="btn btn-danger"  value="delete">
-                   </form></h5>
+                   </form>
+                 </div>
 
                 </div>
               </div>

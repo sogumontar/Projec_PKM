@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+use Session;
 
 class cekStatus
 {
@@ -13,14 +15,21 @@ class cekStatus
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
         // $user = \App\User::where('email', $request->email)->first();
-        // if (Auth::user->role == 'admin') {
-        //     return redirect('{{route(homestay.view)}}');
-        // } elseif (Auth::user->role == 'member') {
-        //     return redirect('{{route(welcome)}}');
-        // }
+
+        if (Auth::user()->role == 'admin') {
+            return redirect('new');
+            // echo"admin";
+        } elseif (Auth::user()->role == 'member') {
+            return redirect('homestay/view');
+            // echo "member";
+        }else if(Auth::user()->role=='owner'){
+            return redirect('new');
+            // echo"owner";
+        }
         return $next($request);
     } 
 }

@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index',['middleware'=>'cekStatus',function(){
+		// return view('homestay.view');
+	}]);
 Auth::routes();
 // Route::view('/register', 'register');
 // Route::view('/login', 'login');
@@ -30,6 +33,8 @@ Route::get('/welcome', 'HomeController@index')->name('welcome');
 
 
 //homestay
+
+Route::get('new','homestayController@new');
 Route::get('homestay/view','homestayController@view')->name('homestay.view');
 Route::get('homestay/create','homestayController@create')->name('homestay.create');
 Route::post('homestay/create','homestayController@store')->name('homestay.store');

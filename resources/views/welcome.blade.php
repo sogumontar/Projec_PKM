@@ -46,14 +46,18 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                   
+            <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <li class="nav-item active">
+                        @if((!Route::has('login')))
+              <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
               </li>
+               @endif
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
               </li>
+
               <li class="nav-item active">
                 <a class="nav-link" href="#">Objek Wisata</a>
               </li>
@@ -67,7 +71,7 @@
                 <i class="fas fa-user"></i>
 
 
-                
+               
               </li>
                         @guest
                          <li class="nav-item active">

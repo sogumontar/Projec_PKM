@@ -60,6 +60,9 @@ class homestayController extends Controller
         $homestay =homestay::find($id);
         return view('homestay.edit',compact('homestay'));
     }
+    public function new(){
+        return view('new');
+    }
     public function kelola($id){
         $record =record_homestay::find($id);
         return view('homestay.kelola',compact('record'));
