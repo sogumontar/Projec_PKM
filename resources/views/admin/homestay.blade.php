@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>KingStay</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -37,9 +37,9 @@
 <body>
 
 <div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav fixed-side">
-      <h4>John's Blog</h4>
+  <div class="row content fixed-top">
+    <div class="col-sm-3 sidenav fixed-top">
+      <br>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
@@ -59,7 +59,7 @@
 
     <div class="col-sm-9"><br>
 
-<br><br><br><br><br><br>
+<br><br><br><br>
       <div class="panel panel-primary filterable">
                         
                         <!-- panel heading starat -->
@@ -78,7 +78,7 @@
                             <thead>
                                 <tr class="filters">
                                     <th><p>Nama</p></th>
-                                    <th><p>Email</p></th> 
+                                    <th><p>Harga</p></th> 
                                     <th><p>Role</p></th>
 
 <!--
@@ -90,8 +90,8 @@
                                 @foreach($homestay as $a)
                                 <div>
                                   <tr>
-                                    <td>{{$a->harga }}</td>
-                                     <td>{{$a->nama}}</td>
+                                    <td>{{$a->nama }}</td>
+                                     <td>{{$a->harga}}</td>
                                       <td>{{$a->gambar}}</td>
                                   </tr>
                                 </div>
