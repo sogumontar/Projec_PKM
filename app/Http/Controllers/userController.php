@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Auth;
+use App\User;
+use App\member;
 use Session;
 
 class userController extends Controller
 {
-    public function store(request $request){
-    	$nama=$request->input('nama');
-    	$email=$request->input('email');
-    	$password=$request->input('password');
-
-    	 DB::insert('insert into users(name,email,password) values(?,?,?)',[$nama,$email,md5($password)]);
-
-            return redirect()->route('homestay.view');
+    public function store(request $request)
+    {
+             User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+              member::create([
+            'nama'=> $request['name'],
+            'id_akun'=> 1,
+         ]);
+      
+         return view('home');
     }
     public function reg(){
             return view('reg');

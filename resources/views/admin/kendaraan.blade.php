@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +64,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">Daftar kendaraan</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -78,9 +77,10 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Nama</p></th>
-                                    <th><p>Harga</p></th> 
-                                    <th><p>Role</p></th>
+                                    <th><p>Jenis Kendaraan</p></th>
+                                    <th><p>Merk Kendaraan</p></th> 
+                                    <th><p>Plat Nomor</p></th>
+                                    <th><p>Nama Pemilik</p></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -88,7 +88,16 @@
 -->
                                 </tr>
                             </thead>
-                               
+                                @foreach($query as $a)
+                                <div>
+                                  <tr>
+                                    <td>{{$a->jenis_kendaraan }}</td>
+                                     <td>{{$a->Merk_kendaraan}}</td>
+                                      <td>{{$a->plat_nomor}}</td>
+                                      <td>{{$a->nama}}</td>
+                                  </tr>
+                                </div>
+                                @endforeach
                           
                             </table>
                         <!-- panel content end -->

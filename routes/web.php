@@ -21,8 +21,8 @@ Route::get('/index',['middleware'=>'cekStatus',function(){
 Auth::routes();
 // Route::view('/register', 'register');
 // Route::view('/login', 'login');
-Route::post('/store','userController@store')->name('user.register');
-Route::post('/auth','userController@reg')->name('reg');
+// Route::post('/store','userController@store')->name('user.register');
+Route::post('/register','userController@store')->name('reg');
 // Route::post('/login','userController@login')->name('user.login');
 // Route::get('/logout','userController@logout')->name('user.logout');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -77,3 +77,4 @@ Route::get('admin/akun','adminController@akun')->name('admin.akun');
 Route::get('admin/objekWisata','adminController@objekWisata')->name('admin.objekWisata');
 Route::get('admin/pengalaman','adminController@pengalaman')->name('admin.pengalaman');
 Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
+Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');

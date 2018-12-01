@@ -44,7 +44,7 @@
         <li class="active"><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
-        <li><a href="{{route('admin.pengalaman')}}">Kendaraan</a></li>
+        <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{('admin.objekWisata')}">Objek Wisata</a></li>
       </ul><br>
       <div class="input-group">
