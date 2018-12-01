@@ -45,7 +45,7 @@
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('homestay.create')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{('admin.objekWisata')}">Objek Wisata</a></li>
+        <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -74,12 +74,11 @@
                         <div class="panel-body">
                         <!-- panel content start -->
                            <!-- Table -->
-                        <table class="table table-hover table-bordered">
+                      <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Nama</p></th>
-                                    <th><p>Harga</p></th> 
-                                    <th><p>Role</p></th>
+                                    <th><p>Nama Objek Wisata</p></th>
+                                    <th><p>Keterangan</p></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -87,7 +86,14 @@
 -->
                                 </tr>
                             </thead>
-                               
+                                @foreach($objekWisata as $a)
+                                <div>
+                                  <tr>
+                                    <td>{{$a->nama }}</td>
+                                     <td>{{$a->keterangan}}</td>
+                                  </tr>
+                                </div>
+                                @endforeach
                           
                             </table>
                         <!-- panel content end -->

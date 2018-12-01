@@ -45,7 +45,7 @@
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{('admin.objekWisata')}">Objek Wisata</a></li>
+        <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">

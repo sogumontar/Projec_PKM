@@ -11,10 +11,12 @@ use App\pengalaman;
 use App\homestay;
 use App\kendaraan;
 use App\pemilik;
+use App\objekWisata;
 class adminController extends Controller
 {
     public function objekWisata(){
-    	return view('admin.objekWisata');
+        $objekWisata=objekWisata::all();
+    	return view('admin.objekWisata',compact('objekWisata'));
     }
     public function akun(){
     	$akun=user::all();
@@ -24,10 +26,7 @@ class adminController extends Controller
     	$pengalaman=pengalaman::all();
     	return view('admin.pengalaman',compact('pengalaman'));
     }
-    public function homestay(){
-        $homestay=homestay::all();
-        return view('admin.homestay',compact('homestay'));
-    }
+    
     public function kendaraan(){
         $kendaraan=kendaraan::all();
         // $pemilik=pemilik::all();
@@ -42,5 +41,12 @@ class adminController extends Controller
         return view('admin.kendaraan',compact('query'));
 
 
+    }
+    public function homestay(){
+         $query = DB::table('homestay')
+           ->join('pemilik_homestay_kendaraan', 'homestay.id_pemilik', '=', 'pemilik_homestay_kendaraan.id')
+           ->select('homestay.nama', 'homestay.keterangan', 'homestay.gambar', 'pemilik_homestay_kendaraan.nama as name')
+           ->get();
+           return view('admin.homestay',compact('query'));
     }
 }
