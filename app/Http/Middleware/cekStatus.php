@@ -27,7 +27,7 @@ class cekStatus
             return redirect('homestay/view');
             // echo "member";
         }else if(Auth::user()->role=='owner'){
-            return redirect('admin/new');
+            return redirect('owner/owner');
             // echo"owner";
         }
         return $next($request);

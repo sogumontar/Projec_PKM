@@ -44,7 +44,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
-        <li><a href="{{route('homestay.create')}}">Homestay</a></li>
+        <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
       </ul><br>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +42,11 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
-        <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
-        <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
-        <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
+       <li class="active"><a href="#section1">Home</a></li>
+        <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
+        <li><a href="{{route('owner.homestay')}}">Homestay</a></li>
+        <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
+        <li><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -77,9 +78,9 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Nama Homestay</p></th>
-                                    <th><p>Keterangan</p></th> 
-                                    <th><p>Nama Pemilik</p></th>
+                                    <th><p>Nama</p></th>
+                                    <th><p>Harga</p></th> 
+                                    <th><p>Role</p></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -87,15 +88,7 @@
 -->
                                 </tr>
                             </thead>
-                                @foreach($query as $a)
-                                <div>
-                                  <tr>
-                                    <td>{{$a->nama }}</td>
-                                     <td>{{$a->keterangan}}</td>
-                                      <td>{{$a->name}}</td>
-                                  </tr>
-                                </div>
-                                @endforeach
+                               
                           
                             </table>
                         <!-- panel content end -->

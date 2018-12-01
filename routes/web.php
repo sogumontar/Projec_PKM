@@ -78,3 +78,10 @@ Route::get('admin/objekWisata','adminController@objekWisata')->name('admin.objek
 Route::get('admin/pengalaman','adminController@pengalaman')->name('admin.pengalaman');
 Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
 Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');
+
+//Owner
+
+Route::get('owner/owner','pemilikController@owner')->name('owner.owner');
+Route::get('owner/homestay','pemilikController@homestay')->name('owner.homestay');
+Route::get('owner/kendaraan','pemilikController@kendaraan')->name('owner.kendaraan');
+Route::get('owner/pengalaman','pemilikController@pengalaman')->name('owner.pengalaman');
