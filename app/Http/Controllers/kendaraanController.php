@@ -5,21 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\kendaraan;
 class kendaraanController extends Controller
 {
     public function create(){
     	return view('kendaraan.create');
     }
-    public function store(){
+    public function store(request $request){
+         $file       = $request->file('gambar');
+        $fileName   = $file->getClientOriginalName();
+        // $request->file('gambar')->move("upload/",$fileName);
+        // $gambar = $request->file('gambar');
+        $gambar = $request->file('gambar');
+         // $namaFile = $gambar->getClientOriginalName();
+         $pathw= $request->file('gambar')->store(''); 
+         $request->file('gambar')->move('kendaraan',$pathw);
+         $a=Auth::user()->id;
     	kendaraan::create([
     	'jenis_kendaraan'=>request('jenis'),
     	'Merk_kendaraan'=>request('merk'),
-    	'id_pemilik'=>request('id'),
+    	'id_pemilik'=>$a,
     	'plat_nomor'=>request('plat'),
     	'harga'=>request('harga'),
+        'gambar'=>$pathw,
     	]);
-    	return redirect()->route('kendaraan.view');
+    	return redirect()->route('owner.kendaraan');
     }
     public function view(){
     	$kendaraan=kendaraan::all();

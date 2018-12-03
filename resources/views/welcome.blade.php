@@ -1,10 +1,5 @@
 
 
-@if(Auth::user())
-  @if(Auth::user()->role=='owner')
-    return redirect()->route('homestay.view')
-  @endif
-@endif
 
 <!doctype html>
 <html lang="en">

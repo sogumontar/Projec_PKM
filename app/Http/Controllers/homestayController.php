@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\homestay;
-use App\Auth;
+
 use App\record_homestay;
 class homestayController extends Controller
 {
@@ -19,7 +21,7 @@ class homestayController extends Controller
         // $request->file('gambar')->move("upload/",$fileName);
     	// $gambar = $request->file('gambar');
         $gambar = $request->file('gambar');
-         $namaFile = $gambar->getClientOriginalName();
+         // $namaFile = $gambar->getClientOriginalName();
          $pathw= $request->file('gambar')->store(''); 
          $request->file('gambar')->move('uploadgambar',$pathw);
      //    echo $path;
@@ -37,9 +39,10 @@ class homestayController extends Controller
         // $do = new Gambar($request->all());
         // $do->gambar=$namaFile;
         // $do->save();
+         $a=Auth::user()->id;
             homestay::create([
             'nomor_kamar'=>request('nomor_kamar'),
-            'id_pemilik'=>request('id_pemilik'),
+            'id_pemilik'=>$a,
             'harga'=>request('harga'),
             'keterangan'=>request('keterangan'),
             'nama'=>request('nama'),
@@ -49,7 +52,7 @@ class homestayController extends Controller
 
            // echo  DB::insert('insert into homestay(nomor_kamar,id_pemilik,harga,keterangan,nama,gambar) values(?,?,?,?,?,?)',[$nomor_kamar,$id_pemilik,$harga,$keterangan,$nama,$gambarr]);
         
-    	return redirect()->route('homestay.create');
+    	return redirect()->route('owner.homestay');
     }
 
     public function view(){

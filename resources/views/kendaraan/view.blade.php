@@ -29,7 +29,7 @@
             <div class="form-group">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <img class="card-img-top" src="" alt="Card image cap">
+                  <img class="card-img-top" src="/kendaraan/{{$kendaraan->gambar}}" alt="Card image cap">
                   <hr>
                   <p>{{$kendaraan->plat_nomor}}</p>
                   <hr>

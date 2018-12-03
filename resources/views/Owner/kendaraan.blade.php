@@ -42,10 +42,10 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-    <li class="active"><a href="#section1">Home</a></li>
+    <li class=""><a href="{{route('owner.owner')}}">Home</a></li>
         <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
         <li><a href="{{route('owner.homestay')}}">Homestay</a></li>
-        <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
+        <li class="active"><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
       </ul><br>
       <div class="input-group">
@@ -104,6 +104,46 @@
                         </div>
                     </div>
 
+                    <div class="panel panel-primary filterable">
+                        
+                        <!-- panel heading starat -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Daftar Akun</h3>
+                            <div class="pull-right">
+                            
+                        </div>
+                        </div>
+                        <!-- panel heading end -->
+                          <div class="jumbotron">
+  <form action="{{route('kendaraan.store')}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div>
+          {{ csrf_field() }}
+
+          <label>Jenis Kendaraan</label>
+          <select name="jenis" id="jenis" class="form-control" >
+
+            <option value="mobil">Mobil</option>
+            <option value="mobil">Motor</option>
+          </select><br>
+          <label>Merk Kendaraan</label>
+          <input type="text" class="form-control" placeholder="Merk Kendaraan" name="merk" id="merk"><br>
+          <!-- <input type="text" class="form-control" placeholder="id_pemilik" name="id" id="id"><br> -->
+
+          <label>Plat Nomor Kendaraan</label>
+          <input type="text" class="form-control" placeholder="Plat Nomor Kendaraan" name="plat" id="plat"><br>
+
+          <label>Harga Kendaraan</label>
+          <input type="text" class="form-control" placeholder="Harga" name="harga" id="harga"><br>
+          <input type="file" class="form-control" placeholder="Harga" name="gambar" id="gambar"><br>
+          <input type="submit" class="btn btn-primary" name="">
+        </div>      
+    </div>
+  </form>
+</div>
+                       
+
+
 
 
     </div>
@@ -116,3 +156,7 @@
 
 </body>
 </html>
+
+
+
+

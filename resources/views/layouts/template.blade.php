@@ -46,13 +46,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-          @if((Auth::user()))
-            @if(Auth::user()->role=='owner')
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
-              </li>
-              @endif
-          @endif
+          
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
               </li>
@@ -60,10 +54,10 @@
                 <a class="nav-link" href="{{route('objekWisata.view')}}">Objek Wisata</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>
+                <a class="nav-link" href="{{route('pengalaman.view')}}">Pengalaman</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('kendaraan.create')}}">Transportasi</a>
+                <a class="nav-link" href="{{route('kendaraan.view')}}">Transportasi</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('listBook')}}">List Booking</a>

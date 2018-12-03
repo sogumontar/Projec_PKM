@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('content')
+@edsection
 </div>
 <br>
 @foreach($test as $s)
@@ -34,7 +35,4 @@
 </div>
 
 
-
-
-@endsection
 

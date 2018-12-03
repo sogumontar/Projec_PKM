@@ -42,11 +42,11 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-     <li class="active"><a href="#section1">Home</a></li>
+     <li class=""><a href="{{route('owner.owner')}}">Home</a></li>
         <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
         <li><a href="{{route('owner.homestay')}}">Homestay</a></li>
         <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
+        <li class="active"><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
