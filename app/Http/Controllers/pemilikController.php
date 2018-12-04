@@ -37,5 +37,16 @@ class pemilikController extends Controller
     public function  owner(){
     	return view('owner.owner');
     }
+    public function booking(){
+    	$id=Auth::user()->id;
+    	// echo $id;
+    	// die();
+    	$test=DB::SELECT('select * from record_pemesanan_homestay
+    		inner join homestay
+    		on record_pemesanan_homestay.id_homestay = homestay.id 
+    		where homestay.id_pemilik=146');
+    	return view('owner.booking',compact('test'));
+    }
+
     // $config= DB::select('select id from users where email=? AND password=?',[$email,md5($password)]);
 }

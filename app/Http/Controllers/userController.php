@@ -19,13 +19,18 @@ class userController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+             'role'=>"member",
         ]);
-              member::create([
-            'nama'=> $request['name'],
-            'id_akun'=> 1,
-         ]);
+             $q=DB::select('select id from users order by id desc');
+              
+                member::create([
+                'nama'=> $request['name'],
+                'id_akun'=> $q[0]->id,
+
+                ]);
+
       
-         return view('home');
+         return view('/welcome');
     }
     public function reg(){
             return view('reg');

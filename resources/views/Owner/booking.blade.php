@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +42,11 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
-        <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
-        <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
-        <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
+        <li class=""><a href="{{route('owner.owner')}}">Home</a></li>
+        <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
+        <li class=""><a href="{{route('owner.homestay')}}" class="active">Homestay</a></li>
+        <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
+        <li><a class="active" href="{{route('owner.booking')}}">List Pesanan</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -64,7 +65,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">List Homestay</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -77,9 +78,11 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Nama Homestay</p></th>
-                                    <th><p>Keterangan</p></th> 
-                                    <th><p>Nama Pemilik</p></th>
+                                    <th><p>Tanggal pemesanan</p></th>
+                                    <th><p>Hargaa</p></th> 
+                                    <th><p>Keterangan</p></th>
+                                    <th></th>
+                                    <th></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -87,14 +90,16 @@
 -->
                                 </tr>
                             </thead>
-                                @foreach($query as $a)
+                                 @foreach($test as $a)
                                 <div>
                                   <tr>
-                                    <td>{{$a->nama }}</td>
-                                     <td>{{$a->keterangan}}</td>
-                                      <td>{{$a->name}}</td>
-                                       <td> <a href="" class="btn btn-primary">Update</a></td>
+                                    <td>{{$a->date }}</td>
 
+                                    <td>{{$a->jumlah_kamar}}</td>
+                                     <td>{{$a->keterangan}}</td>
+                                     <td>{{$a->status}}</td>
+                                     <td>{{$a->jumlah_pengunjung}}</td>
+                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
                                      <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
@@ -109,6 +114,37 @@
                         <!-- panel end -->
                         </div>
                     </div>
+
+                     <div class="panel panel-primary filterable">
+                        
+                        <!-- panel heading starat -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tambah Homestay</h3>
+                            <div class="pull-right">
+                            
+                        </div>
+                        </div>
+                        <!-- panel heading end -->
+
+                      <div class="jumbotron">
+  <form action="{{route('homestay.store')}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div>
+          {{ csrf_field() }}
+          <input type="text" class="form-control" placeholder="nama" name="nama" id="nama"><br>
+          <input type="text" class="form-control" placeholder="Jumlah Kamar" name="nomor_kamar" id="nomor_kamar"><br>
+          <input type="text" class="form-control" placeholder="harga" name="harga" id="harga"><br>
+          <textarea class="form-control" placeholder="keterangan" name="keterangan" id="keterangan" rows="5"></textarea><br>
+          <input type="file" class="form-control" placeholder="gambar" name="gambar" id="gambar"><br>
+          <div align="right">
+            <input type="submit" class="btn btn-primary" align=""  name="">
+          </div>
+        </div>      
+    </div>
+  </form>
+</div>
+                    </div>
+
 
 
 

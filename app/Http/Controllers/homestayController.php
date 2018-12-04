@@ -107,12 +107,17 @@ class homestayController extends Controller
 
         }
 
-        // return redirect()->route('homestay.view');
+        return redirect()->route('owner.homestay');
 
     }
      public function destroy(homestay $homestay){
         $homestay->delete();
-        return redirect()->route('homestay.view');
+        if(Auth::user()->role=='owner'){
+            return redirect()->route('owner.homestay');
+
+        }else{
+            return redirect()->route('admin.homestay');
+        }
     }
     public function search(){
         
@@ -125,17 +130,45 @@ class homestayController extends Controller
     }
 
 
-    public function bookProcess(request $request){
-        record_homestay::create([
-            'id_member'=>request('id'),
-            'id_homestay'=>request('id_home'),
-            'date'=>request('date'),
-            'jumlah_kamar'=>request('jumlah'),
-            'status'=>'pending',
-            'jumlah_pengunjung'=>request('jumlah_pengunjung'),
-            'nomor_kamar'=>request('nomor_kamar'),
-        ]);
-        return redirect()->route('homestay.view');
+    public function bookProcess(request $request,$id){
+        // echo $id;
+        // die();
+        $test=DB::SELECT("select * from homestay where id=$id");
+        // echo $test[0]->nomor_kamar;
+        $nowwo=date("Y-m-d");
+        $wonnee=strtotime($nowwo);
+        $oww=date('H:i:s');
+        $wonne=$wonnee+strtotime($oww);
+        $inow = strtotime(request('date'));
+         $o=DB::select("select * from homestay where id=$id");
+            $g=$test[0]->jumlah_kamar_terbooking+request('jumlah');
+            
+       
+        // echo $test[0]->nomor_kamar;
+        if($wonnee>$inow){
+            return redirect()->route('homestay.view')->with('danger','Tanggal yang anda masukkan sudah lewat pilih tanggal hari ini atau hari berikutnya');
+        }else if($test[0]->nomor_kamar <= request('jumlah')){
+             return redirect()->route('homestay.view')->with('danger','jumlah kamar tidak mencukupi');
+            echo "Jumlah kamar tidak mencukupi";
+           
+        }else if($test[0]->nomor_kamar-$o[0]->jumlah_kamar_terbooking<request('jumlah')){
+            return redirect()->route('homestay.view')->with('danger','jumlah kamar yang tersedia tidak memenuhi');
+
+
+        }else{
+            record_homestay::create([
+                'id_member'=>Auth::user()->id,
+                'id_homestay'=>$id,
+                'date'=>request('date'),
+                'jumlah_kamar'=>request('jumlah'),
+                'status'=>'pending',
+                'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+                // 'nomor_kamar'=>request('nomor_kamar'),
+            ]);
+            DB::update("update homestay set jumlah_kamar_terbooking=$g where id=$id");
+
+        }
+        return redirect()->route('homestay.view')->with('success','Booking berhasil');
     }
     public function listBook(){
         $record_homestay = DB::SELECT("select * from record_pemesanan_homestay");

@@ -3,6 +3,11 @@
 @endsection
 <div>
 <br>
+<?php
+
+	$p=DB::select('select * from pengalaman');
+?>
+@if($p)
 @foreach($pengalaman as $s)
 <div class="row" style="background-color:#DBDBDB">
 
@@ -31,6 +36,13 @@
 		</ul>
 	</div>
 	</div>
+	@endif
+	@if(!$p)
+	<div class="container">
+            <br>
+            <br><br><br><br><br><br><br><center><h1>Tidak Ada Pengalaman yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
+           </div>
+    @endif
 	
 </div>
 

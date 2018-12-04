@@ -59,9 +59,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('kendaraan.view')}}">Transportasi</a>
               </li>
-              <li class="nav-item active">
+              <!-- <li class="nav-item active">
                 <a class="nav-link" href="{{route('listBook')}}">List Booking</a>
-              </li>
+              </li> -->
               <li class="nav-item active">
                 <i class="fas fa-user"></i>
 
@@ -130,6 +130,10 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
+                                    </a>
+                                     <a class="dropdown-item" href="{{ route('member.booking') }}"
+                                       >
+                                        Request Booking
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

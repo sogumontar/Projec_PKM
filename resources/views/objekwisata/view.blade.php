@@ -1,8 +1,12 @@
 @extends('layouts.template')
 @section('content')
-@edsection
+
 </div>
 <br>
+<?php
+	$p=DB::select('select id from objek_wisata ');
+?>
+@if($p)
 @foreach($test as $s)
 <div class="row" style="background-color:#DBDBDB">
 
@@ -31,6 +35,13 @@
 		</ul>
 	</div>
 	</div>
+	@endif
+	@if(!$p)
+	<div class="container">
+            <br>
+            <br><br><br><br><br><br><br><center><h1>Tidak Ada Objek Wisata yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
+           </div>
+    @endif
 	
 </div>
 

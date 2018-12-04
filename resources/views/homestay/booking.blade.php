@@ -8,12 +8,8 @@
                     <div class="card">
                         <img src="/uploadgambar/{{$homestay->gambar}}">
                     </div>
-                    <div class="form-group"><br>
-                        <input type="number" class="form-control" name="id" value="{{$homestay->nomor_kamar}}">
-                    </div>
-                    <div class="form-group"><br>
-                        <input type="number" class="form-control" name="id_home" value="" placeholder="Id Homestay">
-                    </div>
+                    
+                    
                     <div class="form-group">
                         <label>Date</label>
                         <input type="date" class="form-control" name="date" value="" placeholder="date">
@@ -25,9 +21,6 @@
                     <div class="form-group">
                         <label>Jumlah Pengunjung</label>
                         <input type="number" class="form-control" name="jumlah_pengunjung" value="" placeholder="jumlah Pengunjung">
-                    </div>
-                    <div class="form-group"><br>
-                        <input type="number" class="form-control" name="nomor_kamar" value="" placeholder="Nomor Kamar">
                     </div>
                     
                    

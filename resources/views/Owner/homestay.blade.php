@@ -46,7 +46,7 @@
         <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
         <li class="active"><a href="{{route('owner.homestay')}}" class="active">Homestay</a></li>
         <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
+        <li><a href="{{route('owner.booking')}}">Pengalaman</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -81,6 +81,8 @@
                                     <th><p>Nama</p></th>
                                     <th><p>Harga</p></th> 
                                     <th><p>Keterangan</p></th>
+                                    <th></th>
+                                    <th></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -95,6 +97,12 @@
 
                                     <td>{{$a->harga}}</td>
                                      <td>{{$a->keterangan}}</td>
+                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
+                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
+                                {{csrf_field()}}
+                               {{ method_field('DELETE') }}
+                               <input type="submit" class="btn btn-danger"  value="delete">
+                          </form></td>
                                   </tr>
                                 </div>
                                 @endforeach

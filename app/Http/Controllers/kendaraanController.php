@@ -68,7 +68,15 @@ class kendaraanController extends Controller
                 'gambar'=>request('gambar'),
             ]);
 
-        echo $a;
-        // return redirect()->route('kendaraan.view');
+        return redirect()->route('owner.kendaraan');
+    }
+    public function destroy(kendaraan $kendaraan){
+        $kendaraan->delete();
+        if(Auth::user()->role=='owner'){
+            return redirect()->route('owner.kendaraan');
+
+        }else{
+            return redirect()->route('admin.kendaraan');
+        }
     }
 }

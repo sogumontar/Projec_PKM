@@ -51,7 +51,7 @@ Route::get('homestay/search','homestayController@search')->name('homestay.search
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');
 Route::get('homestay/{id}/booking','homestayController@booking')->name('homestay.booking');
-Route::post('homestay/booking','homestayController@bookProcess')->name('homestay.booking.process');
+Route::post('homestay/{id}/booking','homestayController@bookProcess')->name('homestay.booking.process');
 Route::get('homestay/listBook','homestayController@listBook')->name('listBook');
 
 //kendaraan
@@ -60,6 +60,8 @@ Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.sto
 Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
 Route::get('kendaraan/{id}/edit','kendaraanController@edit')->name('kendaraan.edit');
 Route::PATCH('kendaraan/{id}/view','kendaraanController@update')->name('kendaraan.update');
+Route::delete('/kendaraan/{kendaraan}/delete','kendaraanController@destroy')->name('kendaraan.destroy');
+
 //pengalaman
 Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.create');
 Route::post('pengalaman/create','pengalamanController@store')->name('pengalaman.store');
@@ -85,3 +87,8 @@ Route::get('owner/owner','pemilikController@owner')->name('owner.owner');
 Route::get('owner/homestay','pemilikController@homestay')->name('owner.homestay');
 Route::get('owner/kendaraan','pemilikController@kendaraan')->name('owner.kendaraan');
 Route::get('owner/pengalaman','pemilikController@pengalaman')->name('owner.pengalaman');
+Route::get('owner/booking','pemilikController@booking')->name('owner.booking');
+
+//Member
+Route::get('booking','memberController@booking')->name('member.booking');
+Route::get('{id}/bayar','memberController@bayar')->name('member.bayar');

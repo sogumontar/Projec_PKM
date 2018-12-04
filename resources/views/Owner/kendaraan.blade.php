@@ -81,6 +81,8 @@
                                     <th><p>Jenis Kendaraan</p></th>
                                     <th><p>Merk Kendaraan</p></th> 
                                     <th><p>Plat Nomor</p></th>
+                                    <th></th>
+                                    <th></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -94,6 +96,12 @@
                                     <td>{{$a->jenis_kendaraan }}</td>
                                      <td>{{$a->Merk_kendaraan}}</td>
                                      <td>{{$a->plat_nomor}}</td>
+                                     <td> <a href="{{route('kendaraan.edit',$a->id)}}" class="btn btn-primary">Update</a></td>
+                                     <td> <form method="post" action="{{route('kendaraan.destroy',$a->id)}}">
+                                {{csrf_field()}}
+                               {{ method_field('DELETE') }}
+                               <input type="submit" class="btn btn-danger"  value="delete">
+                          </form></td>
                                   </tr>
                                 </div>
                                 @endforeach
