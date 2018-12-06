@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 @extends('layouts.template')
 
 </div>
@@ -36,7 +37,15 @@
                                     <td>{{$a->date }}</td>
                                      <td>{{$a->status}}</td>
                                      <td>{{$a->nama}}</td>
+                                     @if($a->status=='pending')
                                      <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary">bayar</button></a></td>
+                                     @elseif($a->status=='accept')
+                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-success" disabled="">Accepted</button></a></td>
+                                     @elseif($a->status=='expired')
+                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
+                                     @else
+                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary" disabled="">On Process</button></a></td>
+                                     @endif
                                   </tr>
                                 </div>
                                 @endforeach

@@ -19,14 +19,14 @@ class pemilikController extends Controller
     	$a=Auth::user()->id;
     	// echo Auth::user()->id;
     	// die();
-    	 $config= DB::select('select * from homestay where id_pemilik=? ',[$a]);
+    	 $config= DB::select("select * from homestay where id_pemilik=$a");
 
     	return view('owner.homestay',compact('config'));
     }
     public function kendaraan(){
     	$kendaraan=kendaraan::all();
     	$a=Auth::user()->id;
-    	$config= DB::select('select * from kendaraan where id_pemilik=? ',[$a]);
+    	$config= DB::select("select * from kendaraan where id_pemilik=$a");
     	return view('owner.kendaraan',compact('config'));
     }
     public function pengalaman(){

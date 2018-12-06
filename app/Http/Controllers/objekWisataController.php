@@ -21,11 +21,22 @@ class objekWisataController extends Controller
     		'keterangan'=>request('keterangan'),
     		'gambar'=>$path,
     	]);
-    	return redirect()->route('objekwisata.create');
+    	return redirect()->route('admin.objekWisata');
 
     }
     public function view(){
     	$test=objekWisata::all();
     	return view('objekwisata.view',compact('test'));
+    }
+    public function delete($id){
+    	$a =DB::delete("delete from objekwisata where id=$id");
+    	return view('admin.objekwisata');
+    }
+     public function destroy($id){
+        // $objekwisata->delete();
+        $d= DB::DELETE("delete from objek_wisata where id=$id");
+       
+            return redirect()->route('admin.objekWisata')->with('success','Objek Wisata berhasil di delete');
+       
     }
 }

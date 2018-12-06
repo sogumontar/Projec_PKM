@@ -1,4 +1,11 @@
-
+@if(Auth::user()->role=='member')
+  <?php return redirect()->route('welcome') ?>
+@elseif(Auth::user()->role=='admin')
+  <?php return redirect()->route('admin.homestay')?>
+@else
+    @extends('layouts.owner')
+@endif
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>

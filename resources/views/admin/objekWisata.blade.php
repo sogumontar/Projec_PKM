@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +92,12 @@
                                   <tr>
                                     <td>{{$a->nama }}</td>
                                      <td>{{$a->keterangan}}</td>
+                                     <td><a href="" ><button class="btn btn-info">Edit</button></a></td>
+                                     <td> <form method="post" action="{{route('admin.destroy',$a->id)}}">
+                                {{csrf_field()}}
+                               {{ method_field('DELETE') }}
+                               <input type="submit" class="btn btn-danger"  value="dselete">
+                          </form></td>
                                   </tr>
                                 </div>
                                 @endforeach
@@ -100,10 +107,35 @@
                         <!-- panel end -->
                         </div>
                     </div>
+                     <div class="panel panel-primary filterable">
+                        
+                        <!-- panel heading starat -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tambah Objek Wisata</h3>
+                          
+                        </div>
+                        <!-- panel heading end -->
+
+                      <div class="jumbotron">
+						  <form action="{{route('objekWisata.store')}}" method="post" enctype="multipart/form-data">
+						    <div class="form-group">
+						        <div>
+						          {{ csrf_field() }}
+						          <input type="text" class="form-control" placeholder="nama" name="nama" id="nama"><br>
+						          <textarea type="text" class="form-control" placeholder="Keterangan" name="keterangan" id="keterangan" rows="5"></textarea><br>
+						          <input type="file" class="form-control" placeholder="gambar" name="gambar" id="gambar"><br>
+						          <div align="right">
+						            <input type="submit" class="btn btn-primary" align=""  name="">
+						          </div>
+						        </div>      
+						    </div>
+						  </form>
+					  </div>
+					</div>
 
 
 
-    </div>
+    				</div>
   </div>
 </div>
 

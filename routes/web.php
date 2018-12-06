@@ -69,17 +69,19 @@ Route::get('pengalaman/view','pengalamanController@view')->name('pengalaman.view
 
 //Objek Wisata
 
-Route::get('objekWisata/create','objekWisataController@create')->name('objekWisata.create');
+Route::get('admin/objekWisata','objekWisataController@create')->name('objekWisata.create');
 Route::get('objekWisata/view','objekWisataController@view')->name('objekWisata.view');
-Route::post('objekWisata/create','objekWisataController@store')->name('objekWisata.store');
+Route::post('admin/objekWisata','objekWisataController@store')->name('objekWisata.store');
 
 //Admin
 
 Route::get('admin/akun','adminController@akun')->name('admin.akun');
 Route::get('admin/objekWisata','adminController@objekWisata')->name('admin.objekWisata');
+Route::delete('admin/{id}/objekWisata','objekWisataController@destroy')->name('admin.destroy');
 Route::get('admin/pengalaman','adminController@pengalaman')->name('admin.pengalaman');
 Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
 Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');
+
 
 //Owner
 
@@ -92,3 +94,4 @@ Route::get('owner/booking','pemilikController@booking')->name('owner.booking');
 //Member
 Route::get('booking','memberController@booking')->name('member.booking');
 Route::get('{id}/bayar','memberController@bayar')->name('member.bayar');
+Route::PATCH('{id}/bayar','memberController@bayarProcess')->name('member.bayarProcess');

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\homestay;
+use App\fasilitas;
 
 use App\record_homestay;
 class homestayController extends Controller
@@ -16,14 +17,28 @@ class homestayController extends Controller
     	return view('homestay.create');
     }
     public function store(Request $request){
-        $file       = $request->file('gambar');
-        $fileName   = $file->getClientOriginalName();
-        // $request->file('gambar')->move("upload/",$fileName);
-    	// $gambar = $request->file('gambar');
-        $gambar = $request->file('gambar');
-         // $namaFile = $gambar->getClientOriginalName();
-         $pathw= $request->file('gambar')->store(''); 
-         $request->file('gambar')->move('uploadgambar',$pathw);
+            $file       = $request->file('gambar');
+            $fileName   = $file->getClientOriginalName();
+            // $request->file('gambar')->move("upload/",$fileName);
+        	// $gambar = $request->file('gambar');
+            $gambar = $request->file('gambar');
+             // $namaFile = $gambar->getClientOriginalName();
+             $pathw= $request->file('gambar')->store(''); 
+             $request->file('gambar')->move('uploadgambar',$pathw);
+
+ $a=Auth::user()->id;
+            homestay::create([
+            'nomor_kamar'=>request('jumlah'),
+            'id_pemilik'=>$a,
+            'harga'=>request('harga'),
+            'keterangan'=>request('keterangan'),
+            'nama'=>request('nama'),
+            'gambar'=>$pathw,
+            'kecamatan'=>request('kecamatan'),
+            'alamat'=>request('alamat'),
+
+        ]);
+
      //    echo $path;
       //       $path= $request->file('gambar')->store('upload');
     		// $nomor_kamar=$request->input('nomor_kamar');
@@ -39,16 +54,23 @@ class homestayController extends Controller
         // $do = new Gambar($request->all());
         // $do->gambar=$namaFile;
         // $do->save();
-         $a=Auth::user()->id;
-            homestay::create([
-            'nomor_kamar'=>request('nomor_kamar'),
-            'id_pemilik'=>$a,
-            'harga'=>request('harga'),
-            'keterangan'=>request('keterangan'),
-            'nama'=>request('nama'),
-            'gambar'=>$pathw,
+             $rt=DB::select('select * from homestay order by id desc');
+             // echo $rt[0]->id;
+             $a=request(['check'][0]);
+             // echo $a[1];
+             $i=0;
+             echo $a[0];
+             foreach (request(['check'][0]) as $b){
+                fasilitas::create([
+                    'id_homestay'=>$rt[0]->id,
+                    'nama'=>$a[$i],
+                    'Keterangan'=>$a[$i],
+                ]);
+                $i++;
+             }
+             
+        
 
-        ]);
 
            // echo  DB::insert('insert into homestay(nomor_kamar,id_pemilik,harga,keterangan,nama,gambar) values(?,?,?,?,?,?)',[$nomor_kamar,$id_pemilik,$harga,$keterangan,$nama,$gambarr]);
         
@@ -111,7 +133,11 @@ class homestayController extends Controller
 
     }
      public function destroy(homestay $homestay){
-        $homestay->delete();
+       echo $homestay->id;
+       
+        $a=DB::delete("delete  from fasilitas where id_homestay=$homestay->id");
+        $b=DB::delete("delete from record_pemesanan_homestay where id_homestay=$homestay->id");
+         $homestay->delete();
         if(Auth::user()->role=='owner'){
             return redirect()->route('owner.homestay');
 

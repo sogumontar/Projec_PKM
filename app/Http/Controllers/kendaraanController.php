@@ -46,10 +46,7 @@ class kendaraanController extends Controller
 
 
     public function update(Request $request,$id ){
-         // $gambar = $request->file('gambar');
-         // // $namaFile = $gambar->getClientOriginalName();
-         // $pathw= $request->file('gambar')->store('');
-         // $request->file('gambar')->move('kendaraan',$pathw);
+         
 
 
         $kendaraan=kendaraan::find($id);
@@ -63,9 +60,14 @@ class kendaraanController extends Controller
         ]);
 
         if($a!='')
+            $gambar = $request->file('gambar');
+         // $namaFile = $gambar->getClientOriginalName();
+         $pathw= $request->file('gambar')->store('');
+         $request->file('gambar')->move('kendaraan',$pathw);
             $kendaraan->update([
 
-                'gambar'=>request('gambar'),
+
+                'gambar'=>$pathw,
             ]);
 
         return redirect()->route('owner.kendaraan');

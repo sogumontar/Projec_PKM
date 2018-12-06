@@ -8,14 +8,14 @@
 ?>
 @if($p)
 @foreach($test as $s)
-<div class="row" style="background-color:#DBDBDB">
+<div class="row" style="background :#DBDBDB">
 
 	<div class="row col-md-7 m-5 p-2 card" id="gita" style="background-color:#FFFFF9;" >
 		<div class="col-md-4">
 			<h5>{{$s->nama}}</h5>
-			<img src="{{ asset('images/gita1.JPG')}}" width="250px" class="border_gita">
-		</div>
-		<div class="col-md-8 mt-4 text-justify" >
+			 <img class="" src="/objekwisata/{{$s->gambar}}" alt="Card image cap">
+		</div><br><br>
+		<div class="col-md-12 m-2 text-justify" >
 			<p class="card-body">{{$s->keterangan}}</p>
 			<u><a href="#" style="float: right;">Selengkapnya..</a></u>
 		</div>

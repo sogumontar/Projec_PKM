@@ -7,7 +7,7 @@
 
 <div class="container">
       <hr>
-      <h5 style="text-align:center;">Daftar Homestay </h5>
+      <h5 style="text-align:center;">List Homestay </h5>
       <hr>
         <!-- Example row of columns -->
         <div class="form-group">
@@ -20,11 +20,11 @@
         ?>
 
         @if($p)
-          <div>
             <a href="{{route('homestay.search')}}">sort Desc</a>
-        </div>
+        <br>
 
         @foreach($homestay as $homestays)
+        <br>
                  <div class="col-lg-4">
                    <style type="text/css">
                                    img {
@@ -39,7 +39,7 @@
                        <div class="card-body">
                          <img class="card-img-top" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
                          <hr>
-                         <p>{{$homestays->keterangan}}</p>
+                        
                          <hr>
                          @if(Route::has('log'))
                              <p>test</p>
@@ -52,7 +52,10 @@
                           <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}" class="btn btn-primary">Booking</a>
                       @else
                       <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" disabled="">Booking</button></a>
+
+
                         @endif
+                         <a href="">detail</a>
                       </div>
                       <div class="container">
                     <!--    <div class="col-lg-3">

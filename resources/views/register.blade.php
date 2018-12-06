@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 @extends('layouts.app')
 <br>
 <br>

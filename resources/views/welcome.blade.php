@@ -1,6 +1,6 @@
 
 
-
+@include('layouts.alerts')
 <!doctype html>
 <html lang="en">
   <head>
@@ -48,13 +48,19 @@
                    
             <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @if((Auth::user()))
+          @if((Auth::user()))
+            @if(Auth::user()->role='member')
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapana</a>
+                <a class="nav-link" href="{{route('homestay.create')}}">Dsaftar Penginapan</a>
               </li>
-               @endif
+              @else
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
+                <a class="nav-link" href="{{route('homestay.create')}}">test</a>
+              </li>
+            @endif
+          @endif
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapaan</a>
               </li>
 
               <li class="nav-item active">
@@ -63,9 +69,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('kendaraan.create')}}">Transportasi</a>
-              </li>
+            
               <li class="nav-item active">
                 <i class="fas fa-user"></i>
 
@@ -151,7 +155,8 @@
         </main>
     </div>
           <nav class="navbar navbar-expand-sm" style="background-color:#F5F5F5;">
-            <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a>
+           <!-- <br><br <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a> -->
+           <br>
             </div>
           </nav>
 
@@ -159,10 +164,11 @@
 
         <main role="main">
 
-          <div class="jumbotron">
+          <div class="jumbotron" style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg') ">
         <div class="container">
           <h1 class="display-3">King Stay</h1>
-          <p>Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay</p>
+          <h1 class="display-3">HomeStay, StayHome</h1>
+          <p style="color: #000000">Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
@@ -183,12 +189,14 @@
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Lokasi : </h5>
+                      <h5 class="card-title"><img src="/Location.png" style="width: 50px"></h5>
                       <div class="input-group-prepend">
-                          <div class="input-group-text">@</div>
+                          
                           <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Lokasi"></div>
-                          <h5>Check in : </h5>
+                    <br>
+
                           <div class="row">
+                            <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="date" class="form-control" placeholder="First name">
                             </div>
@@ -196,8 +204,9 @@
                               <input type="time" class="form-control" placeholder="Last name">
                             </div>
                           </div>
-                          <h5>Check in : </h5>
+                         <br>
                           <div class="row">
+                             <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="date" class="form-control" placeholder="First name">
                             </div>
@@ -214,7 +223,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="exampleFormControlSelect2">Tamu</label>
+                        <img src="/user.jpg" style="width: 20px">
                         <select class="form-control" id="exampleFormControlSelect2">
                           <option>1</option>
                           <option>2</option>
@@ -224,7 +233,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlSelect2">Kamar</label>
+                       <img src="/kamar.png" style="width: 20px">
                         <select class="form-control" id="exampleFormControlSelect2">
                           <option>1</option>
                           <option>2</option>

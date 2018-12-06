@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan Homestay</label>
-                        <input type="text" class="form-control" name="keterangan" value="{{$homestay->keterangan}}">
+                        <textarea type="text" class="form-control" name="keterangan" ><?php echo $homestay->keterangan ?></textarea>
                     </div>
                       <div class="form-group">
                         <label>Nama Homestay</label>

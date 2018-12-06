@@ -1,10 +1,13 @@
+@include('layouts.alerts')
 @extends('layouts.template')
 </div>
 <br>
 
 <div class="container">
 	@foreach($d as $a)
-		<form method="post" action="" enctype="multipart/form-data">
+		<form method="post" action="{{route('member.bayarProcess',$a->id)}}" enctype="multipart/form-data">
+			 {{csrf_field()}}
+                    {{ method_field('PATCH') }}
 				<label>Nama Homestay :</label>
 			<div>
 				<input type="" name=""value="{{$a->nama}}" class="form-control"></p>
@@ -35,6 +38,9 @@
 				<label>Bukti Pengiriman/ Struk :</label>
 			<div>
 				<input type="file" name="gambar"value=""  class="form-control"></p>
+			</div>
+			<div>
+				<input type="submit" name="submit"value="Submit"  class="btn btn-success"></p>
 			</div>
 		</form>
 		

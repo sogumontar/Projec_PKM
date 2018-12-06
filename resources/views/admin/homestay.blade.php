@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +96,7 @@
                                       <td>{{$a->name}}</td>
                                        <td> <a href="" class="btn btn-primary">Update</a></td>
 
-                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
+                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id )}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
                                <input type="submit" class="btn btn-danger"  value="delete">

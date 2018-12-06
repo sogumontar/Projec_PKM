@@ -1,7 +1,6 @@
 
 
-
-
+@include('layouts.alerts')
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,27 +45,85 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                   
+            <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+          @if((Auth::user()))
+            @if(Auth::user()->role='member')
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('homestay.create')}}">Dsaftar Penginapan</a>
+              </li>
+              @else
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('homestay.create')}}">test</a>
+              </li>
+            @endif
+          @endif
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapaan</a>
+              </li>
+
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Objek Wisataa</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>
+              </li>
+            
+              <li class="nav-item active">
+                <i class="fas fa-user"></i>
+
+
+               
+              </li>
                         @guest
-                         
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"> Login</a>
-                            </li>
-                            <li class="nav-item">
+                         <li class="nav-item active">
+                <i class="fas fa-user"></i>
+
+
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="modal" data-target="#exampleModal" >
+                  login
+                </a>
+                
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Akun Anda</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form action="{{route('login')}}" method="post">
+                          <input class="form-control" type="email" name="email" placeholder="email" id="email"><br>
+                          <input class="form-control" type="password" name="password" placeholder="password" id="password"><br>
+                          <input type="submit" class="btn btn-info" name="" value="enter">
+                          <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </li>
+              
+                            <li class="">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{route('register')}}">{{ __('Register') }}</a>
                                 @endif
                             </li>
                         @else
                         <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ URL('welcome') }}">Home</a>
                                 @endif
                             </li>
                         <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('homestay.view') }}">View</a>
                                 @endif
                             </li>
                             <li class="nav-item dropdown">
@@ -86,27 +143,8 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Akun Anda</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
 
-                      
-                    </div>
-                    <div class="modal-footer">
-                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Send message</button> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -117,7 +155,8 @@
         </main>
     </div>
           <nav class="navbar navbar-expand-sm" style="background-color:#F5F5F5;">
-            <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a>
+           <!-- <br><br <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a> -->
+           <br>
             </div>
           </nav>
 
@@ -125,10 +164,11 @@
 
         <main role="main">
 
-          <div class="jumbotron">
+          <div class="jumbotron" style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg') ">
         <div class="container">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <h1 class="display-3">King Stay</h1>
+          <h1 class="display-3">HomeStay, StayHome</h1>
+          <p style="color: #000000">Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
@@ -149,12 +189,14 @@
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Lokasi : </h5>
+                      <h5 class="card-title"><img src="/Location.png" style="width: 50px"></h5>
                       <div class="input-group-prepend">
-                          <div class="input-group-text">@</div>
+                          
                           <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Lokasi"></div>
-                          <h5>Check in : </h5>
+                    <br>
+
                           <div class="row">
+                            <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="date" class="form-control" placeholder="First name">
                             </div>
@@ -162,8 +204,9 @@
                               <input type="time" class="form-control" placeholder="Last name">
                             </div>
                           </div>
-                          <h5>Check in : </h5>
+                         <br>
                           <div class="row">
+                             <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="date" class="form-control" placeholder="First name">
                             </div>
@@ -180,7 +223,7 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="exampleFormControlSelect2">Tamu</label>
+                        <img src="/user.jpg" style="width: 20px">
                         <select class="form-control" id="exampleFormControlSelect2">
                           <option>1</option>
                           <option>2</option>
@@ -190,7 +233,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlSelect2">Kamar</label>
+                       <img src="/kamar.png" style="width: 20px">
                         <select class="form-control" id="exampleFormControlSelect2">
                           <option>1</option>
                           <option>2</option>

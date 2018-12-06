@@ -42,11 +42,11 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-       <li class="active"><a href="{{route('owner.owner')}}">Home</a></li>
+        <li class=""><a href="{{route('owner.owner')}}">Home</a></li>
         <!-- <li class=""><a href="{{route('admin.akun')}}">Akun</a></li> -->
-        <li><a href="{{route('owner.homestay')}}">Homestay</a></li>
+        <li class="active"><a href="{{route('owner.homestay')}}" class="active">Homestay</a></li>
         <li><a href="{{route('owner.kendaraan')}}">Kendaraan</a></li>
-        <li><a href="{{route('owner.pengalaman')}}">Pengalaman</a></li>
+        <li><a href="{{route('owner.booking')}}">Pengalaman</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -65,7 +65,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">List Homestay</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -80,7 +80,9 @@
                                 <tr class="filters">
                                     <th><p>Nama</p></th>
                                     <th><p>Harga</p></th> 
-                                    <th><p>Role</p></th>
+                                    <th><p>Keterangan</p></th>
+                                    <th></th>
+                                    <th></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -88,13 +90,59 @@
 -->
                                 </tr>
                             </thead>
-                               
+                                 @foreach($config as $a)
+                                <div>
+                                  <tr>
+                                    <td>{{$a->nama }}</td>
+
+                                    <td>{{$a->harga}}</td>
+                                     <td>{{$a->keterangan}}</td>
+                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
+                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
+                                {{csrf_field()}}
+                               {{ method_field('DELETE') }}
+                               <input type="submit" class="btn btn-danger"  value="delete">
+                          </form></td>
+                                  </tr>
+                                </div>
+                                @endforeach
                           
                             </table>
                         <!-- panel content end -->
                         <!-- panel end -->
                         </div>
                     </div>
+
+                     <div class="panel panel-primary filterable">
+                        
+                        <!-- panel heading starat -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tambah Homestay</h3>
+                            <div class="pull-right">
+                            
+                        </div>
+                        </div>
+                        <!-- panel heading end -->
+
+                      <div class="jumbotron">
+  <form action="{{route('homestay.store')}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div>
+          {{ csrf_field() }}
+          <input type="text" class="form-control" placeholder="nama" name="nama" id="nama"><br>
+          <input type="text" class="form-control" placeholder="Jumlah Kamar" name="nomor_kamar" id="nomor_kamar"><br>
+          <input type="text" class="form-control" placeholder="harga" name="harga" id="harga"><br>
+          <textarea class="form-control" placeholder="keterangan" name="keterangan" id="keterangan" rows="5"></textarea><br>
+          <input type="file" class="form-control" placeholder="gambar" name="gambar" id="gambar"><br>
+          <div align="right">
+            <input type="submit" class="btn btn-primary" align=""  name="">
+          </div>
+        </div>      
+    </div>
+  </form>
+</div>
+                    </div>
+
 
 
 

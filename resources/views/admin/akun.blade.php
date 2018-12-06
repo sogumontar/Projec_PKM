@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>
