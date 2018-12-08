@@ -39,7 +39,7 @@
                   <hr>
                 </div>
                 @if(AUTH::user())
-                  <div class="col-lg-3"><a href="" class="btn btn-primary">Booking</a>
+                  <div class="col-lg-3"><a href="{{route('kendaraan.booking',$kendaraan->id)}}" class="btn btn-primary">Booking</a>
                       </div>
                 @else 
                 <div class="col-lg-3" ><a href=""><button class="btn btn-primary" disabled="">Booking</button></a>

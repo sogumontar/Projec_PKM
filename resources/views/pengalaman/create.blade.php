@@ -1,5 +1,4 @@
 @extends('layouts.template')
-@section('content')
 </div>
 <br>
 <div class="container-fluid">
@@ -15,10 +14,9 @@
 					<textarea rows="5" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan Pengalaman"></textarea>
 					<br>
 					<input type="date" name="date" placeholder="date" class="form-control">
-					<input type="text" class="form-control" placeholder="Id_pemilik" name="id" id="id"><br>
+					<input type="file" class="form-control" placeholder="Gambar" name="gambar" id="gambar"><br>
 					<input type="submit" class="btn btn-primary" name="">
 				</div>			
 		</div>
 	</form>
 </div>
-@endsection

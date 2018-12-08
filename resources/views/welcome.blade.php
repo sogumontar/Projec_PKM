@@ -50,12 +50,10 @@
                         <!-- Authentication Links -->
           @if((Auth::user()))
             @if(Auth::user()->role='member')
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.create')}}">Dsaftar Penginapan</a>
-              </li>
+             
               @else
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('homestay.create')}}">test</a>
+               <li class="nav-item active">
+                <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
               </li>
             @endif
           @endif
@@ -110,7 +108,7 @@
                   </div>
                 </div>
               </div>
-          </li>
+          
               
                             <li class="">
                                 @if (Route::has('register'))

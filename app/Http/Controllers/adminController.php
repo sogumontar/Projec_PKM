@@ -12,6 +12,7 @@ use App\homestay;
 use App\kendaraan;
 use App\pemilik;
 use App\objekWisata;
+use App\record_homestay;
 class adminController extends Controller
 {
     public function objekWisata(){
@@ -48,5 +49,20 @@ class adminController extends Controller
            ->select('homestay.nama', 'homestay.keterangan', 'homestay.gambar','homestay.id', 'pemilik_homestay_kendaraan.nama as name')
            ->get();
            return view('admin.homestay',compact('query'));
+    }
+    public function request(){
+        $test=DB::select('select * from record_pemesanan_homestay');
+
+
+        return view('admin.request',compact('test'));
+    }
+    public function accept($id){
+        
+        $test= DB::update("update record_pemesanan_homestay set status='accepted' where id=$id");
+        return redirect()->route('admin.request')->with('success','Process Berhasil');
+    }
+    public function reject($id){
+        $test= DB::update("update record_pemesanan_homestay set status='rejected' where id=$id");
+        return redirect()->route('admin.request')->with('danger','Process Berhasil');
     }
 }

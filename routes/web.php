@@ -41,9 +41,11 @@ Route::post('homestay/create','homestayController@store')->name('homestay.store'
 Route::get('homestay/{id}/edit','homestayController@edit')->name('homestay.edit');
 Route::patch('homestay/{id}/edit','homestayController@update')->name('homestay.update');
 Route::get('homestay/{id}/kelola','homestayController@kelola')->name('homestay.kelola');
+Route::post('homestay/booking','homestayController@keranjang')->name('homestay.Keranjang');
+Route::post('homestay/{id}/booking','homestayController@kendaraan')->name('kendaraan.Keranjang');
 
-Route::patch('homestay/{id}/kelola','homestayController@rejectBooking')->name('booking.reject');
-Route::patch('homestay/{id}/listBookz','homestayController@acceptBooking')->name('accept');
+Route::patch('admin/{id}/new','adminController@reject')->name('reject');
+Route::patch('admin/{id}/accept','adminController@accept')->name('accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@acceptBooking')->name('booking.accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@rejectBooking')->name('booking.reject');
 Route::get('homestay/search','homestayController@search')->name('homestay.search');
@@ -61,11 +63,14 @@ Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
 Route::get('kendaraan/{id}/edit','kendaraanController@edit')->name('kendaraan.edit');
 Route::PATCH('kendaraan/{id}/view','kendaraanController@update')->name('kendaraan.update');
 Route::delete('/kendaraan/{kendaraan}/delete','kendaraanController@destroy')->name('kendaraan.destroy');
+Route::get('kendaraan/{id}/booking','kendaraanController@booking')->name('kendaraan.booking');
+Route::post('kendaraan/{id}/booking','kendaraanController@bookingProcess')->name('kendaraan.booking.process');
 
 //pengalaman
 Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.create');
 Route::post('pengalaman/create','pengalamanController@store')->name('pengalaman.store');
 Route::get('pengalaman/view','pengalamanController@view')->name('pengalaman.view');
+Route::get('pengalaman/{id}/detail','pengalamanController@detail')->name('pengalaman.detail');
 
 //Objek Wisata
 
@@ -81,6 +86,7 @@ Route::delete('admin/{id}/objekWisata','objekWisataController@destroy')->name('a
 Route::get('admin/pengalaman','adminController@pengalaman')->name('admin.pengalaman');
 Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
 Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');
+Route::get('admin/request','adminController@request')->name('admin.request');
 
 
 //Owner

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\homestay;
 use App\fasilitas;
+use App\sementara;
 
 use App\record_homestay;
 class homestayController extends Controller
@@ -222,32 +223,22 @@ class homestayController extends Controller
         ]); 
         return redirect()->route('listBook');
     }
-    // public function rejectBooking($id){
-    //     $record_homestay=record_homestay::find($id);
-    //     $record_homestay->update([
-    //         'id_member'=>'1',
-    //         'id_homestay'=>'35',
-    //         'date'=>request('date'),
-    //         'jumlah_kamar'=>request('jumlah_kamar'),
-    //         'status'=>'reject',
-    //         'jumlah_pengunjung'=>request('jumlah_pengunjung'),
-    //         'nomor_kamar'=>'1',
-    //     ]);
-    //     echo "del";     
-    // }
+    public function kendaraan(request $request,$id){
+        sementara::create([
+            'tipe'=>request('tipe'),
+            'id_member'=>Auth::user()->id,
+            'date'=>date("Y-m-d"),
+            'status'=>'pending',
+        ]);
+        die();
+        return redirect()->route('homestay.view')->with('succes','berhasil');
+    }
 
-    // public function acceptBooking($id){
-    //     $record=record_homestay::find($id);
-    //     $record->update([
-    //         'id_member'=>'1',
-    //         'id_homestay'=>'35',
-    //         'date'=>request('date'),
-    //         'jumlah_kamar'=>request('jumlah_kamar'),
-    //         'status'=>'accept',
-    //         'jumlah_pengunjung'=>request('jumlah_pengunjung'),
-    //         'nomor_kamar'=>'1',
-    //     ]);
-    //     echo "del";
-    // }
+    public function keranjang(request $request,$id){
+        DB::insert("INSERT Into record_pemesanan_homestay('id_member','id_homestay','date','jumlah_kamar','status','jumlah_pengunjung','harga')
+VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',request('jumlah_pengunjung'),request('jumlah_pengunjung'))");
+        return redirect()->route('homestay.view');
+    }
+    
 
 }

@@ -10,11 +10,11 @@
                 </div>
             <div class="col-md-8 col-offset-2">
                
-                <form action="{{ route('homestay.booking.process',$homestay->id) }}"  method="post" enctype="multipart/form-data">
+                <form action="{{ route('kendaraan.booking.process',$kendaraan->id) }}"  method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="">
                         <div class="" align="center">
-                            <img class="card" style="width: 450px; height: 250px;" src="/uploadgambar/{{$homestay->gambar}}">
+                            <img class="card" style="width: 450px; height: 250px;" src="/Capture.png">
                         </div>
                         
                         
@@ -23,23 +23,16 @@
                             <input type="date" class="form-control" name="date" value="" placeholder="date" accept="center">
                         </div>
                         <div class="form-group">
-                            <label><b>Jumlah Kamar</b></label>
-                            <input type="number" class="form-control" name="jumlah" value="" placeholder="Jumlah Kamar">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Jumlah Pengunjung</b></label>
-                            <input type="number" class="form-control" name="jumlah_pengunjung" value="" placeholder="jumlah Pengunjung">
+                            <label><b>Lama pemesanan</b></label>
+                            <input type="number" class="form-control" name="lama" value="" placeholder="Lama pemesanan">
                         </div>
                     </div>
                    <div class="row">
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary" value="Pesan Kendaraan"> 
+                        <input type="submit" class="btn btn-primary" value="save"> 
                     </div>
                 </form>
-                    <div class="col-md-6" align="right">
-                        <a href=""><button class="btn btn-primary">Save</button></a>
-                    
-                    </div>
+                   
                    </div>
                 
             </div>

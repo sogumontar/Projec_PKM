@@ -20,43 +20,50 @@
         ?>
 
         @if($p)
-            <a href="{{route('homestay.search')}}">sort Desc</a>
         <br>
 
         @foreach($homestay as $homestays)
         <br>
                  <div class="col-lg-4">
-                   <style type="text/css">
-                                   img {
-                                       border: 3px solid ;
-                                       width: 550px;
-                                       height: 250px;
-                                   }
-                               </style>
+                 
                    <div class="form-group">
 
-                     <div class="card" style="width: 18rem;">
-                       <div class="card-body">
-                         <img class="card-img-top" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
-                         <hr>
+                     <div class="" style="width: 18rem;">
+                       <div class="card-body" >
+                         <img class="card-img-top" style="width: 300px; height: 200px;" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
+                         
                         
                          <hr>
-                         @if(Route::has('log'))
-                             <p>test</p>
-                         @endif
-                         @if(!Route::has('loga'))
-                             <p>set</p>
-                         @endif
+                          <p>{{$homestays->nama}}</p>
+                          <hr>
+                          <p><?php echo $homestays->keterangan?></p>
                        </div>
+
                        @if(Auth::user())
-                          <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}" class="btn btn-primary">Booking</a>
-                      @else
-                      <div class="col-lg-3"><a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" disabled="">Booking</button></a>
-
-
-                        @endif
-                         <a href="">detail</a>
+                        <div class="row">
+                        <div class="col-lg-1">
+                          
+                        </div>
+                         <div class="col-lg-3" align="left">
+                          <a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" >Booking</button></a>
+                        </div>
+                        <div class="col-lg-7" align="right">
+                          <a href=""><button class="btn btn-primary" >Detail..</button></a>
+                        </div>
                       </div>
+                      @else
+                      <div class="row">
+                        <div class="col-sm-1">
+                          
+                        </div>
+                        <div align="left" class="col-sm-1"><a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" disabled="">Booking</button></a>
+                          
+                        </div>
+                        <div class="col-lg-9" align="right">
+                          <a href=""><button class="btn btn-primary">Detail..</button></a>
+                        </div>
+                      </div>
+                       @endif
                       <div class="container">
                     <!--    <div class="col-lg-3">
                         <a href="{{route('homestay.update',$homestays->id)}}" class="btn btn-primary">Update</a>

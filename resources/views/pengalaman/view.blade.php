@@ -1,28 +1,31 @@
 @extends('layouts.template')
 @section('content')
 @endsection
-<div>
-<br>
+
 <?php
 
 	$p=DB::select('select * from pengalaman');
 ?>
 @if($p)
 @foreach($pengalaman as $s)
-<div class="" style="background:URL('/Capture.png')">
-<br>
-	<div class="row col-md-10 m-5 p-2 card" id="gita" style="background-color:transparent;" >
-		
-			<h5>{{$s->judul}}</h5>
-			
-		
-		<div class="col-md-10 mt-4 text-justify card" style="background-color:#fff;">
-			<p class="card-body">{{$s->keterangan}}</p>
-			<u><a href="#" style="float: right;">Selengkapnya..</a></u>
-		</div>
+<br><br>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/gita1.css')}}">
+<a href="{{route('pengalaman.create')}}" class="container"><button class="btn btn-primary">New</button></a><br><br>
+<div class="row" style="background-color: #dbdbdb ">
 
-	</div>
-	<br><br><br>
+  <div class="row col-md-11 m-5 p-2" id="gita" style="background-color: #BCB7B7">
+    <div class="col-md-4">
+      <h5>{{$s->judul}}</h5>
+      <img src="/pengalaman/{{$s->gambar}}" width="200px" class="border_gita">
+    </div>
+    <div class="col-md-8 mt-4 text-justify" >
+      <a href="#" style="text-decoration: none; color: #000"><p>{{$s->keterangan}}</p></a>
+      <u><a href="{{route('pengalaman.detail',$s->id)}}" class="btn btn-warning" style="float: right; ">Detail</a></u>
+    </div>
+
+  </div>
+  
+</div>
 @endforeach
 	
 	@endif

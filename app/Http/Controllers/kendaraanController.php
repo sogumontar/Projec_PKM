@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\kendaraan;
+use App\record_pemesanan_kendaraan;
 class kendaraanController extends Controller
 {
     public function create(){
@@ -79,6 +80,37 @@ class kendaraanController extends Controller
 
         }else{
             return redirect()->route('admin.kendaraan');
+        }
+    }
+    public function booking($id){
+        $kendaraan =kendaraan::find($id);
+        return view('kendaraan.booking',compact('kendaraan'));
+    }
+    public function bookingProcess(request $request,$id){
+        $test1= request('date');
+        $test=DB::select("select * from record_pemesanan_kendaraan where id_kendaraan=$id AND date=$test1");
+        echo $test1;
+        echo "<br>";
+        // echo $test[0]->id;
+        // die();
+          $nowwo=date("Y-m-d");
+        $wonnee=strtotime($nowwo);
+        $oww=date('H:i:s');
+        $wonne=$wonnee+strtotime($oww);
+        $inow = strtotime(request('date'));
+
+         if($wonnee>$inow){
+            return redirect()->route('homestay.view')->with('danger','Tanggal yang anda masukkan sudah lewat pilih tanggal hari ini atau hari berikutnya');
+        }else if(!$test){
+             return redirect()->route('homestay.view')->with('danger','Kendaraan yang anda pilih telah di pesan pada tanggal yang anda masukkan. ');
+        }else{
+            record_pemesanan_kendaraan::create([
+                'id_member'=>Auth::user()->id,
+                'id_kendaraan'=>$id,
+                'date'=>request('date'),
+                'lama_pemesanan'=>request('lama'),
+            ]);
+              return redirect()->route('homestay.view')->with('success','Booking Berhasil');
         }
     }
 }

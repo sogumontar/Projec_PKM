@@ -47,6 +47,7 @@
         <li><a href="{{route('homestay.create')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{('admin.objekWisata')}">Objek Wisata</a></li>
+        <li><a href="{('admin.request')}">Request</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>KingStay</title>
+  <title>Kingstay</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,14 +40,13 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav fixed-side">
-     
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
+        <li ><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
-        <li><a href="{{route('admin.request')}}">Request</a></li>
+        <li class="active"><a href="{{route('admin.request')}}">Request</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -66,7 +65,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">List request booking homestay</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -89,12 +88,22 @@
 -->
                                 </tr>
                             </thead>
-                                @foreach($akun as $a)
+                                @foreach($test as $a)
                                 <div>
                                   <tr>
-                                    <td>{{$a->name}}</td>
-                                     <td>{{$a->email}}</td>
-                                      <td>{{$a->role}}</td>
+                                    <td>{{$a->date}}</td>
+                                     <td>{{$a->jumlah_kamar}}</td>
+                                      <td>{{$a->status}}</td>
+                                     <td> <form method="post" action="{{route('accept',$a->id )}}">
+                                {{csrf_field()}}
+                               {{ method_field('PATCH') }}
+                               <input type="submit" class="btn btn-success"  value="accept">
+                          </form></td>
+                                      <td> <form method="post" action="{{route('reject',$a->id )}}">
+                                {{csrf_field()}}
+                               {{ method_field('PATCH') }}
+                               <input type="submit" class="btn btn-danger"  value="reject">
+                          </form></td>
                                   </tr>
                                 </div>
                                 @endforeach
