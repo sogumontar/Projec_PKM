@@ -43,6 +43,8 @@ Route::patch('homestay/{id}/edit','homestayController@update')->name('homestay.u
 Route::get('homestay/{id}/kelola','homestayController@kelola')->name('homestay.kelola');
 Route::post('homestay/booking','homestayController@keranjang')->name('homestay.Keranjang');
 Route::post('homestay/{id}/booking','homestayController@kendaraan')->name('kendaraan.Keranjang');
+Route::get('homestay/{id}/detail','homestayController@detail')->name('homestay.detail');
+Route::post('homestay/{id}/detail','homestayController@rating')->name('homestay.rating');
 
 Route::patch('admin/{id}/new','adminController@reject')->name('reject');
 Route::patch('admin/{id}/accept','adminController@accept')->name('accept');

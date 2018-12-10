@@ -27,7 +27,7 @@ class cekStatus
             return redirect('/welcome');
             // echo "member";
         }else if(Auth::user()->role=='owner'){
-            return redirect('owner/owner');
+            return redirect()->route('owner.owner');
             // echo"owner";
         }
         return $next($request);

@@ -21,6 +21,6 @@ class RedirectIfAuthenticated
             return redirect('/home');
         }
 
-        return $next($request);
+        return $next($request)->with('danger','Email / Password Salah Login kembali');
     }
 }

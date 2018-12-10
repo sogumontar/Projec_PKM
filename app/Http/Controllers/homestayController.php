@@ -235,9 +235,38 @@ class homestayController extends Controller
     }
 
     public function keranjang(request $request,$id){
+        $nowwo=date("Y-m-d");
         DB::insert("INSERT Into record_pemesanan_homestay('id_member','id_homestay','date','jumlah_kamar','status','jumlah_pengunjung','harga')
 VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',request('jumlah_pengunjung'),request('jumlah_pengunjung'))");
         return redirect()->route('homestay.view');
+    }
+    public function rating(request $request,$id){
+           $nowwo=date("Y-m-d");
+
+        $asd= Auth::user()->id;
+      
+        $test=DB::select("select * from rating where id_homestay=$id AND id_member=$asd");
+        $r=request('jumlah');
+         
+        if($test!=0){
+            $s=DB::select("select * from homestay where id=$id");
+            // echo $s[0]->rating;
+            $bb=$s[0]->rating+request('jumlah');
+            $tr=$s[0]->jumlah_booking+1;
+            
+            $gg=DB::UPDATE("UPDATE homestay set rating=$bb,jumlah_booking=$tr where id=$id");
+            $db=DB::insert("INSERT into rating(waktu,jumlah,id_member,id_homestay)VALUES('$nowwo',$r,$asd,$id)");
+            
+            return redirect()->route('homestay.view')->with('success','Anda berhasil melakukan rating pada homestay ini');
+        }else{
+            return redirect()->route('homestay.view')->with('danger','Anda Telah pernah melakukan rating pada homestay ini');
+        }   
+    }
+
+    public function detail($id){
+        $db=DB::select("select * from homestay where id=$id");
+
+        return view('homestay.detail',compact('db'));
     }
     
 

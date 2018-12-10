@@ -46,8 +46,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-          
+             
               <li class="nav-item active">
+
                 <a class="nav-link" href="{{route('homestay.view')}}">Lihat Penginapan</a>
               </li>
               <li class="nav-item active">

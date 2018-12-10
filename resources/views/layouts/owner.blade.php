@@ -48,13 +48,16 @@
                         <!-- Authentication Links -->
           
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('owner.homestay')}}">Lihat Penginapan</a>
+                <a class="nav-link" href="{{route('owner.homestay')}}">Penginapan</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('owner.owner')}}">Objek Wisata</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('owner.pengalaman')}}">Pengalaman</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('owner.owner')}}">Permohonan Pesanan</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('owner.kendaraan')}}">Transportasi</a>

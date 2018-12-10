@@ -14,7 +14,7 @@
                     {{csrf_field()}}
                     <div class="">
                         <div class="" align="center">
-                            <img class="card" style="width: 450px; height: 250px;" src="/Capture.png">
+                            <img class="card" style="width: 450px; height: 250px;" src="{{$kendaraan->gambar}}">
                         </div>
                         
                         

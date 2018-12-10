@@ -10,11 +10,12 @@
 
 
 <br><br><br><br>
+<div class="container">
       <div class="panel panel-primary filterable">
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">Daftar Kendaraan</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -65,7 +66,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">Daftar Kendaraan</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -104,5 +105,6 @@
                        
 <div class="col-sm-2"><br>
     </div>
+
 
 

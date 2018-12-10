@@ -35,7 +35,11 @@ class pemilikController extends Controller
     	return view('owner.pengalaman',compact('pengalaman'));
     }
     public function  owner(){
-    	return view('owner.owner');
+        $id=AUTH::user()->id;
+        $db=DB::select("SELECT * from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay = homestay.id  where homestay.id_pemilik=$id");
+        $dbb=DB::select("SELECT * from record_pemesanan_kendaraan inner join kendaraan on record_pemesanan_kendaraan.id_kendaraan = kendaraan.id where kendaraan.id_pemilik=$id");
+
+    	return view('owner.owner',compact('db','dbb'));
     }
     public function booking(){
     	$id=Auth::user()->id;
