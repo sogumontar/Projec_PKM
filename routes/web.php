@@ -50,7 +50,7 @@ Route::patch('admin/{id}/new','adminController@reject')->name('reject');
 Route::patch('admin/{id}/accept','adminController@accept')->name('accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@acceptBooking')->name('booking.accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@rejectBooking')->name('booking.reject');
-Route::get('homestay/search','homestayController@search')->name('homestay.search');
+Route::post('homestay/search','homestayController@search')->name('homestay.search');
 // Route::delete('homestay/{id}/delete','homestayController@destroy')->name('homestay.delete');
 Route::delete('/homestay/{homestay}/delete','homestayController@destroy')->name('homestay.destroy');
 Route::view('/user/welcome','userController@logout')->name('user.logout');

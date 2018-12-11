@@ -1,84 +1,88 @@
 @extends('layouts.template')
+@include('layouts.alerts') 
              <div class="container">  
                         
 
 
 <div class="container">
       <hr>
-      <h5 style="text-align:center;">Daftar Kendaraan </h5>
+      <h5 style="text-align:center;">List Kendaraan</h5>
       <hr>
         <!-- Example row of columns -->
         <div class="form-group">
         </div>
-        <div>
-       
+      
         <div class="row">
 
-  <?php 
-        $p= DB::select('select id from kendaraan ');
+        <?php 
+        $p= DB::select('select id from homestay ');
         ?>
+
         @if($p)
-             <a href="">sort Desc</a>
-        </div>
+        <br>
 
-        @foreach($kendaraan as $kendaraan)
-          <div class="col-lg-4">
-            <style type="text/css">
-                            img {
-                                border: 3px solid ;
-                                width: 550px;
-                                height: 250px;
-                            }
-                        </style>
-            <div class="form-group">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <img class="card-img-top" src="/kendaraan/{{$kendaraan->gambar}}" alt="Card image cap">
-                  <hr>
-                  <p>{{$kendaraan->plat_nomor}}</p>
-                  <hr>
-                </div>
-                @if(AUTH::user())
-                  <div class="col-lg-3"><a href="{{route('kendaraan.booking',$kendaraan->id)}}" class="btn btn-primary">Booking</a>
+        @foreach($kendaraan as $s)
+        <br>
+                 <div class="col-lg-4">
+                 
+                   <div class="form-group">
+
+                     <div class="" style="width: 20rem;">
+                       <div class="card-body" >
+                         <hr>
+                          <p>{{$s->jenis_kendaraan}}</p>
+                          <hr>
+                         <img class="card-img-top" style="width: 300px; height: 200px;" src="/kendaraan/{{$s->gambar}}" alt="Card image cap">
+                         
+                        
+                        
+                          <p><?php echo $s->keterangan?></p>
+                       </div>
+                          <hr>
+                          <p>{{$s->Merk_kendaraan}}</p>
+                          <p>{{$s->plat_nomor}}</p>
+                          <hr>
+                          <p>Harga/Hari:{{$s->harga}}</p>
+                       
+                        <div class="row">
+                        <div class="col-lg-1">
+                          
+                        </div>
+                          <div class="col-lg-7">
+                            
+                          </div>
+                        
+                           <div class="col-lg-3" align="right">
+                          <a href="{{route('homestay.booking',$s->id)}}"><button class="btn btn-primary" >Booking</button></a>
+                        
+                        </div>
                       </div>
-                @else 
-                <div class="col-lg-3" ><a href=""><button class="btn btn-primary" disabled="">Booking</button></a>
-                      </div>
-                @endif
-                
-                
-              <!--   <div class="col-lg-3">
-                  <a href="{{route('kendaraan.edit',$kendaraan->id)}}" class="btn btn-primary">Edit</a>
-                  
-               </div>
-               <div class="">
-                  <h5 class="card-header"> <a href="" class="btn btn-primary">Delete</a>
-                     <form method="post" action="">
-                         {{csrf_field()}}
-                        {{ method_field('DELETE') }}
-                        <input type="submit" class="btn btn-danger"  value="delete">
-                   </form></h5>
-
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-      
-
-                    
-    @endforeach
-    @endif
-    @if(!$p)
-     <div class="container">
+                       <div class="row">
+                          <div class="col-lg-1">
+                         
+                          </div>
+                        </div>
+                      <div class="container">
+                   
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+       
+             
+       
+                           
+           @endforeach
+           @endif
+           @if(!$p)
+           <div class="container">
             <br>
-            <br><br><br><br><br><br><br><center><h1>Tidak Ada Kendaraan yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
+            <br><br><br><br><br><br><br><center><h1>Tidak Ada Homestay yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
            </div>
-    @endif
-
+         @endif
       </div>
 
-                    	
+                      
                  
                     <!-- <a href=""><button class="btn btn-danger">delete</button></a> -->
-    
+                 

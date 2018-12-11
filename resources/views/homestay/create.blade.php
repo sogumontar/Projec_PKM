@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@include('layouts.alerts')
 @section('content')
 
 @endsection

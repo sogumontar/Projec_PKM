@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 <!doctype html>
 <html lang="en">
   <head>
@@ -182,7 +183,7 @@
 
 
       <div class="jumbotron text-center" style="background-color:grey;">
-        <p>Footer</p>
+        
       </div>
     </main>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.slim.min.js')}}"></script>

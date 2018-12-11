@@ -1,4 +1,4 @@
-
+@include('layouts.alerts')
     @extends('layouts.owner')
 <div class="container">
     <hr>
@@ -23,7 +23,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">List Homestay</h3>
+                            <h3 class="panel-title">List Pesanan Homestay</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -56,17 +56,12 @@
                                     <td>{{$a->nama}}</td>
 
                                     <td>{{$a->harga}}</td>
-                                    <td>{{$a->date}}</td>
+                                    <td>{{$a->data}}</td>
                                     <td>{{$a->jumlah_kamar}}</td>
                                     <td>{{$a->jumlah_pengunjung}}</td>
                                     <td>{{$a->status}}</td>
                                      <td><textarea class="form-control" disabled=""><?php echo $a->keterangan ?></textarea></td>
-                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
-                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
-                                {{csrf_field()}}
-                               {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
-                          </form></td>
+                                     
                                   </tr>
                                 </div>
 
@@ -82,7 +77,7 @@
                         <!-- panel heading starat -->
                         <br><br><br>
                         <div class="panel-heading">
-                            <h3 class="panel-title">List Kendaraan</h3>
+                            <h3 class="panel-title">List Pesanan Kendaraan</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -101,6 +96,9 @@
                                     <th><p>Harga</p></th>
                                     <th><p>Date</p></th>
                                     <th><p>Lama Pemesanan</p></th>
+                                    <th><p>Status</p></th>
+                                    <th><p>Deskripsi</p></th>
+                                    
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -118,13 +116,9 @@
                                      <td>{{$aa->harga}}</td>
                                      <td>{{$aa->date}}</td>
                                      <td>{{$aa->lama_pemesanan}}</td>
+                                     <td>{{$aa->status}}</td>
                                      <td><textarea class="form-control" disabled=""></textarea></td>
-                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
-                                     <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
-                                {{csrf_field()}}
-                               {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
-                          </form></td>
+                                     
                                   </tr>
                                 </div>
 

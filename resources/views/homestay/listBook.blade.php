@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@include('layouts.alerts')
 <br>
 <div>
 	@foreach($record_homestay as $record)

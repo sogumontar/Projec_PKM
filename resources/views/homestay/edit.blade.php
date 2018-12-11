@@ -1,6 +1,15 @@
-@extends('layouts.template')
+@if(Auth::user()->role='owner')
+    @extends('layouts.owner')
+@endif
+@include('layouts.alerts')
+<br>
+<h2 align="center">Update Data Homestay</h2><br><br>
 <div class="container">
-        <div class="row">
+        <div class="row" align="left">
+            <div class="col-md-2">
+                    
+            </div>
+
             <div class="col-md-8 col-offset-2">
                 <form action="{{ route('homestay.update',$homestay->id) }}"  method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -28,7 +37,7 @@
 
                     <div class="form-group">
                         <label>Gambar Homestay</label>
-                        <img src="/uploadgambar/{{$homestay->gambar}}">
+                        <center><a href="/uploadgambar/{{$homestay->gambar}}"><img class="card" style="width: 300px; height: 250px;"  src="/uploadgambar/{{$homestay->gambar}}"></a></center><br>
                         <input type="file" class="form-control" name="gambar" id="gambar" >
                     </div>
                    

@@ -146,10 +146,30 @@ class homestayController extends Controller
             return redirect()->route('admin.homestay');
         }
     }
-    public function search(){
+    public function search(request $request){
+        $ag=request('lokasi');
+        // $b=request('waktu_awal');
+        // $c=request('waktu_akhir');
+        // $d=strtotime($b);
         
-        $homestay = DB::SELECT("select * from homestay order by keterangan DESC");
-        return view('homestay.search',compact('homestay'));
+        // echo $b;
+       
+
+        $ee=DB::select("SELECT * from record_pemesanan_homestay");
+        $i=0;
+       
+           
+            
+        $ghgh=DB::SELECT("SELECT * from homestay");
+        
+        $trtr=$ghgh[$i]->kecamatan;
+        $tes=DB::select("SELECT * from  homestay where kecamatan='$ag'");
+        
+            foreach($tes as $rr){
+          
+    }
+      
+        return view('homestay.search',compact('ag','qq','tes','d'));
     }
     public function booking($id){
         $homestay =homestay::find($id);
@@ -242,7 +262,7 @@ VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',r
     }
     public function rating(request $request,$id){
            $nowwo=date("Y-m-d");
-
+    if(Auth::user()){
         $asd= Auth::user()->id;
       
         $test=DB::select("select * from rating where id_homestay=$id AND id_member=$asd");
@@ -258,9 +278,9 @@ VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',r
             $db=DB::insert("INSERT into rating(waktu,jumlah,id_member,id_homestay)VALUES('$nowwo',$r,$asd,$id)");
             
             return redirect()->route('homestay.view')->with('success','Anda berhasil melakukan rating pada homestay ini');
-        }else{
-            return redirect()->route('homestay.view')->with('danger','Anda Telah pernah melakukan rating pada homestay ini');
-        }   
+            }
+        }
+        return redirect()->route('homestay.view');   
     }
 
     public function detail($id){

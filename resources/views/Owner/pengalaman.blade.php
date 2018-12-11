@@ -1,3 +1,4 @@
+@include('layouts.alerts')
 @extends('layouts.owner')
 <div class="container" style="margin-top:30px;" >
   <div class="row">

@@ -31,6 +31,7 @@
                                     <th><p>Jenis Kendaraan</p></th>
                                     <th><p>Merk Kendaraan</p></th> 
                                     <th><p>Plat Nomor</p></th>
+                                    <th><p>Harga</p></th>
                                     <th></th>
                                     <th></th>
 
@@ -46,6 +47,7 @@
                                     <td>{{$a->jenis_kendaraan }}</td>
                                      <td>{{$a->Merk_kendaraan}}</td>
                                      <td>{{$a->plat_nomor}}</td>
+                                     <td>{{$a->harga}}</td>
                                      <td> <a href="{{route('kendaraan.edit',$a->id)}}" class="btn btn-primary">Update</a></td>
                                      <td> <form method="post" action="{{route('kendaraan.destroy',$a->id)}}">
                                 {{csrf_field()}}
@@ -66,7 +68,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Kendaraan</h3>
+                            <h3 class="panel-title">Tambah Kendaraan</h3>
                             <div class="pull-right">
                             
                         </div>

@@ -59,7 +59,8 @@ class kendaraanController extends Controller
             'plat_nomor'=>request('plat_nomor'),
             'harga'=>request('harga'),
         ]);
-
+        
+         return redirect()->route('owner.kendaraan');
         if($a!='')
             $gambar = $request->file('gambar');
          // $namaFile = $gambar->getClientOriginalName();

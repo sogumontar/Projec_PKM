@@ -94,16 +94,22 @@
                                     <td>{{$a->date}}</td>
                                      <td>{{$a->jumlah_kamar}}</td>
                                       <td>{{$a->status}}</td>
-                                     <td> <form method="post" action="{{route('accept',$a->id )}}">
-                                {{csrf_field()}}
-                               {{ method_field('PATCH') }}
-                               <input type="submit" class="btn btn-success"  value="accept">
-                          </form></td>
-                                      <td> <form method="post" action="{{route('reject',$a->id )}}">
-                                {{csrf_field()}}
-                               {{ method_field('PATCH') }}
-                               <input type="submit" class="btn btn-danger"  value="reject">
-                          </form></td>
+                                  @if($a->status=='on process')
+                                     <td> 
+                                      <form method="post" action="{{route('accept',$a->id )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                        <input type="submit" class="btn btn-success"  value="accept">
+                                      </form>
+                                    </td>
+                                     <td> 
+                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                       <input type="submit" class="btn btn-danger"  value="reject">
+                                      </form>
+                                     </td>
+                                   @endif  
                                   </tr>
                                 </div>
                                 @endforeach

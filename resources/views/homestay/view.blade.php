@@ -1,6 +1,5 @@
 @extends('layouts.template')
 @include('layouts.alerts')
-@section('content')
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/test.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/star-rating.min.css')}}">
 <script type="text/javascript" src="{{asset('vendor/jss/js/jquery.min.js')}}"></script>
@@ -68,7 +67,7 @@
                           
                         </div>
                         <div class="col-lg-12" align="right">
-                          <a href="{{route('homestays.detail',$homestays->id)}}"><button class="btn btn-primary">Detail..</button></a>
+                          <a href="{{route('homestay.detail',$homestays->id)}}"><button class="btn btn-primary">Detail..</button></a>
                         </div>
 
                       </div>

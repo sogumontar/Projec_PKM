@@ -1,4 +1,4 @@
-
+@include('layouts.alerts')
     @extends('layouts.owner')
 <div class="container">
     <hr>

@@ -1,10 +1,14 @@
 @extends('layouts.template')
+@include('layouts.alerts')
 @foreach($db as $s)
 <?php if(Auth::user()){ $test=Auth::user()->id;
  $ss= DB::select("select * from rating where id_member=$test AND id_homestay=$s->id");
-
  
-}?>
+ 
+}
+$t=DB::select("select * from pemilik_homestay_kendaraan where id_akun=$s->id_pemilik ");
+
+?>
 
 </div>
 <div class="container">
@@ -17,26 +21,35 @@
     <div class="col-md-12">
       <center><a href="/uploadgambar/{{$s->gambar}}"><img style="width: 490px; height: 390px;" src="/uploadgambar/{{$s->gambar}}" class="img-thumbnail shadow" style="border-radius: 38px"></a></center>
     </div>
-  </div>
-<div class="col-md-3">
-      <h5>Gita Nadapdap</h5>
-      <h6>22-07-1999  01.00.00</h6>
+  </div><center>
+<div class="col-md-3" align="center">
+      <h5><?php echo $t[0]->nama;?></h5>
+      <h6>{{$s->created_at}}</h6>
     </div>
     <form method="post" action="{{route('homestay.rating',$s->id)}}">
 {{ csrf_field() }}
+@if(Auth::user())
     @if($ss)
      <input value="<?php echo  $s->rating / $s->jumlah_booking?>" name="jumlah" type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled="">
+
+     <label>Anda Sudah Rating Homestay Ini</label>
      @else
 
      <input value="3" name="jumlah" type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5">
-     @endif
-     <input type="submit" class="btn btn-primary" name="">
+     <input type="submit" class="btn btn-primary" value="save" name="">
    </form>
+     @endif
+@else
+ <input value="<?php echo  $s->rating / $s->jumlah_booking?>" name="jumlah" type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled="">
+  </center>
+@endif
   <div class="row mt-5 mb-4">
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+     
+    </div>
     
     <div class="col-md-8">
-      <textarea class="form-control" rows="5" disabled=""></textarea>
+      <textarea class="form-control" rows="5" disabled=""> {{$s->keterangan}}</textarea>
     </div>
   </div>
 </div>
