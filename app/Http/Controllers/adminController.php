@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\user;
 use App\pengalaman;
 use App\homestay;
@@ -13,6 +14,7 @@ use App\kendaraan;
 use App\pemilik;
 use App\objekWisata;
 use App\record_homestay;
+use App\notifikasi;
 class adminController extends Controller
 {
     public function objekWisata(){
@@ -39,6 +41,14 @@ class adminController extends Controller
            ->join('pemilik_homestay_kendaraan', 'kendaraan.id_pemilik', '=', 'pemilik_homestay_kendaraan.id_akun')
            ->select('kendaraan.jenis_kendaraan', 'kendaraan.Merk_kendaraan', 'kendaraan.plat_nomor','kendaraan.id', 'pemilik_homestay_kendaraan.nama')
            ->get();
+           $idd=Auth::user()->id;
+           notifikasi::create([
+           'nama'=>'menambahkan',
+           'isi'=>'Berhasil menambahkan kendaraan',
+           'status'=>'sukses',
+           'id_penerima'=>$idd,
+           ]);
+
         return view('admin.kendaraan',compact('query'));
 
 
@@ -52,16 +62,72 @@ class adminController extends Controller
     }
     public function request(){
         $test=DB::select('select * from record_pemesanan_homestay');
+        $test1=DB::select('select * from record_pemesanan_kendaraan');
 
 
-        return view('admin.request',compact('test'));
+        return view('admin.request',compact('test','test1'));
     }
     public function accept($id){
-        
+        $i=0;
+        $DB=DB::select("SELECT * FROM record_pemesanan_homestay");
+
+           $nowwo=date("Y-m-d");
+        $wonnee=strtotime($nowwo);
+        foreach ($DB as $d ) {
+           $RE=DB::SELECT("SELECT * FROM homestay where id=$d->id_homestay");
+                $rey=$RE[0]->id;
+                $qwe =$RE[0]->jumlah_booking;
+                $ewq =$d->jumlah_kamar;
+                $ress=$qwe-$ewq;
+                echo $ress;
+                $rr=strtotime($d->date);
+               
+
+                if($wonnee>$rr){
+                    $TR=DB::UPDATE("UPDATE homestay set jumlah_kamar_terbooking=$ress where id=$rey");
+                    $tt=DB::UPDATE("UPDATE record_pemesanan_homestay set jumlah_kamar=0 where id=$d->id");
+                    var_dump($TR);
+                }
+              
+                $i++;
+        }
+          
+
+
+
         $test= DB::update("update record_pemesanan_homestay set status='accepted' where id=$id");
         return redirect()->route('admin.request')->with('success','Process Berhasil');
     }
     public function reject($id){
+
+       $i=0;
+        $DB=DB::select("SELECT * FROM record_pemesanan_homestay");
+
+           $nowwo=date("Y-m-d");
+        $wonnee=strtotime($nowwo);
+        foreach ($DB as $d ) {
+           $RE=DB::SELECT("SELECT * FROM homestay where id=$d->id_homestay");
+                $rey=$RE[0]->id;
+                $qwe =$RE[0]->jumlah_booking;
+                $ewq =$d->jumlah_kamar;
+                $ress=$qwe-$ewq;
+                echo $ress;
+                $rr=strtotime($d->date);
+               
+
+                if($wonnee>$rr){
+                    $TR=DB::UPDATE("UPDATE homestay set jumlah_kamar_terbooking=$ress where id=$rey");
+                    $tt=DB::UPDATE("UPDATE record_pemesanan_homestay set jumlah_kamar=0 where id=$d->id");
+                    var_dump($TR);
+                }
+              
+                $i++;
+        }
+          
+
+
+
+
         $test= DB::update("update record_pemesanan_homestay set status='rejected' where id=$id");
         return redirect()->route('admin.request')->with('danger','Process Berhasil');
     }

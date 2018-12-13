@@ -15,6 +15,11 @@ class kendaraanController extends Controller
     	return view('kendaraan.create');
     }
     public function store(request $request){
+        $rew=request('gambar');
+        echo Auth::user()->id;
+        die();
+        if($req!=''){
+
          $file       = $request->file('gambar');
         $fileName   = $file->getClientOriginalName();
         // $request->file('gambar')->move("upload/",$fileName);
@@ -27,11 +32,23 @@ class kendaraanController extends Controller
     	kendaraan::create([
     	'jenis_kendaraan'=>request('jenis'),
     	'Merk_kendaraan'=>request('merk'),
-    	'id_pemilik'=>$a,
+    	'id_pemilik'=>Auth::user()->id,
     	'plat_nomor'=>request('plat'),
     	'harga'=>request('harga'),
         'gambar'=>$pathw,
     	]);
+
+    }else {
+        kendaraan::create([
+        'jenis_kendaraan'=>request('jenis'),
+        'Merk_kendaraan'=>request('merk'),
+        'id_pemilik'=>Auth::user()->id,
+        'plat_nomor'=>request('plat'),
+        'harga'=>request('harga'),
+        
+        ]);
+    }
+
     	return redirect()->route('owner.kendaraan');
     }
     public function view(){
@@ -51,17 +68,22 @@ class kendaraanController extends Controller
 
 
         $kendaraan=kendaraan::find($id);
-        $a=request('gambar');
+
+        
         $kendaraan->update([
             'jenis_kendaraan'=>request('jenis_kendaraan'),
             'Merk_kendaraan'=>request('Merk_kendaraan'),
-            'id_pemilik'=>request('id_pemilik'),
+            'id_pemilik'=>Auth::user()->id,
             'plat_nomor'=>request('plat_nomor'),
             'harga'=>request('harga'),
         ]);
         
-         return redirect()->route('owner.kendaraan');
-        if($a!='')
+         
+         if(request('gambar')!=''){
+            $a=request('gambar');
+         
+         
+        
             $gambar = $request->file('gambar');
          // $namaFile = $gambar->getClientOriginalName();
          $pathw= $request->file('gambar')->store('');
@@ -71,6 +93,7 @@ class kendaraanController extends Controller
 
                 'gambar'=>$pathw,
             ]);
+        }
 
         return redirect()->route('owner.kendaraan');
     }
@@ -89,9 +112,12 @@ class kendaraanController extends Controller
     }
     public function bookingProcess(request $request,$id){
         $test1= request('date');
+        $test2= request('date_akhir');
         $test=DB::select("select * from record_pemesanan_kendaraan where id_kendaraan=$id AND date=$test1");
-        echo $test1;
-        echo "<br>";
+        
+
+        $dol= strtotime($test2)- strtotime($test1);
+        $lama= $dol/86400;
         // echo $test[0]->id;
         // die();
           $nowwo=date("Y-m-d");
@@ -99,19 +125,19 @@ class kendaraanController extends Controller
         $oww=date('H:i:s');
         $wonne=$wonnee+strtotime($oww);
         $inow = strtotime(request('date'));
-
+            
          if($wonnee>$inow){
-            return redirect()->route('homestay.view')->with('danger','Tanggal yang anda masukkan sudah lewat pilih tanggal hari ini atau hari berikutnya');
-        }else if(!$test){
-             return redirect()->route('homestay.view')->with('danger','Kendaraan yang anda pilih telah di pesan pada tanggal yang anda masukkan. ');
+            return redirect()->route('kendaraan.view')->with('danger','Tanggal yang anda masukkan sudah lewat pilih tanggal hari ini atau hari berikutnya');
+        
         }else{
             record_pemesanan_kendaraan::create([
                 'id_member'=>Auth::user()->id,
                 'id_kendaraan'=>$id,
-                'date'=>request('date'),
-                'lama_pemesanan'=>request('lama'),
+                'date'=>$test1,
+                'date_akhir'=>$test2,
+                'lama_pemesanan'=>$lama,
             ]);
-              return redirect()->route('homestay.view')->with('success','Booking Berhasil');
+              return redirect()->route('kendaraan.view')->with('success','Booking Berhasil');
         }
     }
 }

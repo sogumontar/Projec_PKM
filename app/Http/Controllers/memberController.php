@@ -12,27 +12,53 @@ class memberController extends Controller
 {
     public function booking(){
     	$a=Auth::user()->id;
-    	$d=DB::select("select homestay.nama , record_pemesanan_homestay.date , record_pemesanan_homestay.status , record_pemesanan_homestay.id from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id where  id_member=$a");
+    	$d=DB::select("SELECT homestay.nama , homestay.id, record_pemesanan_homestay.date,record_pemesanan_homestay.jumlah_kamar , record_pemesanan_homestay.status , record_pemesanan_homestay.id, record_pemesanan_homestay.lama_menginap from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id where  id_member=$a order by record_pemesanan_homestay.status ASC");
+
     	// $g=DB::select('select * from homestay')
     	return view('booking',compact('d'));
     }
     public function bayar($id){
-    	$d=DB::select("select homestay.nama , record_pemesanan_homestay.date , record_pemesanan_homestay.status , record_pemesanan_homestay.id , record_pemesanan_homestay.jumlah_pengunjung , record_pemesanan_homestay.jumlah_kamar from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id  where status='pending' and record_pemesanan_homestay.id=$id");
+    	$d=DB::select("select homestay.nama ,homestay.id, record_pemesanan_homestay.date , record_pemesanan_homestay.status , record_pemesanan_homestay.id , record_pemesanan_homestay.jumlah_pengunjung , record_pemesanan_homestay.jumlah_kamar from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id  where status='pending' and record_pemesanan_homestay.id=$id");
 
        
     	return view('bayar',compact('d'));
     }
     public function bayarProcess(request $request,$id){
+        if(request('gambar')){
+        	 $gambar = $request->file('gambar');
+             $pathw= $request->file('gambar')->store(''); 
+             $request->file('gambar')->move('struk',$pathw);
+        
+        	$a=DB::update("update record_pemesanan_homestay set gambar='$pathw', status='On Process' where id=$id");
+        	// $a=DB::update("update record_pemesanan_homestay set gambar='$pathw' where id=$id");
+        	// var_dump($a);
+        	// die();
+            return redirect()->route('member.booking')->with('success','Upload Resi Success');
+        }else{
+             $idd=Auth::user()->id;
+            $camp=request('volume');
+            $qrqw=DB::select("SELECT * FROM member where id_akun=$idd");
+           $champ=$qrqw[0]->poin-$camp;
+           
 
-    	 $gambar = $request->file('gambar');
-         $pathw= $request->file('gambar')->store(''); 
-         $request->file('gambar')->move('struk',$pathw);
+            $a=DB::update("update record_pemesanan_homestay set status='On Process' where id=$id");
+            $v=DB::update("UPDATE member set poin =$champ where id_akun=$idd");
+return redirect()->route('member.booking')->with('success','Pembayaran Berhasil');
+        }
+    	
 
-    	$a=DB::update("update record_pemesanan_homestay set gambar='$pathw', status='On Process' where id=$id");
-    	// $a=DB::update("update record_pemesanan_homestay set gambar='$pathw' where id=$id");
-    	// var_dump($a);
-    	// die();
-    	return redirect()->route('member.booking')->with('success','Upload Resi Success');
+    }
+    public function poin($id){
+        
+        $ddd=DB::select("select homestay.nama ,homestay.id, record_pemesanan_homestay.date , record_pemesanan_homestay.status , record_pemesanan_homestay.id , record_pemesanan_homestay.jumlah_pengunjung , record_pemesanan_homestay.jumlah_kamar from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id  where status='pending' and record_pemesanan_homestay.id=$id");
 
+       
+        return view('poin',compact('ddd'));
+    }
+    public function resi($id){
+
+        $DB=DB::SELECT("SELECT * FROM record_pemesanan_homestay where id=$id");
+        
+        return view('resi',compact('DB'));
     }
 }

@@ -2,51 +2,73 @@
 @extends('layouts.template')
 @section('content')
 
-</div>
-<br>
-<?php
-	$p=DB::select('select id from objek_wisata ');
-?>
-@if($p)
-@foreach($test as $s)
+
 <div class="container">
-	<div class="row" style="background :#ffffff">
+      <hr>
+      <h5 style="text-align:center;">List ObjekWisata</h5>
+      <hr>
+        <!-- Example row of columns -->
+        <div class="form-group">
+        </div>
+      
+        <div class="row">
 
-		<div class="row col-md-7 m-5 p-2 card" id="gita" style="background-color:#dbdbdb;" >
-			<div class="col-md-4">
-				<h5>{{$s->nama}}</h5>
-				 <img class="card-img-top" src="/objekwisata/{{$s->gambar}}" alt="Card image cap">
-			</div>
-			<div class="col-md-8 mt-4 text-justify" >
-				<p class="card-body">{{$s->keterangan}}</p>
-				<u><a href="#" style="float: right;">Selengkapnya..</a></u>
-			</div>
+        <?php 
+        $p= DB::select('select id from homestay ');
+        ?>
 
-		</div>
-	@endforeach
-		<div class="col-md-3 mt-gita-event">
-			<br>
-			<br>
-			<br>
-			<div class="card" style="background-color: #DBDBAA">
-			<h5 class="ml-3">Event dalam waktu dekat</h5>
-			<ul>
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-			</ul>
-		</div>
-		</div>
-		@endif
-		@if(!$p)
-		<div class="container">
-	            <br>
-	            <br><br><br><br><br><br><br><center><h1>Tidak Ada Objek Wisata yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
-	           </div>
-	    @endif
-		
-	</div>
-</div>
+        @if($p)
+        <br>
 
+        @foreach($test as $s)
+        
+                 <div class="col-lg-4">
+                 
+                   <div class="form-group">
 
-
+                     <div class="" style="width: 20rem;">
+                       <div class="card-body" >
+                         <a class="" href="">
+                          <p>{{$s->nama}}</p>
+                          <hr>
+                         <img class="card-img-top" style="width: 300px; height: 200px;" src="/objekwisata/{{$s->gambar}}" alt="Card image cap">
+                         </a>
+                        
+                        
+                       </div>
+                        
+                       
+                        <div class="row">
+                        <div class="col-lg-1">
+                          
+                        </div>
+                          <div class="col-lg-7">
+                            
+                          </div>
+                        
+                      </div>
+                       <div class="row">
+                          <div class="col-lg-1">
+                         
+                          </div>
+                        </div>
+                      <div class="container">
+                   
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+       
+             
+       
+                           
+           @endforeach
+           @endif
+           @if(!$p)
+           <div class="container">
+            <br>
+            <br><br><br><br><br><br><br><center><h1>Tidak Ada Homestay yang terdaftar Saat ini</h1></center><br><br><br><br><br><br><br><br><br><br><br>            
+           </div>
+         @endif
+      </div>
+    </div>

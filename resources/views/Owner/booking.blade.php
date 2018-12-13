@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 1500px}
@@ -106,11 +107,11 @@
                                      <td>{{$a->keterangan}}</td>
                                      <td>{{$a->status}}</td>
                                      <td>{{$a->jumlah_pengunjung}}</td>
-                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
+                                     <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Ubah</a></td>
                                      <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
+                               <input type="submit" class="btn btn-danger" onclick="return confirm('Anda ingin menghapus booking ini?')"  value="Hapus">
                           </form></td>
                                   </tr>
                                 </div>

@@ -1,5 +1,6 @@
 @include('layouts.alerts')
 @extends('layouts.app')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
 <br>
 	<div class="container">

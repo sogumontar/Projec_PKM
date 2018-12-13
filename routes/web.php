@@ -63,7 +63,7 @@ Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.cre
 Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.store');
 Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
 Route::get('kendaraan/{id}/edit','kendaraanController@edit')->name('kendaraan.edit');
-Route::PATCH('kendaraan/{id}/view','kendaraanController@update')->name('kendaraan.update');
+Route::PATCH('kendaraan/{id}/edit','kendaraanController@update')->name('kendaraan.update');
 Route::delete('/kendaraan/{kendaraan}/delete','kendaraanController@destroy')->name('kendaraan.destroy');
 Route::get('kendaraan/{id}/booking','kendaraanController@booking')->name('kendaraan.booking');
 Route::post('kendaraan/{id}/booking','kendaraanController@bookingProcess')->name('kendaraan.booking.process');
@@ -79,6 +79,9 @@ Route::get('pengalaman/{id}/detail','pengalamanController@detail')->name('pengal
 Route::get('admin/objekWisata','objekWisataController@create')->name('objekWisata.create');
 Route::get('objekWisata/view','objekWisataController@view')->name('objekWisata.view');
 Route::post('admin/objekWisata','objekWisataController@store')->name('objekWisata.store');
+Route::get('objekWisata/{id}/edit','objekWisataController@edit')->name('objekWisata.edit');
+Route::get('admin/{id}/edit_obj','objekWisataController@edit')->name('edit_obj');
+
 
 //Admin
 
@@ -89,6 +92,7 @@ Route::get('admin/pengalaman','adminController@pengalaman')->name('admin.pengala
 Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
 Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');
 Route::get('admin/request','adminController@request')->name('admin.request');
+Route::PATCH('objekWisata/{id}/edit','objekWisataController@update')->name('objekWisata.update');
 
 
 //Owner
@@ -103,3 +107,5 @@ Route::get('owner/booking','pemilikController@booking')->name('owner.booking');
 Route::get('booking','memberController@booking')->name('member.booking');
 Route::get('{id}/bayar','memberController@bayar')->name('member.bayar');
 Route::PATCH('{id}/bayar','memberController@bayarProcess')->name('member.bayarProcess');
+Route::get('{id}/poin','memberController@poin')->name('member.poin');
+Route::get('{id}/resi','memberController@resi')->name('member.resi');

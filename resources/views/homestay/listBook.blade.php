@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @include('layouts.alerts')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
 <div>
 	@foreach($record_homestay as $record)

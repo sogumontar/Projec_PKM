@@ -1,6 +1,7 @@
 
 
-@include('layouts.alerts')
+  @include('layouts.alerts')
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
+    <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}">
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <style>
@@ -32,7 +35,7 @@
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 70px; height: 55px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,7 +53,7 @@
                         <!-- Authentication Links -->
           @if((Auth::user()))
             @if(Auth::user()->role='member')
-            
+             
               @else
                <li class="nav-item active">
                 <a class="nav-link" href="{{route('homestay.create')}}">Daftar Penginapan</a>
@@ -62,7 +65,7 @@
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="#">Objek Wisataa</a>
+                <a class="nav-link" href="{{route('objekWisata.view')}}">Objek Wisataa</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('pengalaman.create')}}">Pengalaman</a>
@@ -108,7 +111,7 @@
                   </div>
                 </div>
               </div>
-          </li>
+          
               
                             <li class="">
                                 @if (Route::has('register'))
@@ -164,98 +167,71 @@
 
           <div class="jumbotron" style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg') ">
         <div class="container">
-          <h1 class="display-3">King Stay</h1>
-          <h1 class="display-3">HomeStay, StayHome</h1>
-          <p style="color: #000000">Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-        </div>
-      </div>
+          <h3 class="display-3"><b>KingStay</b></h3>
+          <h3 class="display-3">HomeStay, StayHome</h3>
+          <p style="color: #000000">Mempermudah anda dalam menemukan tempat penginapan yang nyaman dengan pemilik yang ramah, menjadikan anda mendapat pengalaman berlibur yang menyenangkan dengan suasana rumah.</p>
+          <p>
 
-
-
-      <!-- Marketing messaging and featurettes
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
-
-      <div class="container" style="margin-top:30px;" >
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="card">
-            <div class="card-header">Temukan Homestay mu</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title"><img src="/Location.png" style="width: 50px"></h5>
+                  <div class="card" style="background-color: transparent;">
+                    
+                      <form method="post" action="{{route('homestay.search')}}">
                       <div class="input-group-prepend">
-                          
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Lokasi"></div>
-                    <br>
-
-                          <div class="row">
-                            <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
+                        {{ csrf_field() }}
+                          </div>
+                            <br>
+                             <div class="row">
+                             
+                            
+                            <div class="input-group-text">
+                             <img src="/Location.png" style="width: 20px"></div>
                             <div class="col">
-                              <input type="date" class="form-control" placeholder="First name">
+                              <input type="text"  class="form-control" name="lokasi" id="exampleInputPassword1" placeholder="Lokasi">
                             </div>
                             <div class="col">
-                              <input type="time" class="form-control" placeholder="Last name">
+                              
+                            </div>
+                          </div><br>
+                          <div class="row">
+                            <div class="input-group-text">
+                              <img src="/jam.png" style="width: 20px"></div>
+                            <div class="col">
+                              <input type="date" class="form-control" name="waktu_awal">
+                            </div>
+                            <div class="col">
+                              
                             </div>
                           </div>
                          <br>
                           <div class="row">
-                             <div class="input-group-text"><img src="/jam.png" style="width: 20px"></div>
+                            <div class="input-group-text">
+                              <img src="/jam.png" style="width: 20px"></div>
                             <div class="col">
-                              <input type="date" class="form-control" placeholder="First name">
+                              <input type="date"  class="form-control" name="waktu_akhir" placeholder="waktu_akhir">
                             </div>
-                            <div class="col">
-                              <input type="time" class="form-control" placeholder="Last name">
+                             <div class="col">
+                              
                             </div>
-                          </div>
-
-
-                    </div>
+                          </div><br>
+                  <div class="col-md-6" align="right">
+                    <a href=""><button class="btn btn-primary">Search</button></a>
                   </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="form-group">
-                        <img src="/user.jpg" style="width: 20px">
-                        <select class="form-control" id="exampleFormControlSelect2">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                       <img src="/kamar.png" style="width: 20px">
-                        <select class="form-control" id="exampleFormControlSelect2">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                      </div>
-                       <a href="#" class="btn btn-primary">Cari</a>
-                    </div>
+                    </form>
                   </div>
+
+                  </div>
+                  
                 </div>
-              </div>
-            </div>
-            </div>
-            </div>
-        </div>
+              
+      
       </div>
       </div>
-
-
+      
+<?php
+  $pp=DB::SELECT("SELECT 3 FROM homestay order by pembooking");
+ ?>
     <div class="container">
       <hr>
-      <h5 style="text-align:center;">Homestay Favorit</h5>
+      <h5 style="text-align:center;">Homestayss Favorit</h5>
       <hr>
         <!-- Example row of columns -->
         <div class="row">
@@ -265,7 +241,7 @@
                 <div class="card-body">
                   <img class="card-img-top" src="3.jpg" alt="Card image cap">
                   <hr>
-                  <p>Pemendangan di homestay ini sangat keren</p>
+                  <p>{{$pp[0]->nama}}</p>
                 </div>
                   <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
               </div>
@@ -289,7 +265,7 @@
                 <div class="card-body">
                   <img class="card-img-top" src="3.jpg" alt="Card image cap">
                   <hr>
-                  <p>Pemendangan di homestay ini sangat keren</p>
+                  <p>Pemandangan di homestay ini sangat keren</p>
                 </div>
                   <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
               </div>

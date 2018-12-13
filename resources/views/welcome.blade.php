@@ -3,6 +3,29 @@
   @include('layouts.alerts')
 
 <!doctype html>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js' type='text/javascript'/>
+<script type='text/javascript'>
+//<![CDATA[
+$(document).ready(function() {
+$('img').each(function(){
+var $img = $(this);
+var filename = $img.attr('src')
+$img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+});
+});
+//]]>
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+$(document).ready(function() {
+$('img').each(function(){
+var $img = $(this);
+var filename = $img.attr('src')
+$img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+});
+});
+//]]>
+</script>
 <html lang="en">
   <head>
     <title>KingStay</title>
@@ -10,6 +33,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}">
+    <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+    <link rel="icon" type="image/png" href="/logokingstay.png">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <style>
@@ -33,7 +58,7 @@
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 70px; height: 55px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -84,7 +109,48 @@
                   login
                 </a>
                 
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             
+          
+              
+                            <li class="">
+                                @if (Route::has('register'))
+                                    <a class="nav-link" href="{{route('register')}}">{{ __('Register') }}</a>
+                                @endif
+                            </li>
+                        @else
+                        <li class="nav-item">
+                                @if (Route::has('register'))
+                                @endif
+                            </li>
+                        <li class="nav-item">
+                                @if (Route::has('register'))
+                                @endif
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img alt="del" src="/Capture.PNG" style="width: 30px" class="rounded">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                           
+
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -109,46 +175,6 @@
                   </div>
                 </div>
               </div>
-          
-              
-                            <li class="">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{route('register')}}">{{ __('Register') }}</a>
-                                @endif
-                            </li>
-                        @else
-                        <li class="nav-item">
-                                @if (Route::has('register'))
-                                @endif
-                            </li>
-                        <li class="nav-item">
-                                @if (Route::has('register'))
-                                @endif
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
@@ -167,7 +193,7 @@
         <div class="container">
           <h3 class="display-3">KingStay</h3>
           <h3 class="display-3">HomeStay, StayHome</h3>
-          <p style="color: #000000">Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay Applikasi booking homestay</p>
+          <p style="color: #000000">Menyajikan homestay dengan suasana seperti rumah sendiri</p>
           <p>
 
                   <div class="card" style="background-color: transparent;">
@@ -223,11 +249,13 @@
       
       </div>
       </div>
-      
+      <?php 
+      $pp=DB::SELECT("SELECT * FROM homestay order by pembooking ASC");
+      ?>
 
     <div class="container">
       <hr>
-      <h5 style="text-align:center;">Homestay Favorit</h5>
+      <h5 style="text-align:center;">Homestays Favorit</h5>
       <hr>
         <!-- Example row of columns -->
         <div class="row">
@@ -235,9 +263,23 @@
             <div class="card-body">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <img class="card-img-top" src="3.jpg" alt="Card image cap">
+                   <img class="card-img-top" src="uploadgambar/{{$pp[0]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
-                  <p>Pemendangan di homestay ini sangat keren</p>
+                  <p>{{$pp[0]->nama}}</p>
+                  <textarea class="form-control" readonly=""><?php echo $pp[0]->keterangan?></textarea>
+                </div>
+                  <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
+              </div>
+            </div>
+          </div>
+         <div class="col-md-4">
+            <div class="card-body">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                 <img class="card-img-top" src="uploadgambar/{{$pp[2]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
+                  <hr>
+                  <p>{{$pp[1]->nama}}</p>
+                  <textarea class="form-control" readonly=""><?php echo $pp[1]->keterangan ?> </textarea>
                 </div>
                   <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
               </div>
@@ -247,21 +289,10 @@
             <div class="card-body">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <img class="card-img-top" src="3.jpg" alt="Card image cap">
+                   <img class="card-img-top" src="uploadgambar/{{$pp[2]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
-                  <p>Pemendangan di homestay ini sangat keren</p>
-                </div>
-                  <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <img class="card-img-top" src="3.jpg" alt="Card image cap">
-                  <hr>
-                  <p>Pemendangan di homestay ini sangat keren</p>
+                  <p>{{$pp[2]->nama}}</p>
+                  <textarea class="form-control" readonly=""><?php echo $pp[2]->keterangan ?></textarea>
                 </div>
                   <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
               </div>

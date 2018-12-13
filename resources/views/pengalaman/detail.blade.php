@@ -1,22 +1,34 @@
+<?php 
+
+
+  
+?>
 @extends('layouts.template')
 @include('layouts.alerts')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 </div>
 <div class="container">
+      @foreach($detail as $s)
+      <?php
+            $DB=DB::SELECT("SELECT * FROM member where id_akun=$s->id_member");
+       ?>
   <div class="row mt-3">
     <div class="col-md-12">
-      <h4 class="text-center">Pengalaman Mencoba Cafe SmileCoffe</h4>
+      <h4 class="text-center">{{$s->judul}}</h4>
     </div>
   </div>
-    @foreach($detail as $s)
+
   <div class="row">
     <div class="col-md-12">
       <center><img style="width: 350px; height: 290px;" src="/pengalaman/{{$s->gambar}}" class="img-thumbnail shadow" style="border-radius: 38px"></center>
     </div>
-  </div>
+  </div><br>  
+  <center>  
 <div class="col-md-3">
-      <h5>Gita Nadapdap</h5>
-      <h6>22-07-1999  01.00.00</h6>
+      <h5>{{$DB[0]->nama}}</h5>
+      <h6>{{$s->date}}</h6>
     </div>
+  </center>
   <div class="row mt-5 mb-4">
     <div class="col-md-2"></div>
     

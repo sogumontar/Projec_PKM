@@ -1,5 +1,6 @@
 @include('layouts.alerts')
 @extends('layouts.owner')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <div class="container" style="margin-top:30px;" >
   <div class="row">
     <div class="col-sm-12">

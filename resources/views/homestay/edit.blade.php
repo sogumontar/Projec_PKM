@@ -2,6 +2,7 @@
     @extends('layouts.owner')
 @endif
 @include('layouts.alerts')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
 <h2 align="center">Update Data Homestay</h2><br><br>
 <div class="container">

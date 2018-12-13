@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 1500px}
@@ -42,12 +43,16 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
+        <li class=" "><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
-        <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
+        <li class="active"><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
         <li><a href="{{route('admin.request')}}">Request</a></li>
+        <li class="">  <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                    </form>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -66,7 +71,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Akun</h3>
+                            <h3 class="panel-title">Daftar Homestay</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -95,12 +100,12 @@
                                     <td>{{$a->nama }}</td>
                                      <td>{{$a->keterangan}}</td>
                                       <td>{{$a->name}}</td>
-                                       <td> <a href="" class="btn btn-primary">Update</a></td>
+                                    
 
                                      <td> <form method="post" action="{{route('homestay.destroy',$a->id )}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
+                               <input type="submit" class="btn btn-danger" onclick="return confirm('Anda ingin menghapus homestay ini?')"  value="Hapus">
                           </form></td>
                                   </tr>
                                 </div>

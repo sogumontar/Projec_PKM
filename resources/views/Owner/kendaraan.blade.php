@@ -7,7 +7,7 @@
 @endif
 @include('layouts.alerts')
 
-
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 
 <br><br><br><br>
 <div class="container">
@@ -48,11 +48,11 @@
                                      <td>{{$a->Merk_kendaraan}}</td>
                                      <td>{{$a->plat_nomor}}</td>
                                      <td>{{$a->harga}}</td>
-                                     <td> <a href="{{route('kendaraan.edit',$a->id)}}" class="btn btn-primary">Update</a></td>
+                                     <td> <a href="{{route('kendaraan.edit',$a->id)}}" class="btn btn-primary">Ubah</a></td>
                                      <td> <form method="post" action="{{route('kendaraan.destroy',$a->id)}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
+                               <input type="submit" class="btn btn-danger" onclick="return confirm('Anda ingin menghapus kendaraan ini?')" value="Hapus">
                           </form></td>
                                   </tr>
                                 </div>
@@ -96,7 +96,7 @@
           <label>Harga Kendaraan</label>
           <input type="text" class="form-control" placeholder="Harga" name="harga" id="harga"><br>
           <input type="file" class="form-control" placeholder="Harga" name="gambar" id="gambar"><br>
-          <input type="submit" class="btn btn-primary" name="">
+          <input type="submit" class="btn btn-primary" name="" value="Simpan">
         </div>      
     </div>
   </form>

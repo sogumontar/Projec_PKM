@@ -1,4 +1,12 @@
 @include('layouts.alerts')
+
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+<?php 
+if(Auth::user()){
+  $iod=Auth::user()->id;
+  $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +56,10 @@
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
         <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
         <li><a href="{{route('admin.request')}}">Request</a></li>
+        <li class="">  <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                    </form>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -89,6 +101,7 @@
 -->
                                 </tr>
                             </thead>
+
                                 @foreach($akun as $a)
                                 <div>
                                   <tr>
@@ -104,9 +117,10 @@
                         <!-- panel end -->
                         </div>
                     </div>
+<style type="text/css">                    
 
-
-
+</style>
+                           
     </div>
   </div>
 </div>

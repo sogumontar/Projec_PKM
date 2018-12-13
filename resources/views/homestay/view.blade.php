@@ -1,5 +1,33 @@
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+<?php 
+ $i=0;
+        $DB=DB::select("SELECT * FROM record_pemesanan_homestay");
+
+           $nowwo=date("Y-m-d");
+        $wonnee=strtotime($nowwo);
+        foreach ($DB as $d ) {
+           $RE=DB::SELECT("SELECT * FROM homestay where id=$d->id_homestay");
+                $rey=$RE[0]->id;
+                $qwe =$RE[0]->jumlah_booking;
+                $ewq =$d->jumlah_kamar;
+                $ress=$qwe-$ewq;
+                
+                $rr=strtotime($d->date);
+               
+
+                if($wonnee>$rr){
+                    $TR=DB::UPDATE("UPDATE homestay set jumlah_kamar_terbooking=$ress where id=$rey");
+                    $tt=DB::UPDATE("UPDATE record_pemesanan_homestay set jumlah_kamar=0, status='expired' where id=$d->id");
+                    
+                }
+              
+                $i++;
+        }
+
+?>
+
 @extends('layouts.template')
-@include('layouts.alerts')
+@include('layouts.alerts') 
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/test.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/star-rating.min.css')}}">
 <script type="text/javascript" src="{{asset('vendor/jss/js/jquery.min.js')}}"></script>
@@ -39,12 +67,12 @@
                          
                         
                          <hr>
-                          <p>{{$homestays->nama}}</p>
+                          <h2>{{$homestays->nama}}</h2>
                           <hr>
-                          <p><?php echo $homestays->keterangan?></p>
+                         <!--  <p><?php echo $homestays->keterangan?></p> -->
                        </div>
 
-                       @if(Auth::user())
+                     
                         <div class="row">
                         <div class="col-lg-1">
                           
@@ -57,22 +85,7 @@
                           <a href="{{route('homestay.detail',$homestays->id)}}"><button class="btn btn-primary" >Detail..</button></a>
                         </div>
                       </div>
-                      @else
-                      <div class="row">
-                        <div class="col-sm-1">
-                          
-                        </div>
-                        <div align="left" class="col-sm-1"><a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" disabled="">Booking</button></a>
-                           
-                          
-                        </div>
-                        <div class="col-lg-12" align="right">
-                          <a href="{{route('homestay.detail',$homestays->id)}}"><button class="btn btn-primary">Detail..</button></a>
-                        </div>
-
-                      </div>
-
-                       @endif
+                     
                        <div class="row">
                           <div class="col-lg-1">
                           @if($homestays->jumlah_booking ==0)  

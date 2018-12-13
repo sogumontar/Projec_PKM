@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}">
-    <link rel="icon" type="image/png" href="/uploadgambar/1A4sQ2m4ymPLXKNyOZ17W09eLHG0iED136XmWpod.png">
+    <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <style>
@@ -32,7 +32,7 @@
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                   <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <img src="/logokingstay.png" style="width: 70px; height: 55px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -78,31 +78,7 @@
                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                   login
                 </a>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Akun Anda</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <form action="{{route('login')}}" method="post">
-                          <input class="form-control" type="email" name="email" placeholder="email" id="email"><br>
-                          <input class="form-control" type="password" name="password" placeholder="password" id="password"><br>
-                          <input type="submit" class="btn btn-info" name="" value="enter">
-                          <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Send message</button> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
+               
               </li>
 
                 
@@ -128,11 +104,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                    </form>
+                                  
                                      <a class="dropdown-item" href="{{ route('member.booking') }}"
                                        >
                                         Request Booking
@@ -160,7 +136,31 @@
         <a class="navbar-brand" href="#">
         </a>
       </nav>
-      
+       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Akun Anda</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form action="{{route('login')}}" method="post">
+                          <input class="form-control" type="email" name="email" placeholder="email" id="email"><br>
+                          <input class="form-control" type="password" name="password" placeholder="password" id="password"><br>
+                          <input type="submit" class="btn btn-info" name="" value="enter">
+                          <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
         <a class="navbar-brand" href="#">
 

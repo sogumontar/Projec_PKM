@@ -1,6 +1,6 @@
 @extends('layouts.owner')
 @include('layouts.alerts')
-
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 </div>
 <br>
 <div class="container">
@@ -16,19 +16,25 @@
                     <div class="form-group">
                         <label>Jenis Kendaraan</label>
                         <select class="form-control" name="jenis_kendaraan" >
+                            
                             <option value="{{$kendaraan->jenis_kendaraan}}">{{$kendaraan->jenis_kendaraan}}</option>
-                            @foreach($test as $test)
-                            <option >{{$test->jenis_kendaraan}}</option>
-                            @endforeach
+                            @if($kendaraan->jenis_kendaraan=='Mobil')
+                                <option value="Motor">Motor</option>
+                                <option value="Sepeda">Sepeda</option>
+                            
+                            @elseif($kendaraan->jenis_kendaraan='Motor')
+                                <option value="Sepeda">Sepeda</option>
+                                <option value="Motor">Motor</option>
+                            @else
+                                <option value="Motor">Motor</option>
+                                <option value="Mobil">Mobil</option>
+                            @endif
+                            
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Merk Kendaraan</label>
                         <input type="text" class="form-control" name="Merk_kendaraan" value="{{$kendaraan->Merk_kendaraan}}">
-                    </div>
-                    <div class="form-group">
-                        <label>Id Pemilik</label>
-                        <input type="text" class="form-control" name="id_pemilik" value="{{$kendaraan->id_pemilik}}">
                     </div>
                     <div class="form-group">
                         <label>Plat Nomor</label>

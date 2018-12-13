@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @include('layouts.alerts') 
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
              <div class="container">  
                         
 
@@ -53,7 +54,7 @@
                           </div>
                         
                            <div class="col-lg-3" align="right">
-                          <a href="{{route('homestay.booking',$s->id)}}"><button class="btn btn-primary" >Booking</button></a>
+                          <a href="{{route('kendaraan.booking',$s->id)}}"><button class="btn btn-primary" >Booking</button></a>
                         
                         </div>
                       </div>

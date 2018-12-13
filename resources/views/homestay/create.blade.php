@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @include('layouts.alerts')
 @section('content')
-
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 @endsection
 <div class="jumbotron">
 	<form action="{{route('homestay.store')}}" method="post" enctype="multipart/form-data">

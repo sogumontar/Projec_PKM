@@ -1,5 +1,6 @@
 @include('layouts.alerts')
     @extends('layouts.owner')
+    <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <div class="container">
     <hr>
     <div class="d-flex flex-row bg-light">
@@ -59,7 +60,7 @@
                                      <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
                                 {{csrf_field()}}
                                {{ method_field('DELETE') }}
-                               <input type="submit" class="btn btn-danger"  value="delete">
+                               <input type="submit" class="btn btn-danger" onclick="return confirm('Anda ingin menghapus homestay ini?')" value="Hapus">
                           </form></td>
                                   </tr>
                                 </div>
@@ -153,19 +154,31 @@
                 </option>
                 <option value="Balige">Balige
                 </option>
+                <option value="Ajibata">Ajibata
+                </option>
+                <option value="Bor-bor">Bor-bor
+                </option>
+                <option value="Habinsaran">Habinsaran
+                </option>
+                <option value="Lumban Julu">Lumban Julu
+                </option>
+                <option value="Nassau">Nassau
+                </option>
+                <option value="Pintu Pohan Meranti">Pintu Pohan Meranti
+                </option>
+                <option value="Siantar Narumonda">Siantar Narumonda
+                </option>
                 <option value="Sigumpar">Sigumpar
                 </option>
-                <option value="silaen">Silaen
+                <option value="Silaen">Silaen
                 </option>
-                <option value="silaen">Porsea
+                <option value="Porsea">Porsea
                 </option>
-                <option value="silaen">Laguboti
+                <option value="Laguboti">Laguboti
                 </option>
-                <option value="silaen">Tampahan
+                <option value="Tampahan">Tampahan
                 </option>
-                <option value="silaen">BonanDolok
-                </option>
-                <option value="silaen">Parsoburan
+                <option value="Uluan">Uluan
                 </option>
               </select>
             </div>

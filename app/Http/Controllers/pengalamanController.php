@@ -16,7 +16,7 @@ class pengalamanController extends Controller
     	return view('pengalaman/create');
     }
     public function store(Request $request){
-
+            $now=date("Y-m-d");
               $file       = $request->file('gambar');
             // $fileName   = $file->getClientOriginalName();
             // $request->file('gambar')->move("upload/",$fileName);
@@ -29,9 +29,10 @@ class pengalamanController extends Controller
     	pengalaman::create([
     		'judul'=>Request('judul'),
     		'keterangan'=>Request('keterangan'),
-    		'date'=>Request('date'),
+    		'date'=>$now,
     		'id_member'=>Auth::user()->id,
             'gambar'=>$pathw,
+            'objek_wisata'=>request('objek_wisata'),
 
     	]);
     	return redirect()->route('pengalaman.view');
@@ -41,7 +42,7 @@ class pengalamanController extends Controller
     	return view('pengalaman.view',compact('pengalaman'));
     }
     public function detail($id){
-        $detail=DB::select('select * from pengalaman');
+        $detail=DB::select("select * from pengalaman where id=$id");
         
         
         return view('pengalaman.detail',compact('detail'));

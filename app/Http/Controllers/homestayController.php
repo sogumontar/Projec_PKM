@@ -27,6 +27,20 @@ class homestayController extends Controller
              $pathw= $request->file('gambar')->store(''); 
              $request->file('gambar')->move('uploadgambar',$pathw);
 
+             $fdf=request('harga');
+             $ret=10;
+             if($fdf>=750000){
+                $ret=750;
+             }else if($fdf>=500000){
+                $ret=500;
+             }else if($fdf>=250000){
+                $ret=250;
+             }else if($fdf>=100000){
+                $ret=100;
+             }else if($fdf>=50000){
+                $ret=50;
+             }
+
  $a=Auth::user()->id;
             homestay::create([
             'nomor_kamar'=>request('jumlah'),
@@ -37,6 +51,7 @@ class homestayController extends Controller
             'gambar'=>$pathw,
             'kecamatan'=>request('kecamatan'),
             'alamat'=>request('alamat'),
+            'poin'=>$ret,
 
         ]);
 
@@ -80,6 +95,8 @@ class homestayController extends Controller
 
     public function view(){
         $homestay =homestay::all();
+
+            
         return view('homestay.view',compact('homestay'));
     }
     public function edit($id){
@@ -161,26 +178,32 @@ class homestayController extends Controller
            
             
         $ghgh=DB::SELECT("SELECT * from homestay");
+        echo $ag;
         
         $trtr=$ghgh[$i]->kecamatan;
-        $tes=DB::select("SELECT * from  homestay where kecamatan='$ag'");
+        $tes=DB::select("SELECT * from  homestay where kecamatan like '%$ag%' And id =      59 ");
         
-            foreach($tes as $rr){
-          
-    }
+         
       
         return view('homestay.search',compact('ag','qq','tes','d'));
     }
     public function booking($id){
-        $homestay =homestay::find($id);
-        return view('homestay.booking',compact('homestay'));
+        $homestay =DB::SELECT("SELECT * FROM record_pemesanan_homestay INNER JOIN homestay where record_pemesanan_homestay.id_homestay=homestay.id");
+
+        if(Auth::user()){
+            
+            return view('homestay.booking',compact('homestay'));
+        }else{
+            
+             return redirect()->route('homestay.view')->with('danger','Untuk mengakses halaman tersebut, anda harus login terlebih dahulu');
+        }
     }
 
 
     public function bookProcess(request $request,$id){
         // echo $id;
         // die();
-        $test=DB::SELECT("select * from homestay where id=$id");
+        $test=DB::SELECT("select * from homestay where id=$id ");
         // echo $test[0]->nomor_kamar;
         $nowwo=date("Y-m-d");
         $wonnee=strtotime($nowwo);
@@ -189,6 +212,12 @@ class homestayController extends Controller
         $inow = strtotime(request('date'));
          $o=DB::select("select * from homestay where id=$id");
             $g=$test[0]->jumlah_kamar_terbooking+request('jumlah');
+
+
+
+            
+
+
             
        
         // echo $test[0]->nomor_kamar;
@@ -203,6 +232,7 @@ class homestayController extends Controller
 
 
         }else{
+
             record_homestay::create([
                 'id_member'=>Auth::user()->id,
                 'id_homestay'=>$id,
@@ -210,9 +240,15 @@ class homestayController extends Controller
                 'jumlah_kamar'=>request('jumlah'),
                 'status'=>'pending',
                 'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+                'harga'=>request('jumlah')*$test[0]->harga*request('lama'),
+                'lama_menginap'=>request('lama'),
+                
                 // 'nomor_kamar'=>request('nomor_kamar'),
             ]);
-            DB::update("update homestay set jumlah_kamar_terbooking=$g where id=$id");
+            $dell=DB::SELECT("SELECT * FROM homestay where id=$id");
+            $led=$dell[0]->pembooking;
+            $ll=$led+1;
+            DB::update("update homestay set jumlah_kamar_terbooking=$g,pembooking=$ll where id=$id");
 
         }
         return redirect()->route('homestay.view')->with('success','Booking berhasil');

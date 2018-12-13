@@ -1,6 +1,7 @@
 @extends('layouts.template')
 @include('layouts.alerts')
 @section('content')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 </div>
 <br>
 	<a href="{{route('kendaraan.view')}}">Lihat daftar Kendaraan</a>
