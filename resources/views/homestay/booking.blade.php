@@ -1,4 +1,4 @@
-<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+<br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 @extends('layouts.template')
 @include('layouts.alerts')
 

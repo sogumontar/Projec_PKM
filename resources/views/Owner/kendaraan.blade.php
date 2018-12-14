@@ -1,4 +1,4 @@
-@if(Auth::user()->role=='member')
+<br><br>@if(Auth::user()->role=='member')
   <?php return redirect()->route('welcome') ?>
 @elseif(Auth::user()->role=='admin')
   <?php return redirect()->route('admin.homestay')?>

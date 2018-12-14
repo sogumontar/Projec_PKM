@@ -1,4 +1,4 @@
-@include('layouts.alerts')
+<br><br>@include('layouts.alerts')
 @extends('layouts.template')
 <?php $DB=DB::SELECT("SELECT * FROM objek_wisata");?>
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">

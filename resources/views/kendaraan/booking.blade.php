@@ -1,4 +1,4 @@
-@include('layouts.alerts')
+<br><br>@include('layouts.alerts')
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php 

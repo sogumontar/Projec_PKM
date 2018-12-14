@@ -1,4 +1,4 @@
-@if(Auth::user()->role='owner')
+<br><br>@if(Auth::user()->role='owner')
     @extends('layouts.owner')
 @endif
 @include('layouts.alerts')

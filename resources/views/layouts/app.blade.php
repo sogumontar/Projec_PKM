@@ -1,4 +1,4 @@
-@include('layouts.alerts')
+<br><br>@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

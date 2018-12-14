@@ -1,7 +1,7 @@
 
-
+<br><br>
   @include('layouts.alerts')
-
+<br>
 <!doctype html>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js' type='text/javascript'/>
 <script type='text/javascript'>
@@ -112,9 +112,10 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
              
           
               
-                            <li class="">
+                            <li class="active">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{route('register')}}">{{ __('Register') }}</a>
+                                      <a id="navbarDropdown" data-target="#signup" data-toggle="modal" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Register
+                                 </a>
                                 @endif
                             </li>
                         @else
@@ -126,8 +127,14 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                                 @if (Route::has('register'))
                                 @endif
                             </li>
+                            <li class="nav-item">
+                                 <a id="navbarDropdown" data-target="#notif" data-toggle="modal" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img alt="del" src="/Capture.PNG" style="width: 30px" class="rounded">
+                                          <!-- <img alt="del" src="/Capture.PNG" style="width: 30px" class="rounded"> -->
+                                 </a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img alt="del" src="/Capture.PNG" style="width: 30px" class="rounded">
+                             
+                                <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -150,7 +157,58 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                 </div>
             </div>
         </nav>
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+ <div class="modal fade" id="notif" tabindex="-1" role="dialog" aria-labelledby="notifLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Notif Anda <img src="/notif.PNG" style="width: 30px;"></h5><br>
+                      @if(Auth::user())
+
+                      <?php
+                        $test=Auth::user()->id;
+                        if(Auth::user()->role='member'){
+                       $DB=DB::SELECT("SELECT * FROM member where id_akun=$test");
+                       }else{
+                        $DB=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$test");
+                       } 
+                        $rr=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$test AND status='sukses' ");
+
+                       ?>
+                       <br>
+                      <h6>{{$DB[0]->nama}}</h6>
+                      @endif
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    @if(Auth::user())
+                   
+                    <div class="modal-body">
+                    <li>
+                     <p>{{$rr[0]->nama}}</p>
+                    </li>
+                     <input type="text" value="{{$rr[0]->isi}}" class="form-control" name="">
+                    </div>
+                    <div class="modal-body">
+                    <li>
+                     <p>{{$rr[1]->nama}}</p>
+                    </li>
+                     <input type="text" value="{{$rr[1]->isi}}" class="form-control" name="">
+                    </div>
+                    
+                    
+                 
+                    @endif
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -168,6 +226,46 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                           <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
                       </form>
                     </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="signup" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Data Anda</h5>
+                        
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                         <form action="{{route('reg')}}" method="post">
+                          <label>Nama:</label>
+                          <input class="form-control" type="text" name="nama"  id="nama" required="">
+                          <label>Alamat:</label>
+                          <input class="form-control" type="text" name="alamat"  id="alamat" required="">
+                          <label>Nomor Telepon:</label>
+                          <input class="form-control" type="text" name="notelp"  id="notelp" required="">
+                          <label>Email</label>
+                          <input class="form-control" type="email" name="mail"  id="nama" required="">
+                          <label>Password:</label>
+                          <input class="form-control" type="password" name="password"  required="">
+                          <label>Confirm Password:</label>
+                          <input class="form-control" type="password" name="confirmpassword"  required="" id="password"><br>
+                          <div class="row"> 
+                            <div class="col-md-1" align="left">
+                              <input type="submit" class="btn btn-danger" name="" value="cancel" align="right">
+                            </div>
+                            <div class="col-md-11" align="right">
+                              <input type="submit" class="btn btn-info" name="" value="save" align="right">
+                            </div>
+                          </div>
+                          <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
+                      </form>
+                   
                     <div class="modal-footer">
                       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="button" class="btn btn-primary">Send message</button> -->
@@ -210,8 +308,10 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                              <img src="/Location.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="text"  class="form-control" name="lokasi" id="exampleInputPassword1" placeholder="Lokasi">
+
                             </div>
                             <div class="col">
+                              <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
                               
                             </div>
                           </div><br>
@@ -221,8 +321,8 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                             <div class="col">
                               <input type="date" class="form-control" name="waktu_awal">
                             </div>
-                            <div class="col">
-                              
+                            <div class="col" align="center">
+                              <button class="btn btn-info" style="width: 150px;" >Di sini</button>
                             </div>
                           </div>
                          <br>
@@ -260,50 +360,53 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
+            <div class=" ">
+              <div class="" style="width: 18rem;">
+                <div class="card-header">
                    <img class="card-img-top" src="uploadgambar/{{$pp[0]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
-                  <p>{{$pp[0]->nama}}</p>
+                  <h5><i>{{$pp[0]->nama}}</i></h5>
                   <textarea class="form-control" readonly=""><?php echo $pp[0]->keterangan?></textarea>
                 </div>
-                  <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
+                  <p style="color: blue" class="card-header">Rp.{{$pp[0]->harga}},00</p>
+                  <div align="right" class="col-md-12 card-header"><a href="{{route('homestay.detail',$pp[0]->id)}}"><button class="btn btn-info">Detail</button></a></div>
               </div>
             </div>
-          </div>
-         <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                 <img class="card-img-top" src="uploadgambar/{{$pp[2]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
+          </div><br>
+        <div class="col-md-4">
+            <div class="">
+              <div class="" style="width: 18rem;">
+                <div class="card-header">
+                   <img class="card-img-top" src="uploadgambar/{{$pp[1]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
-                  <p>{{$pp[1]->nama}}</p>
-                  <textarea class="form-control" readonly=""><?php echo $pp[1]->keterangan ?> </textarea>
+                  <h5><i>{{$pp[1]->nama}}</i></h5>
+                  <textarea class="form-control" readonly=""><?php echo $pp[1]->keterangan?></textarea>
                 </div>
-                  <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
+                  <p style="color: blue" class="card-header">Rp.{{$pp[1]->harga}},00</p>
+                  <div align="right" class="col-md-12 card-header"><a href="{{route('homestay.detail',$pp[1]->id)}}"><button class="btn btn-info">Detail</button></a></div>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
+          </div><br>
+        <div class="col-md-4">
+            <div class=" ">
+              <div class="" style="width: 18rem;">
+                <div class="card-header">
                    <img class="card-img-top" src="uploadgambar/{{$pp[2]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
-                  <p>{{$pp[2]->nama}}</p>
-                  <textarea class="form-control" readonly=""><?php echo $pp[2]->keterangan ?></textarea>
+                  <h5><i>{{$pp[2]->nama}}</i></h5>
+                  <textarea class="form-control" readonly=""><?php echo $pp[2]->keterangan?></textarea>
                 </div>
-                  <h5 class="card-header"> <a href="#" class="btn btn-primary">Detail</a></h5>
+                  <p style="color: blue" class="card-header">Rp.{{$pp[2]->harga}},00</p>
+                  <div align="right" class="col-md-12 card-header"><a href="{{route('homestay.detail',$pp[2]->id)}}"><button class="btn btn-info">Detail</button></a></div>
               </div>
             </div>
           </div>
-        </div>
 
         <hr>
 
       </div>
-
+</div>
+<br>
       <div class="jumbotron text-center" style="background-color:grey;">
         <p>Footer</p>
       </div>

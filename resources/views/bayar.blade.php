@@ -1,4 +1,4 @@
-<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+<br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <?php 
 $asd=Auth::user()->id;
 		$DB=DB::SELECT("SELECT * FROM member where id_akun=$asd")
@@ -43,7 +43,7 @@ $asd=Auth::user()->id;
                     {{ method_field('PATCH') }}
 				<label>Bukti Pengiriman/ Struk :</label>
 			<div>
-				<input type="file" name="gambar"value=""  class="form-control"></p>
+				<input type="file" name="gambar"value=""  class="form-control" required=""></p>
 			</div>
 			<div>
 				<h2>Jumlah Poin: {{$DB[0]->poin}} / Rp.{{$DB[0]->poin *100}},00</h2>

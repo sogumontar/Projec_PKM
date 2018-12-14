@@ -1,4 +1,4 @@
-@extends('welcome')
+<br><br>@extends('welcome')
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
 <br>

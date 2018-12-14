@@ -1,4 +1,4 @@
-@extends('layouts.template')
+<br><br>@extends('layouts.template')
 @include('layouts.alerts')
 @section('content')
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">

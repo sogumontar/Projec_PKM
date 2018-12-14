@@ -92,8 +92,14 @@ class adminController extends Controller
                 $i++;
         }
           
-
-
+        $qqe=DB::SELECT("SELECT * FROM record_pemesanan_homestay where id=$id");
+        $dsaq=$qqe[0]->id_member;
+         notifikasi::create([
+           'nama'=>'accept',
+           'isi'=>'Request Pesanan Diterima',
+           'status'=>'sukses',
+           'id_penerima'=>$dsaq,
+           ]);
 
         $test= DB::update("update record_pemesanan_homestay set status='accepted' where id=$id");
         return redirect()->route('admin.request')->with('success','Process Berhasil');
@@ -123,6 +129,14 @@ class adminController extends Controller
               
                 $i++;
         }
+         $qqe=DB::SELECT("SELECT * FROM record_pemesanan_homestay where id=$id");
+        $dsaq=$qqe[0]->id_member;
+         notifikasi::create([
+           'nama'=>'Reject',
+           'isi'=>'Request Pesanan Ditolak',
+           'status'=>'sukses',
+           'id_penerima'=>$dsaq,
+           ]);
           
 
 

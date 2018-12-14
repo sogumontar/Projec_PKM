@@ -1,4 +1,4 @@
-<?php 
+<br><br><?php 
 $asd=Auth::user()->id;
 		$DB=DB::SELECT("SELECT * FROM member where id_akun=$asd");
 		

@@ -1,4 +1,4 @@
-@include('layouts.alerts')
+<br><br>@include('layouts.alerts')
 @extends('layouts.owner')
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/test.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/star-rating.min.css')}}">
