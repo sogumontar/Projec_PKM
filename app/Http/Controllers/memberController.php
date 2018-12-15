@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\homestay;
+use App\pemilik;
+use App\notifikasi;
 class memberController extends Controller
 {
     public function booking(){
@@ -60,5 +62,40 @@ return redirect()->route('member.booking')->with('success','Pembayaran Berhasil'
         $DB=DB::SELECT("SELECT * FROM record_pemesanan_homestay where id=$id");
         
         return view('resi',compact('DB'));
+    }
+    public function daftar(){
+        return view('owner.daftar');
+    }
+    public function daftarProcess(request $request){
+
+             $gambar = $request->file('foto_ktp');
+             $pathw= $request->file('foto_ktp')->store(''); 
+             $request->file('foto_ktp')->move('owner',$pathw);
+
+             $gambar2 = $request->file('foto_diri');
+             $pathw2= $request->file('foto_diri')->store(''); 
+             $request->file('foto_diri')->move('owner',$pathw2);
+
+        $dol=Auth::user()->id;
+        echo $dol;
+
+             pemilik::create([
+            'nama'=>request('nama'),
+            'alamat'=>request('alamat'),
+            'id_akun'=>Auth::user()->id,
+            'tanggal_lahir'=>request('tanggal_lahir'),
+            'NIK'=>request('NIK'),
+            'foto_ktp'=>$pathw,
+            'foto_diri'=>$pathw2,
+            'status'=>'pending',
+
+        ]);
+                notifikasi::create([
+           'nama'=>'Request',
+           'isi'=>'Berhasil mengirimkan request, menunggu respon admin.',
+           'status'=>'sukses',
+           'id_penerima'=>$idd,
+           ]);
+             return redirect()->route('home')->with('success','Request Sukses');
     }
 }

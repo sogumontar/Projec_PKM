@@ -31,8 +31,8 @@
       <div id="app">
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
-                   <img src="/logokingstay.png" style="width: 70px; height: 55px;">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 67px; height: 40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -106,12 +106,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                     onclick="return confirm('Anda ingin keluar?')
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                    </form>
+                                  
+                                     <a class="dropdown-item" href="{{ route('member.booking') }}"
+                                       >
+                                        Request Booking
                                     </a>
-                                    
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

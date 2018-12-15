@@ -181,7 +181,7 @@ class homestayController extends Controller
         echo $ag;
         
         $trtr=$ghgh[$i]->kecamatan;
-        $tes=DB::select("SELECT * from  homestay where kecamatan like '%$ag%' And id =      59 ");
+        $tes=DB::select("SELECT * from  homestay where kecamatan like '%$ag%'");
         
          
       

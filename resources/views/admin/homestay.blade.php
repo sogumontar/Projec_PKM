@@ -1,4 +1,4 @@
-<br><br>@include('layouts.alerts')
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>

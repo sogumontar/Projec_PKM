@@ -6,6 +6,36 @@
 
 
 <div class="panel panel-primary filterable container">
+    <?php 
+        $idd=Auth::user()->id;
+    $a=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where status='pending' AND id_akun=$idd");?>
+
+            @if($a)
+                <table class="table table-hover table-bordered ">
+                            <thead style="background-color: #dbdbdb">
+                                <tr class="filters">
+                                    <th><p>Nama</p></th>
+                                    <th><p>Alamat</p></th>
+                                    <th><p>Tanggal Lahir</p></th>
+                                    <th><p>Tanggal Request</p></th>
+                                    <th><p>Status</p></th>
+                                </tr>
+                            </thead>
+                              
+                                <div>
+                                  <tr>
+                                    <td>{{$a[0]->nama}}</td>
+                                     <td>{{$a[0]->alamat}}</td>
+                                     <td>{{$a[0]->tanggal_lahir}}</td>
+                                     <td>{{$a[0]->created_at}}</td>
+                                     <td>{{$a[0]->status}}</td>
+                                   
+                                  </tr>
+                                </div>
+                          
+                          
+                            </table>
+            @endif
                         
                         <!-- panel heading starat -->
                         <div class="col-md-8 card"  style="background-color: #eedddd">
@@ -56,7 +86,7 @@
                                      @if($a->status=='pending')
                                      <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary">bayar</button></a></td>
                                      @elseif($a->status=='accepted')
-                                    <td><a href="{{route('member.resi',$a->id)}}"><button class="btn btn-success">Cek Resi</button></a
+                                    <td><a href="{{route('member.resi',$a->id)}}"><button class="btn btn-success">Cek Resi</button></a>
                                      @elseif($a->status=='expired')
                                      <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
                                      @else

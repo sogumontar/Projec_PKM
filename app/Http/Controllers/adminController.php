@@ -63,9 +63,10 @@ class adminController extends Controller
     public function request(){
         $test=DB::select('select * from record_pemesanan_homestay');
         $test1=DB::select('select * from record_pemesanan_kendaraan');
+        $test2=DB::select("SELECT * from pemilik_homestay_kendaraan where status='pending'");
 
 
-        return view('admin.request',compact('test','test1'));
+        return view('admin.request',compact('test','test1','test2'));
     }
     public function accept($id){
         $i=0;
@@ -145,4 +146,45 @@ class adminController extends Controller
         $test= DB::update("update record_pemesanan_homestay set status='rejected' where id=$id");
         return redirect()->route('admin.request')->with('danger','Process Berhasil');
     }
+    public function acc($id){
+
+        $pemilik_homestay_kendaraan =DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$id");
+        $tess =user::find($id);
+        echo$fq= $pemilik_homestay_kendaraan[0]->nama;
+        
+           
+       $ew=DB::UPDATE("UPDATE pemilik_homestay_kendaraan set status='accept' where id_akun=$id");
+        $mem=DB::DELETE("DELETE FROM member where id_akun=$id");
+       $sr=DB::UPDATE("UPDATE users set name= '$fq' ,role='owner' where id=$id");
+
+         notifikasi::create([
+           'nama'=>'Selamat',
+           'isi'=>'Anda telah berhasil di angkat menjadi pengelola homestay dan kendaraan',
+           'status'=>'sukses',
+           'id_penerima'=>$id,
+           ]);
+      
+      return redirect()->route('admin.request')->with('success','Accept Proses berhasil');
+
+}
+
+   public function rej($id){
+
+        $pemilik_homestay_kendaraan =DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$id");
+        $tess =user::find($id);
+
+           
+        $ew=DB::UPDATE("UPDATE pemilik_homestay_kendaraan set status='reject' where id_akun=$id");
+        $mem=DB::DELETE("DELETE FROM pemilik_homestay_kendaraan where id_akun=$id");
+       
+
+         notifikasi::create([
+           'nama'=>'Warning',
+           'isi'=>'Maaf anda gagal di angkat menjadi pengelola homestay/kendaraan',
+           'status'=>'sukses',
+           'id_penerima'=>$id,
+           ]);
+         
+      return redirect()->route('admin.request')->with('success','Reject Proses berhasil');
+}
 }

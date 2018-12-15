@@ -1,5 +1,5 @@
 
-<br><br>
+<br>
   @include('layouts.alerts')
 <br>
 <!doctype html>
@@ -58,8 +58,19 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 70px; height: 55px;">
-                </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 67px; height: 40px;">
+                </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                  <form method="post" action="{{route('homestay.search')}}">
+     {{ csrf_field() }}
+              <div class="row">
+                <div class="col-md-1" style="margin-top: 5px;"><br>
+                    <img src="/search.png" style="width: 29px">
+                  </div><br>
+                  <div class="col-md-6" style="margin-top: 20px;">
+                    <input src="/search.png" type="text"  class="form-control" style="width: 250px;" id="exampleInputPassword1" placeholder="Cari">
+                  </div>
+              </div>
+              </form>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -173,7 +184,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                        }else{
                         $DB=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$test");
                        } 
-                        $rr=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$test AND status='sukses' ");
+                        $rr=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$test  ");
 
                        ?>
                        <br>
@@ -277,12 +288,6 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
             @yield('content')
         </main>
     </div>
-          <nav class="navbar navbar-expand-sm" style="background-color:#F5F5F5;">
-           <!-- <br><br <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a> -->
-           <br>
-            </div>
-          </nav>
-
         </header>
 
         <main role="main">
@@ -293,60 +298,18 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
           <h3 class="display-3">HomeStay, StayHome</h3>
           <p style="color: #000000">Menyajikan homestay dengan suasana seperti rumah sendiri</p>
           <p>
-
-                  <div class="card" style="background-color: transparent;">
-                    
-                      <form method="post" action="{{route('homestay.search')}}">
-                      <div class="input-group-prepend">
-                        {{ csrf_field() }}
-                          </div>
-                            <br>
-                             <div class="row">
-                             
-                            
-                            <div class="input-group-text">
-                             <img src="/Location.png" style="width: 20px"></div>
-                            <div class="col">
-                              <input type="text"  class="form-control" name="lokasi" id="exampleInputPassword1" placeholder="Lokasi">
-
-                            </div>
-                            <div class="col">
-                              <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
-                              
-                            </div>
-                          </div><br>
-                          <div class="row">
-                            <div class="input-group-text">
-                              <img src="/jam.png" style="width: 20px"></div>
-                            <div class="col">
-                              <input type="date" class="form-control" name="waktu_awal">
-                            </div>
-                            <div class="col" align="center">
-                              <button class="btn btn-info" style="width: 150px;" >Di sini</button>
-                            </div>
-                          </div>
-                         <br>
-                          <div class="row">
-                            <div class="input-group-text">
-                              <img src="/jam.png" style="width: 20px"></div>
-                            <div class="col">
-                              <input type="date"  class="form-control" name="waktu_akhir" placeholder="waktu_akhir">
-                            </div>
-                             <div class="col">
-                              
-                            </div>
-                          </div><br>
-                  <div class="col-md-6" align="right">
-                    <a href=""><button class="btn btn-primary">Search</button></a>
-                  </div>
-                    </form>
-                  </div>
+<br><br><br><br><br><br><br>
 
                   </div>
                   
                 </div>
-              
-      
+                <div class=" " style="background-color:#F5F5F5;">
+                  <br><br><br>
+                </div>
+                <div class="container">
+                 <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
+                    <a href="{{route('member.daftar')}}"><button class="btn btn-info" style="width: 150px;" >Di sini</button></a>
+                </div>
       </div>
       </div>
       <?php 
@@ -407,13 +370,46 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
       </div>
 </div>
 <br>
-      <div class="jumbotron text-center" style="background-color:grey;">
-        <p>Footer</p>
+ </body>
+    <font color="#ffffff">
+      <center>
+      <div class="container-fluid" align="" style="background-color:grey;">
+        <div class="row">
+          <div class="col-md-1">
+            
+          </div>
+         <div class="col-md-3" align="left">
+          <br>
+    <center><a align="center"><b>Contact us</b></a><br></center>
+            <a>Created at&nbsp;:&nbsp;15-Dec-2018</a><br>
+            <a>Loaction&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Institut Teknologi Del</a><br>
+            <a>Owner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Sogumontar Hendra Simangunsong</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kristopel Lumbantoruan</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gita Nadapdap</a>
+         </div>
+         <div class="col-md-4">
+           <h3 align="center">KingStay</h3>
+           <p align="center">Website ini di bangun dengan sepenuh hati oleh tim project KREN/PAP, dengan harapan bisa membantu masyarakat dalam mencari tempat penginapan di daerah Toba Samosir.</p>
+         </div>
+         <div class="col-md-3" align="left"><br>
+           <center><a align="center"><b>Contact us</b></a><br></center>
+           <img src="/wa.png" style="width: 40px;">
+           <a align="left">081282480790(Sogumontar Simangunsong)</a>
+           <a align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;081282480799(Gita Nadapdap)</a><br>
+           <a align="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;081282480799(Kristopel Lumabntoruan)</a><br>
+         </div> 
+         <div class="col-md-1">
+           
+         </div>
+        </div>
+        <br><br><br>
       </div>
+    </center>
+    </font>
     </main>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
       <!-- <script type="tex" href="{{ asset('vendor/bootstrap/carousel.css') }}"> -->
-  </body>
+ 
 </html>

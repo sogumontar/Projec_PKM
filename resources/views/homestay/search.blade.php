@@ -21,7 +21,7 @@
         $ghgh=DB::SELECT("SELECT * from homestay");
         
         $trtr=$ghgh[$i]->kecamatan;
-        $tes=DB::select("SELECT * from  homestay where  nama like '%$ag%' OR  kecamatan like'%ag%'");
+        $tes=DB::select("SELECT * from  homestay where kecamatan like '%$ag%' OR  nama like '%$ag%'");
         
             foreach($tes as $rr){
            

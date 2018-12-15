@@ -1,4 +1,4 @@
-<br><br>@include('layouts.alerts')
+@include('layouts.alerts')
 <?php 
   $iod=Auth::user()->id;
   $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");

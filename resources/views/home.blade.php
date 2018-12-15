@@ -1,5 +1,5 @@
 
-<br><br>
+<br>
   @include('layouts.alerts')
 <br>
 <!doctype html>
@@ -58,7 +58,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
         <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 70px; height: 55px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 67px; height: 40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -173,7 +173,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                        }else{
                         $DB=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$test");
                        } 
-                        $rr=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$test  order by created_at DESC  ");
+                        $rr=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$test ");
 
                        ?>
                        <br>
@@ -197,7 +197,9 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                     </li>
                      <input type="text" value="{{$rr[1]->isi}}" class="form-control" name="">
                     </div>
-
+                    
+                    
+                 
                     @endif
                     <div class="modal-footer">
                       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -306,8 +308,10 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                              <img src="/Location.png" style="width: 20px"></div>
                             <div class="col">
                               <input type="text"  class="form-control" name="lokasi" id="exampleInputPassword1" placeholder="Lokasi">
+
                             </div>
                             <div class="col">
+                            
                               
                             </div>
                           </div><br>
@@ -317,7 +321,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                             <div class="col">
                               <input type="date" class="form-control" name="waktu_awal">
                             </div>
-                            <div class="col">
+                            <div class="col" align="center">
                               
                             </div>
                           </div>
@@ -336,13 +340,16 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                     <a href=""><button class="btn btn-primary">Search</button></a>
                   </div>
                     </form>
+
                   </div>
 
                   </div>
                   
                 </div>
-              
-      
+                <div class="container">
+                 <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
+                    <a href="{{route('member.daftar')}}"><button class="btn btn-info" style="width: 150px;" >Di sini</button></a>
+                </div>
       </div>
       </div>
       <?php 
@@ -356,8 +363,8 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
+            <div class=" ">
+              <div class="" style="width: 18rem;">
                 <div class="card-header">
                    <img class="card-img-top" src="uploadgambar/{{$pp[0]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
@@ -368,10 +375,10 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                   <div align="right" class="col-md-12 card-header"><a href="{{route('homestay.detail',$pp[0]->id)}}"><button class="btn btn-info">Detail</button></a></div>
               </div>
             </div>
-          </div>
+          </div><br>
         <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
+            <div class="">
+              <div class="" style="width: 18rem;">
                 <div class="card-header">
                    <img class="card-img-top" src="uploadgambar/{{$pp[1]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
@@ -382,10 +389,10 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                   <div align="right" class="col-md-12 card-header"><a href="{{route('homestay.detail',$pp[1]->id)}}"><button class="btn btn-info">Detail</button></a></div>
               </div>
             </div>
-          </div>
+          </div><br>
         <div class="col-md-4">
-            <div class="card-body">
-              <div class="card" style="width: 18rem;">
+            <div class=" ">
+              <div class="" style="width: 18rem;">
                 <div class="card-header">
                    <img class="card-img-top" src="uploadgambar/{{$pp[2]->gambar}}" alt="Card image cap" style="width: 250px; height: 200px;">
                   <hr>
@@ -402,6 +409,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
 
       </div>
 </div>
+<br>
       <div class="jumbotron text-center" style="background-color:grey;">
         <p>Footer</p>
       </div>

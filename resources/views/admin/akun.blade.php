@@ -1,4 +1,4 @@
-<br><br>@include('layouts.alerts')
+@include('layouts.alerts')
 
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <?php 

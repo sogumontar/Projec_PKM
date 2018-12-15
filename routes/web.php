@@ -93,6 +93,8 @@ Route::get('admin/homestay','adminController@homestay')->name('admin.homestay');
 Route::get('admin/kendaraan','adminController@kendaraan')->name('admin.kendaraan');
 Route::get('admin/request','adminController@request')->name('admin.request');
 Route::PATCH('objekWisata/{id}/edit','objekWisataController@update')->name('objekWisata.update');
+Route::PATCH('admin/{id}/request','adminController@acc')->name('admin.acc');
+Route::PATCH('admin/{id}/akun','adminController@rej')->name('admin.rej');
 
 
 //Owner
@@ -109,3 +111,5 @@ Route::get('{id}/bayar','memberController@bayar')->name('member.bayar');
 Route::PATCH('{id}/bayar','memberController@bayarProcess')->name('member.bayarProcess');
 Route::get('{id}/poin','memberController@poin')->name('member.poin');
 Route::get('{id}/resi','memberController@resi')->name('member.resi');
+Route::get('owner/daftar','memberController@daftar')->name('member.daftar');
+Route::post('owner/daftarProcess','memberController@daftarProcess')->name('member.daftarProcess');

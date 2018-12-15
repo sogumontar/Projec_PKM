@@ -1,4 +1,4 @@
-<br><br>@include('layouts.alerts')
+@include('layouts.alerts')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +66,82 @@
     <div class="col-sm-9"><br>
 
 <br><br>
+        <div class="panel panel-primary filterable">
+                        
+                        <!-- panel heading starat -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">List request menjadi owner homestay</h3>
+                            <div class="pull-right">
+                            
+                        </div>
+                        </div>
+                        <!-- panel heading end -->
+
+                        <div class="panel-body">
+                        <!-- panel content start -->
+                           <!-- Table -->
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="filters">
+                                    <th><p>Nama</p></th>
+                                    <th><p>Alamat</p></th> 
+                                    <th><p>Tanggal Request</p></th>
+                                    <th><p>Tanggal Lahir</p></th>
+                                    <th><p>NIK</p></th>
+                                    <th><p>Foto KTP</p></th>
+                                    <th><p>Foto Diri</p></th>
+                                </tr>
+                            </thead>
+                                @foreach($test2 as $a)
+                                <div>
+                                  <tr>
+                                    <td>{{$a->nama}}</td>
+                                     <td>{{$a->alamat}}</td>
+                                      <td>{{$a->created_at}}</td>
+                                      <td>{{$a->tanggal_lahir}}</td>
+                                      <td>{{$a->NIK}}</td>
+                                      <td><a href="/owner/{{$a->foto_ktp}}"><img src="/owner/{{$a->foto_ktp}}" style="width: 100px; height: 55px;"></a></td>
+                                      <td><a href="/owner/{{$a->foto_diri}}"><img src="/owner/{{$a->foto_diri}}" style="width: 100px; height: 55px;"></a></td>
+                                  @if($a->status=='pending')
+                                     <td> 
+                                      <form method="post" action="{{route('admin.acc',$a->id_akun )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                        <input type="submit" class="btn btn-success"  value="Terima">
+                                      </form>
+                                    </td>
+                                     <td> 
+                                      <form method="post" action="{{route('admin.rej',$a->id_akun )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                       <input type="submit" class="btn btn-danger"  value="Tolak">
+                                      </form>
+                                     </td>
+                                     @else
+                                     <td> 
+                                      <form method="post" action="{{route('accept',$a->id )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                        <input type="submit" class="btn btn-success"  value="Terima">
+                                      </form>
+                                    </td>
+                                     <td> 
+                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                        {{csrf_field()}}
+                                        {{ method_field('PATCH') }}
+                                       <input type="submit" class="btn btn-danger"  value="Tolak">
+                                      </form>
+                                     </td>
+                                   @endif  
+                                  </tr>
+                                </div>
+                                @endforeach
+                          
+                            </table>
+                        <!-- panel content end -->
+                        <!-- panel end -->
+                        </div>
+                    </div>
       <div class="panel panel-primary filterable">
                         
                         <!-- panel heading starat -->
