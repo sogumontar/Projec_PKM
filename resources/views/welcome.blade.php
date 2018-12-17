@@ -1,5 +1,4 @@
 
-<br>
   @include('layouts.alerts')
 <br>
 <!doctype html>
@@ -26,6 +25,8 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
 });
 //]]>
 </script>
+
+
 <html lang="en">
   <head>
     <title>KingStay</title>
@@ -292,13 +293,18 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
 
         <main role="main">
 
-          <div class="jumbotron" style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg') ">
+          <div class="jumbotron" style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg') "> <br>  <br>  <br>  
         <div class="container">
+
           <h3 class="display-3">KingStay</h3>
           <h3 class="display-3">HomeStay, StayHome</h3>
           <p style="color: #000000">Menyajikan homestay dengan suasana seperti rumah sendiri</p>
-          <p>
-<br><br><br><br><br><br><br>
+          <p><br> <br>  <br>  <br>  
+               <div class="container">
+                 <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
+                    <a href="{{route('member.daftar')}}"><button class="btn btn-info" style="width: 150px;" >Di sini</button></a>
+                </div>
+
 
                   </div>
                   
@@ -306,10 +312,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
                 <div class=" " style="background-color:#F5F5F5;">
                   <br><br><br>
                 </div>
-                <div class="container">
-                 <h3 style="color: #000000">Daftarkan Homestay/Kendaraan anda</h3>
-                    <a href="{{route('member.daftar')}}"><button class="btn btn-info" style="width: 150px;" >Di sini</button></a>
-                </div>
+             
       </div>
       </div>
       <?php 
@@ -368,6 +371,146 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
         <hr>
 
       </div>
+</div><br><br><br><br><br>
+<br><hr><center><h1><i>Daftar Objek Wisata</i></h1></center><hr><br><br>
+<div class="container">
+  <div class="form-group">
+    <center>
+      <div class="row" align="right">
+        <div class="col-sm-4 container-fluid">
+          <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/balige.jpg" value='balige' type="submit"><img class="card" src="/balige.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Balige" name="lokasi"></center>
+          </form>
+        </div>
+      
+       <div class="col-sm-4 container-fluid">
+          <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/ajibata.jpg" value='ajibata' type="submit"><img class="card" src="/ajibata.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Ajibata" name="lokasi"></center>
+          </form>
+        </div>
+       
+         <div class="col-sm-4 container-fluid">
+        <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/borbor.png" value='borbor' type="submit"><img class="card" src="/borbor.png" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Borbor" name="lokasi"></center>
+          </form>
+        </div>
+       
+      </div>
+      <div class="row" align="right">
+        <div class="col-sm-4 container-fluid">
+          <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/habinsaran.jpg" value='habinsaran' type="submit"><img class="card" src="/habinsaran.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Habinsaran" name="lokasi"></center>
+          </form>
+        </div>
+      
+       <div class="col-sm-4 container-fluid">
+        <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/lumbanjulu.jpg" value='lumbanjulu' type="submit"><img class="card" src="/lumbanjulu.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Lumbanjulu" name="lokasi"></center>
+          </form>
+        </div>
+       
+         <div class="col-sm-4 container-fluid">
+         <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/nassau.jpg" value='nassau' type="submit"><img class="card" src="/nassau.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Nassau" name="lokasi"></center>
+          </form>
+        </div>
+       
+      </div>
+        <div class="row" align="right">
+        <div class="col-sm-4 container-fluid">
+         <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/meranti.png" value='meranti' type="submit"><img class="card" src="/meranti.png" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Meranti" name="lokasi"></center>
+          </form>
+        </div>
+      
+       <div class="col-sm-4 container-fluid">
+        <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/narumonda.jpg" value='Siantar Narumonda' type="submit"><img class="card" src="/narumonda.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Siantar Narumonda" name="lokasi"></center>
+          </form>
+        </div>
+       
+         <div class="col-sm-4 container-fluid">
+      <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/sigumpar.jpeg" value='sigumparr' type="submit"><img class="card" src="/sigumpar.jpeg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Sigumpar" name="lokasi"></center>
+          </form>
+        </div>
+       
+      </div>
+      <div class="row" align="right">
+        <div class="col-sm-4 container-fluid">
+       <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/silaen.jpg" value='Silaen' type="submit"><img class="card" src="/silaen.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Silaen" name="lokasi"></center>
+          </form>
+        </div>
+      
+       <div class="col-sm-4 container-fluid">
+        <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/porsea.jpeg" value='Porsea' type="submit"><img class="card" src="/porsea.jpeg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Porsea" name="lokasi"></center>
+          </form>
+        </div>
+       
+         <div class="col-sm-4 container-fluid">
+       <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/laguboti.jpeg" value='laguboti' type="submit"><img class="card" src="/laguboti.jpeg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Laguboti" name="lokasi"></center>
+          </form>
+        </div>
+       
+      </div>
+        
+      <div class="row" align="right">
+        <div class="col-md-1 container-fluid">
+         
+        </div>
+        <div class="col-sm-4 container-fluid">
+         <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/tampahan.jpg" value='Tampahan' type="submit"><img class="card" src="/tampahan.jpg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Tampahan" name="lokasi"></center>
+          </form>
+        </div>
+      <div class="col-md-1 container-fluid">
+         
+        </div>
+       
+       
+         <div class="col-sm-4 container-fluid">
+         <form method="post" action="{{route('homestay.search')}}">
+            {{ csrf_field() }}
+            <a href="/uluan.jpeg" value='Uluan' type="submit"><img class="card" src="/uluan.jpeg" style="width: 350px; height: 300px;"></a>
+            <center><input type="submit" class="form-control" value="Uluan" name="lokasi"></center>
+          </form>
+        </div>
+        <div class="col-md-1 container-fluid">
+         
+        </div>
+       
+      </div>
+    </center>
+  </div>
 </div>
 <br>
  </body>
@@ -383,7 +526,7 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
     <center><a align="center"><b>Contact us</b></a><br></center>
             <a>Created at&nbsp;:&nbsp;15-Dec-2018</a><br>
             <a>Loaction&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Institut Teknologi Del</a><br>
-            <a>Owner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Sogumontar Hendra Simangunsong</a><br>
+            <a>Owner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Sogumontar Simangunsong</a><br>
             <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kristopel Lumbantoruan</a><br>
             <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gita Nadapdap</a>
          </div>
@@ -391,16 +534,14 @@ $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.la
            <h3 align="center">KingStay</h3>
            <p align="center">Website ini di bangun dengan sepenuh hati oleh tim project KREN/PAP, dengan harapan bisa membantu masyarakat dalam mencari tempat penginapan di daerah Toba Samosir.</p>
          </div>
-         <div class="col-md-3" align="left"><br>
+         <div class="col-md-4" align="left"><br>
            <center><a align="center"><b>Contact us</b></a><br></center>
            <img src="/wa.png" style="width: 40px;">
            <a align="left">081282480790(Sogumontar Simangunsong)</a>
            <a align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;081282480799(Gita Nadapdap)</a><br>
            <a align="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;081282480799(Kristopel Lumabntoruan)</a><br>
          </div> 
-         <div class="col-md-1">
-           
-         </div>
+        
         </div>
         <br><br><br>
       </div>

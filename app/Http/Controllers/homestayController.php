@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\homestay;
 use App\fasilitas;
 use App\sementara;
+use App\promo;
 
 use App\record_homestay;
 class homestayController extends Controller
@@ -165,13 +166,13 @@ class homestayController extends Controller
     }
     public function search(request $request){
         $ag=request('lokasi');
+
         // $b=request('waktu_awal');
         // $c=request('waktu_akhir');
         // $d=strtotime($b);
         
         // echo $b;
-       
-
+      
         $ee=DB::select("SELECT * from record_pemesanan_homestay");
         $i=0;
        
@@ -192,7 +193,7 @@ class homestayController extends Controller
 
         if(Auth::user()){
             
-            return view('homestay.booking',compact('homestay'));
+            return view('homestay.booking',compact('homestay','id'));
         }else{
             
              return redirect()->route('homestay.view')->with('danger','Untuk mengakses halaman tersebut, anda harus login terlebih dahulu');
@@ -214,7 +215,6 @@ class homestayController extends Controller
             $g=$test[0]->jumlah_kamar_terbooking+request('jumlah');
 
 
-
             
 
 
@@ -232,6 +232,24 @@ class homestayController extends Controller
 
 
         }else{
+            $klk=DB::SELECT("SELECT * FROM promo where id_homestay=$id");
+
+            if($klk){
+
+            record_homestay::create([
+                'id_member'=>Auth::user()->id,
+                'id_homestay'=>$id,
+                'date'=>request('date'),
+                'jumlah_kamar'=>request('jumlah'),
+                'status'=>'pending',
+                'jumlah_pengunjung'=>request('jumlah_pengunjung'),
+                'harga'=>request('jumlah')*$klk[0]->harga*request('lama'),
+                'lama_menginap'=>request('lama'),
+                
+                // 'nomor_kamar'=>request('nomor_kamar'),
+            ]);
+
+            }else{
 
             record_homestay::create([
                 'id_member'=>Auth::user()->id,
@@ -245,10 +263,15 @@ class homestayController extends Controller
                 
                 // 'nomor_kamar'=>request('nomor_kamar'),
             ]);
+            }
+             $g=$test[0]->jumlah_kamar_terbooking+request('jumlah');
+
             $dell=DB::SELECT("SELECT * FROM homestay where id=$id");
             $led=$dell[0]->pembooking;
             $ll=$led+1;
-            DB::update("update homestay set jumlah_kamar_terbooking=$g,pembooking=$ll where id=$id");
+            $hl=DB::update("update homestay set jumlah_kamar_terbooking=$g , pembooking=$ll where id=$id");
+             echo $g;
+             
 
         }
         return redirect()->route('homestay.view')->with('success','Booking berhasil');
@@ -309,9 +332,10 @@ VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',r
             // echo $s[0]->rating;
             $bb=$s[0]->rating+request('jumlah');
             $tr=$s[0]->jumlah_booking+1;
+            $wo=request('review');
             
             $gg=DB::UPDATE("UPDATE homestay set rating=$bb,jumlah_booking=$tr where id=$id");
-            $db=DB::insert("INSERT into rating(waktu,jumlah,id_member,id_homestay)VALUES('$nowwo',$r,$asd,$id)");
+            $db=DB::insert("INSERT into rating(waktu,jumlah,id_member,id_homestay,review)VALUES('$nowwo',$r,$asd,$id,'$wo')");
             
             return redirect()->route('homestay.view')->with('success','Anda berhasil melakukan rating pada homestay ini');
             }
@@ -322,8 +346,37 @@ VALUES (Auth::user()->id, $id, request('date'),request('jumlah_kamar'),'belum',r
     public function detail($id){
         $db=DB::select("select * from homestay where id=$id");
 
-        return view('homestay.detail',compact('db'));
+        return view('homestay.detail',compact('db','id'));
     }
-    
+    public function promo($id){
+        return view('homestay.promo',compact('id'));
+    }
+    public function promoProcess(request $request,$id){
+        
+        $now=date("Y-m-d");
+        $noww=strtotime($now);
+        $awal=request('mulai');
+        $akhir=request('selesai');
+        $awal1=strtotime($awal);
+        $akhir1=strtotime($akhir);
+        if($akhir1<$awal1){
+            return redirect('owner.homestay')->with('Danger',"Waktu berakhir promo tidak boleh lebih awal dari waktu mulai promo");
+        }else if($noww>$awal1){
+            return redirect('owner.homestay')->with('Danger',"Waktu tidak boleh yang sudah lewat");
+        }else{
+             promo::create([
+
+                'nama'=>request('nama'),
+                'harga'=>request('harga'),
+                'mulai'=>request('mulai'),
+                'selesai'=>request('selesai'),
+                'status'=>'start',
+                'id_homestay'=>$id,
+                'keterangan'=>request('keterangan'),
+            ]);
+        }
+        die();
+        return redirect('owner.homestay')->with('succes',"Promo berhasil di tambahkan");
+    } 
 
 }

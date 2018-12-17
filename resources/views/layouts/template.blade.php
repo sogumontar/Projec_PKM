@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('vendor/bootstrap/carousel.css') }}"> -->
     <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script> -->
     <style>
       /* Remove the navbar's default margin-bottom and rounded borders */
       .navbar {
@@ -29,7 +29,7 @@
     <header>
 
       <div id="app">
-        <nav  class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
+        <nav   class="navbar navbar-expand-md navbar-dark fixed-top bg" style="background-color:#6CBAEC;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/logokingstay.png" style="width: 67px; height: 40px;">

@@ -150,14 +150,16 @@
                                      <td>{{$a->lama_pemesanan}}</td>
                                      <td>{{$a->status}}</td>
                                         
-                                     @if($a->status=='pending')
-                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary">bayar</button></a></td>
-                                     @elseif($a->status=='accepted')
-                                    <td><a href="{{route('member.resi',$a->id)}}"><button class="btn btn-success">Cek Resi</button></a
+                                     @if($a->status=='process')
+                                     <td><a href="{{route('kendaraan.bayar',$a->id)}}"><button class="btn btn-primary">bayar</button></a></td>
+                                     @elseif($a->status=='accept')
+                                    <td><a href="{{route('kendaraan.resi',$a->id)}}"><button class="btn btn-success">Cek Resi</button></a>
+                                    @elseif($a->status=='reject')
+                                    
                                      @elseif($a->status=='expired')
-                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
+                                     <td><a href="{{route('kendaraan.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
                                      @else
-                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary" disabled="">On Process</button></a></td>
+                                     <td><a href="{{route('kendaraan.bayar',$a->id)}}"><button class="btn btn-primary" disabled="">On Process</button></a></td>
                                      @endif
                                   </tr>
                                 </div>

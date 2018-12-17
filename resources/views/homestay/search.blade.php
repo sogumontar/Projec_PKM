@@ -47,12 +47,12 @@
                 </div>
                 <div style="float: left;" class="col-md-7">
                 <h1 style="color:#353b48"></h1>
-                  <h3 class="card-title">{{$rr->nama}} </h3>
+                  <h3 class="card-title"><a href="{{route('homestay.detail',$rr->id)}}">{{$rr->nama}}</a> </h3>
                   <p class="card-title">100</p>
                 <div class="row">
                           <div class="col-lg-9">
                           @if($rr->jumlah_booking ==0)  
-                           <li class=""><input value="0"  type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled=""></li>
+                           <li class=""><input value="0" alt="Sudah Booking" type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled=""></li>
                            @else
                            <li class=""><input value="<?php echo  $rr->rating / $rr->jumlah_booking?>"  type="number" disabled class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" ></li>
                            @endif <br><br>

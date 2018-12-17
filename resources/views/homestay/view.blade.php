@@ -17,6 +17,7 @@
 
                 if($wonnee>$rr){
                     $TR=DB::UPDATE("UPDATE homestay set jumlah_kamar_terbooking=$ress where id=$rey");
+                    
                     $tt=DB::UPDATE("UPDATE record_pemesanan_homestay set jumlah_kamar=0, status='expired' where id=$d->id");
                     
                 }
@@ -34,11 +35,11 @@
 <script type="text/javascript" src="{{asset('vendor/jss/js/star-rating.min.js')}}"></script>
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/js/jquery.min.js')}}"> -->
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/js/star-rating.min.js')}}"> -->
-             <div class="container">  
+<div class="" style="background-color: #F8F8F8">  
                         
 
 
-<div class="container">
+<div class="container card">
       <hr>
       <h5 style="text-align:center;">List Homestay </h5>
       <hr>
@@ -59,7 +60,7 @@
         <br>
                  <div class="col-lg-4">
                  
-                   <div class="form-group">
+                   <div class="form-group card">
 
                      <div class="" style="width: 30rem;">
                        <div class="card-body" >
@@ -67,9 +68,33 @@
                          
                         
                          <hr>
-                          <h2>{{$homestays->nama}}</h2>
+                        
                           <hr>
-                         <!--  <p><?php echo $homestays->keterangan?></p> -->
+                          <?php $cek=DB::SELECT("SELECT * FROM promo where id_homestay=$homestays->id"); ?>
+                          @if(!$cek)
+                          <h2>{{$homestays->nama}}</h2><br> 
+                         <h3>Rp.{{$homestays->harga}},00</h3> 
+                         @else
+                          <div class="row">
+                          <div class="col-md-1">
+
+                          <img src="/diskon.png" style="width: 30px;">
+                          </div>
+                          <div class="col-md-10">
+                            <h2>{{$homestays->nama}}</h2>
+                          </div>
+                        </div>
+                         <div class="row"> 
+                           <div class="col-md-6">
+                            <br>
+                            <h3><strike> Rp.{{$homestays->harga}},00</strike></h3> 
+                           </div>
+                           <div class="col-md-6" align="right">
+                            <br>
+                             <h2 style="color: #EFB417">Rp.{{$cek[0]->harga}},00</h2>
+                           </div>
+                         </div>
+                         @endif
                        </div>
 
                      

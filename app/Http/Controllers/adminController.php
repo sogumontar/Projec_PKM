@@ -61,8 +61,8 @@ class adminController extends Controller
            return view('admin.homestay',compact('query'));
     }
     public function request(){
-        $test=DB::select('select * from record_pemesanan_homestay');
-        $test1=DB::select('select * from record_pemesanan_kendaraan');
+        $test=DB::select("SELECT * from record_pemesanan_homestay  where status <>'pending' And status <>'rejected' order by status DESC");
+        $test1=DB::select("SELECT * from record_pemesanan_kendaraan  where status <>'reject' order by status DESC ");
         $test2=DB::select("SELECT * from pemilik_homestay_kendaraan where status='pending'");
 
 
@@ -186,5 +186,21 @@ class adminController extends Controller
            ]);
          
       return redirect()->route('admin.request')->with('success','Reject Proses berhasil');
+}
+public function bayar(request $request,$id){
+          $file       = $request->file('resi');
+          
+            $fileName   = $file->getClientOriginalName();
+            // $request->file('gambar')->move("upload/",$fileName);
+          // $gambar = $request->file('gambar');
+            $gambar = $request->file('resi');
+             // $namaFile = $gambar->getClientOriginalName();
+             $pathw= $request->file('resi')->store(''); 
+             $request->file('resi')->move('struk',$pathw);
+
+             $rr=DB::UPDATE("UPDATE record_pemesanan_homestay set gambar2='$pathw' where id=$id");
+             die();
+
+
 }
 }

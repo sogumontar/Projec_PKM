@@ -5,6 +5,11 @@
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
 <h2 align="center">Update Data Homestay</h2><br><br>
+<br>    <br>    
+<h5 align="" class="container" style="margin-right: -515px;"><i>Tambahkan Promo pada Homestay ini</i></h5>
+<div class=" container" align="right"> 
+    <a href="{{route('homestay.promo',$homestay->id)}}" style="margin-right: 190px;"><button class="btn btn-primary"> Tambah</button></a>
+</div>
 <div class="container">
         <div class="row" align="left">
             <div class="col-md-2">
@@ -42,7 +47,7 @@
                         <input type="file" class="form-control" name="gambar" id="gambar" >
                     </div>
                    
-                    <div class="form-group">
+                    <div class="form-group" align="right"   >
                         <input type="submit" class="btn btn-primary" value="save"> 
                     </div>
                 </form>

@@ -115,9 +115,12 @@ class kendaraanController extends Controller
         $test2= request('date_akhir');
         $test=DB::select("select * from record_pemesanan_kendaraan where id_kendaraan=$id AND date=$test1");
         
-
+        $hartot=DB::SELECT("SELECT * FROM kendaraan where id=$id");
         $dol= strtotime($test2)- strtotime($test1);
         $lama= $dol/86400;
+        $tot=$hartot[0]->harga*$lama;
+        
+        
         // echo $test[0]->id;
         // die();
           $nowwo=date("Y-m-d");
@@ -136,8 +139,31 @@ class kendaraanController extends Controller
                 'date'=>$test1,
                 'date_akhir'=>$test2,
                 'lama_pemesanan'=>$lama,
+                'status'=>'process',
+                'harga'=>$tot,
             ]);
               return redirect()->route('kendaraan.view')->with('success','Booking Berhasil');
         }
+    }
+    public function acc($id){
+        $kendaraan=record_pemesanan_kendaraan::find($id);
+        $kendaraan->update([
+                'status'=>'accept',
+        ]);
+        return redirect()->route('admin.request')->with('success','Berhasil Approve Booking Kendaraan');
+    }
+
+    public function rej($id){
+        $kendaraan=record_pemesanan_kendaraan::find($id);
+        $kendaraan->update([
+                'status'=>'reject',
+        ]);
+        return redirect()->route('admin.request')->with('success','Berhasil Reject Booking  Kendaraan');
+    }
+    public function resi($id){
+
+        $DB=DB::SELECT("SELECT * FROM record_pemesanan_kendaraan where id=$id");
+        
+        return view('kendaraan.resi',compact('DB'));
     }
 }

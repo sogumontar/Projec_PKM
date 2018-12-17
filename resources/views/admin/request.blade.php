@@ -62,6 +62,34 @@
         </span>
       </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Masukkan Resi pengiriman</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form action="{{route('admin.bayar',$test[0]->id)}}" method="post" enctype="multipart/form-data">
+                          <input class="form-control" type="file" required="" name="resi" placeholder="resi" id="resi"><br>
+                         {{ method_field('PATCH') }}
+                       
+                          <div align="right">
+                           <input type="submit" class="btn btn-info" name="" value="Kirim">
+                          </div>
+                            <input type="hidden" align="right" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
 
     <div class="col-sm-9"><br>
 
@@ -102,7 +130,7 @@
                                       <td>{{$a->NIK}}</td>
                                       <td><a href="/owner/{{$a->foto_ktp}}"><img src="/owner/{{$a->foto_ktp}}" style="width: 100px; height: 55px;"></a></td>
                                       <td><a href="/owner/{{$a->foto_diri}}"><img src="/owner/{{$a->foto_diri}}" style="width: 100px; height: 55px;"></a></td>
-                                  @if($a->status=='pending')
+                                  @if($a->status=='On')
                                      <td> 
                                       <form method="post" action="{{route('admin.acc',$a->id_akun )}}">
                                         {{csrf_field()}}
@@ -176,7 +204,7 @@
                                      <td>{{$a->jumlah_kamar}}</td>
                                       <td>{{$a->status}}</td>
                                   @if($a->status=='pending')
-                                     <td> 
+                                     <!-- <td> 
                                       <form method="post" action="{{route('accept',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
@@ -184,22 +212,23 @@
                                       </form>
                                     </td>
                                      <td> 
-                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                      <form method="post" action="{{route('admin.rej',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                        <input type="submit" class="btn btn-danger"  value="Tolak">
                                       </form>
-                                     </td>
+                                     </td> -->
                                      @elseif($a->status=='On Process')
+                                     <td><center><a href="/struk/{{$a->gambar}}"><img src="/struk/{{$a->gambar}}" style="width: 75px; height: 50px;"></a></center></td>
                                      <td> 
-                                      <form method="post" action="{{route('accept',$a->id )}}">
+                                      <form method="post" action="{{route('admin.acc',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                         <input type="submit" class="btn btn-success"  value="Terima">
                                       </form>
                                     </td>
                                      <td> 
-                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                      <form method="post" action="{{route('admin.rej',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                        <input type="submit" class="btn btn-danger"  value="Tolak">
@@ -233,9 +262,12 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Tanggal</p></th>
-                                    <th><p>Jumlah Kamar</p></th> 
+                                    <th><p>Tanggal Peminjaman</p></th>
+                                    <th><p>Tanggal Pengembalian</p></th> 
                                     <th><p>Status</p></th>
+                                    <th><p>Gambar</p></th>
+                                    <th colspan="2"><p>Action</p></th>
+                                    
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -249,16 +281,17 @@
                                     <td>{{$a->date}}</td>
                                      <td>{{$a->date_akhir}}</td>
                                       <td>{{$a->status}}</td>
-                                  @if($a->status=='pending')
+                                      <td><a href="/struk/{{$a->gambar}}"><img src="/struk/{{$a->gambar}}" style="width: 75px;"></a></td>
+                                  @if($a->status=='process')
                                      <td> 
-                                      <form method="post" action="{{route('accept',$a->id )}}">
+                                      <form method="post" action="{{route('kendaraan.acc',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                         <input type="submit" class="btn btn-success"  value="Terima">
                                       </form>
                                     </td>
                                      <td> 
-                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                      <form method="post" action="{{route('kendaraan.rej',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                        <input type="submit" class="btn btn-danger"  value="Tolak">
@@ -266,19 +299,25 @@
                                      </td>
                                      @elseif($a->status=='On Process')
                                      <td> 
-                                      <form method="post" action="{{route('accept',$a->id )}}">
+                                      <form method="post" action="{{route('kendaraan.acc',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                         <input type="submit" class="btn btn-success"  value="Terima">
                                       </form>
                                     </td>
                                      <td> 
-                                      <form method="post" action="{{route('reject',$a->id )}}">
+                                      <form method="post" action="{{route('kendaraan.rej',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                        <input type="submit" class="btn btn-danger"  value="Tolak">
                                       </form>
                                      </td>
+                                     @elseif($a->status=='accept' || $a->status=='reject')
+                                    <td> <a href="  " ><button class="btn btn-secondary" disabled="">Finished</button></a></td>
+                                    <td>  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><button class="btn btn-success">
+                  Kirim ke Pemilik</button>
+                </a></td>
+
                                    @endif  
                                   </tr>
                                 </div>

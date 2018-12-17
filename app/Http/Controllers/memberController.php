@@ -25,6 +25,7 @@ class memberController extends Controller
        
     	return view('bayar',compact('d'));
     }
+
     public function bayarProcess(request $request,$id){
         if(request('gambar')){
         	 $gambar = $request->file('gambar');
@@ -32,6 +33,8 @@ class memberController extends Controller
              $request->file('gambar')->move('struk',$pathw);
         
         	$a=DB::update("update record_pemesanan_homestay set gambar='$pathw', status='On Process' where id=$id");
+            var_dump($a);
+            // die();
         	// $a=DB::update("update record_pemesanan_homestay set gambar='$pathw' where id=$id");
         	// var_dump($a);
         	// die();
@@ -48,6 +51,39 @@ class memberController extends Controller
 return redirect()->route('member.booking')->with('success','Pembayaran Berhasil');
         }
     	
+
+    }
+     public function bayarKendaraan($id){
+        $d=DB::select("SELECT * from record_pemesanan_kendaraan inner join kendaraan on record_pemesanan_kendaraan.id_kendaraan=kendaraan.id  where status='process' and record_pemesanan_kendaraan.id=$id");
+
+       
+        return view('kendaraan.bayar',compact('d','id'));
+    }
+
+    public function bayarKendaraanProcess(request $request,$id){
+        if(request('gambar')){
+             $gambar = $request->file('gambar');
+             $pathw= $request->file('gambar')->store(''); 
+             $request->file('gambar')->move('struk',$pathw);
+        
+            $a=DB::update("update record_pemesanan_kendaraan set gambar = '$pathw' , status='On Process' where id=$id");
+            // $a=DB::update("update record_pemesanan_homestay set gambar='$pathw' where id=$id");
+            // var_dump($a);
+            // die();
+            echo $pathw;
+            return redirect()->route('kendaraan.view')->with('success','Upload Resi Success');
+        }else{
+             $idd=Auth::user()->id;
+            $camp=request('volume');
+            $qrqw=DB::select("SELECT * FROM member where id_akun=$idd");
+           $champ=$qrqw[0]->poin-$camp;
+           
+
+            $a=DB::update("update record_pemesanan_kendaraan set status='On Process' where id=$id");
+            $v=DB::update("UPDATE member set poin =$champ where id_akun=$idd");
+return redirect()->route('kendaraan.view')->with('success','Pembayaran Berhasil');
+        }
+        
 
     }
     public function poin($id){

@@ -45,6 +45,8 @@ Route::post('homestay/booking','homestayController@keranjang')->name('homestay.K
 Route::post('homestay/{id}/booking','homestayController@kendaraan')->name('kendaraan.Keranjang');
 Route::get('homestay/{id}/detail','homestayController@detail')->name('homestay.detail');
 Route::post('homestay/{id}/detail','homestayController@rating')->name('homestay.rating');
+Route::get('homestay/{id}/promo','homestayController@promo')->name('homestay.promo');
+Route::post('homestay/{id}/promo','homestayController@promoProcess')->name('homestay.promoProcess');
 
 Route::patch('admin/{id}/new','adminController@reject')->name('reject');
 Route::patch('admin/{id}/accept','adminController@accept')->name('accept');
@@ -67,6 +69,9 @@ Route::PATCH('kendaraan/{id}/edit','kendaraanController@update')->name('kendaraa
 Route::delete('/kendaraan/{kendaraan}/delete','kendaraanController@destroy')->name('kendaraan.destroy');
 Route::get('kendaraan/{id}/booking','kendaraanController@booking')->name('kendaraan.booking');
 Route::post('kendaraan/{id}/booking','kendaraanController@bookingProcess')->name('kendaraan.booking.process');
+Route::PATCH('admin/{id}/bookinf','kendaraanController@acc')->name('kendaraan.acc');
+Route::PATCH('admin/{id}/new','kendaraanController@rej')->name('kendaraan.rej');
+Route::get('kendaraan/{id}/resi','kendaraanController@resi')->name('kendaraan.resi');
 
 //pengalaman
 Route::get('pengalaman/create','pengalamanController@create')->name('pengalaman.create');
@@ -95,6 +100,7 @@ Route::get('admin/request','adminController@request')->name('admin.request');
 Route::PATCH('objekWisata/{id}/edit','objekWisataController@update')->name('objekWisata.update');
 Route::PATCH('admin/{id}/request','adminController@acc')->name('admin.acc');
 Route::PATCH('admin/{id}/akun','adminController@rej')->name('admin.rej');
+Route::PATCH('admin/{id}/bayar','adminController@bayar')->name('admin.bayar');
 
 
 //Owner
@@ -105,6 +111,7 @@ Route::get('owner/kendaraan','pemilikController@kendaraan')->name('owner.kendara
 Route::get('owner/pengalaman','pemilikController@pengalaman')->name('owner.pengalaman');
 Route::get('owner/booking','pemilikController@booking')->name('owner.booking');
 
+
 //Member
 Route::get('booking','memberController@booking')->name('member.booking');
 Route::get('{id}/bayar','memberController@bayar')->name('member.bayar');
@@ -113,3 +120,5 @@ Route::get('{id}/poin','memberController@poin')->name('member.poin');
 Route::get('{id}/resi','memberController@resi')->name('member.resi');
 Route::get('owner/daftar','memberController@daftar')->name('member.daftar');
 Route::post('owner/daftarProcess','memberController@daftarProcess')->name('member.daftarProcess');
+Route::get('kendaraan/{id}/bayar','memberController@bayarKendaraan')->name('kendaraan.bayar');
+Route::PATCH('kendaraan/{id}/edit','memberController@bayarKendaraanProcess')->name('member.bayarKendaraanProcess');

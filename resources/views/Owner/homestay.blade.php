@@ -3,28 +3,12 @@
     <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <div class="container">
     <hr>
-    <div class="d-flex flex-row bg-light">
-      <div class="p-2 bg-light">Data Diri
-      </div>
-      <div class="p-2 bg-light">Akomodasi
-      </div>
-      <div class="p-2 bg-Light">Lokasi
-      </div>
-      <div class="p-2 bg-light">Services
-      </div>
-      <div class="p-2 bg-light">Kamar
-      </div>
-      <div class="p-2 bg-Light">Foto
-      </div>
-      <div class="p-2 bg-Light">Cantumkan Judul
-      </div>
-    </div>
-    <hr>
+
             <div class="panel panel-primary filterable">
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">List Homestay</h3>
+                            <h3 class="panel-title">List Homestay</h3><br><br>
                             <div class="pull-right">
                             
                         </div>
@@ -73,13 +57,15 @@
                         </div>
                     </div>
 </div>
+<br><br>
 <b><hr></b>
     <div class="container" style="margin-top:30px;" >
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light active">
-          <input type="radio" name="options" id="option1" autocomplete="off" checked>Daftar Homestay Baru
-        </label>
-      </div>
+       <div class="panel-heading">
+                            <h3 class="panel-title">Daftar Homestay Baru</h3><br><br>
+                            <div class="pull-right">
+                            
+                        </div>
+                        </div>
       <div class="row">
         <div class="col-sm-12">
           <br>

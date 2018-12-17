@@ -103,7 +103,12 @@ $db=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun = $test")
         </div>
         <div class="col">
           <!-- <h5 id="" style="color:#e67e22">Rp.{{$homestay[0]->harga}}</h5> -->
-          <input type="number" id="harga" class="form-control" min="0" style="color:#e67e22" value="{{$homestay[0]->harga}}" name="harga" readonly="">
+          <?php $test=DB::SELECT("SELECT * FROM promo where id_homestay=$id"); ?>
+          @if($test)
+              <input type="number" id="harga" class="form-control" min="0" style="color:#e67e22" value="{{$test[0]->harga}}" name="harga" readonly="">
+          @else
+            <input type="number" id="harga" class="form-control" min="0" style="color:#e67e22" value="{{$homestay[0]->harga}}" name="harga" readonly="">
+          @endif
         </div>
           </div>
           <hr>
