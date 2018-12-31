@@ -1,4 +1,4 @@
-<br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+<br><br><br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <?php 
  $i=0;
         $DB=DB::select("SELECT * FROM record_pemesanan_homestay");
@@ -142,6 +142,10 @@
        
                            
            @endforeach
+           <br>
+           <div class="col-md-12" align="center">
+             {!! $homestay->render() !!}
+           </div>
            @endif
            @if(!$p)
            <div class="container">

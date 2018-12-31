@@ -86,6 +86,7 @@ Route::get('objekWisata/view','objekWisataController@view')->name('objekWisata.v
 Route::post('admin/objekWisata','objekWisataController@store')->name('objekWisata.store');
 Route::get('objekWisata/{id}/edit','objekWisataController@edit')->name('objekWisata.edit');
 Route::get('admin/{id}/edit_obj','objekWisataController@edit')->name('edit_obj');
+Route::get('objekWisata/{id}/detail','objekWisataController@detail')->name('objekWisata.detail');
 
 
 //Admin
@@ -100,7 +101,9 @@ Route::get('admin/request','adminController@request')->name('admin.request');
 Route::PATCH('objekWisata/{id}/edit','objekWisataController@update')->name('objekWisata.update');
 Route::PATCH('admin/{id}/request','adminController@acc')->name('admin.acc');
 Route::PATCH('admin/{id}/akun','adminController@rej')->name('admin.rej');
-Route::PATCH('admin/{id}/bayar','adminController@bayar')->name('admin.bayar');
+Route::PATCH('admin/{id}/bayar1','adminController@bayar')->name('admin.bayar');
+Route::PATCH('admin/{id}/bayar','adminController@bayarKePemilik')->name('admin.bayarPemilik');
+Route::get('admin/bayar','adminController@bayarLihat')->name('admin.bayarLihat');
 
 
 //Owner
@@ -110,6 +113,8 @@ Route::get('owner/homestay','pemilikController@homestay')->name('owner.homestay'
 Route::get('owner/kendaraan','pemilikController@kendaraan')->name('owner.kendaraan');
 Route::get('owner/pengalaman','pemilikController@pengalaman')->name('owner.pengalaman');
 Route::get('owner/booking','pemilikController@booking')->name('owner.booking');
+Route::get('owner/terimaUang','ownerController@terimaUang')->name('owner.terimaUang');
+Route::PATCH('owner/{id}/terima','ownerController@terima')->name('owner.terima');
 
 
 //Member

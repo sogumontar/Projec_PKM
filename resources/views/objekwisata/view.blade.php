@@ -28,7 +28,7 @@
 
                      <div class="" style="width: 20rem;">
                        <div class="card-body" >
-                         <a class="" href="">
+                         <a href="{{route('objekWisata.detail',$s->id)}}" class="">
                           <p>{{$s->nama}}</p>
                           <hr>
                          <img class="card-img-top" style="width: 300px; height: 200px;" src="/objekwisata/{{$s->gambar}}" alt="Card image cap">

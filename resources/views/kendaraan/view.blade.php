@@ -37,7 +37,7 @@
                          
                         
                         
-                          <p><?php echo $s->keterangan?></p>
+                          <p></p>
                        </div>
                           <hr>
                           <p>{{$s->Merk_kendaraan}}</p>
@@ -74,6 +74,9 @@
        
                            
            @endforeach
+           <div class="col-md-12" align="center"> 
+             {!! $kendaraan->render() !!}
+           </div>
            @endif
            @if(!$p)
            <div class="container">

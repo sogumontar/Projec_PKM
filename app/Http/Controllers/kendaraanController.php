@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\kendaraan;
@@ -52,7 +52,7 @@ class kendaraanController extends Controller
     	return redirect()->route('owner.kendaraan');
     }
     public function view(){
-    	$kendaraan=kendaraan::all();
+    	$kendaraan=DB::table('kendaraan')->paginate(6);
     	return view('kendaraan.view',compact('kendaraan'));
     }
     public function edit($id){

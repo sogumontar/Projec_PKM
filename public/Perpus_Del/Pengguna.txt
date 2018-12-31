@@ -1,0 +1,5 @@
+hendra,simangunsong,hendra,11417010,Mahasiswa
+hendra,hendra,ojak,987988,Mahasiswa
+ojak,ojak,del,12313,Petugas
+bojak,bojak,bojak,123bojak,Petugas
+new,new,new,123new,Mahasiswa

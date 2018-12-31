@@ -15,42 +15,46 @@ use App\kendaraan;
 class pemilikController extends Controller
 {
     public function homestay(){
-    	$homestay=homestay::all();
-    	$a=Auth::user()->id;
+        if(Auth::user()){
+         $homestay=homestay::all();
+         $a=Auth::user()->id;
     	// echo Auth::user()->id;
     	// die();
-    	 $config= DB::select("select * from homestay where id_pemilik=$a");
+         $config= DB::select("select * from homestay where id_pemilik=$a");
 
-    	return view('owner.homestay',compact('config'));
-    }
-    public function kendaraan(){
-    	$kendaraan=kendaraan::all();
-    	$a=Auth::user()->id;
-    	$config= DB::select("select * from kendaraan where id_pemilik=$a");
-    	return view('owner.kendaraan',compact('config'));
-    }
-    public function pengalaman(){
-    	$pengalaman=pengalaman::all();
+         return view('owner.homestay',compact('config'));
+     }
+ }
+ public function kendaraan(){
+    if(Auth::user()){
+     $kendaraan=kendaraan::all();
+     $a=Auth::user()->id;
+     $config= DB::select("select * from kendaraan where id_pemilik=$a");
+     return view('owner.kendaraan',compact('config'));
+ }
+}
+public function pengalaman(){
+ $pengalaman=pengalaman::all();
 
-    	return view('owner.pengalaman',compact('pengalaman'));
-    }
-    public function  owner(){
-        $id=AUTH::user()->id;
-        $db=DB::select("SELECT * from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay = homestay.id  where homestay.id_pemilik=$id");
-        $dbb=DB::select("SELECT * from record_pemesanan_kendaraan inner join kendaraan on record_pemesanan_kendaraan.id_kendaraan = kendaraan.id where kendaraan.id_pemilik=$id");
+ return view('owner.pengalaman',compact('pengalaman'));
+}
+public function  owner(){
+    $id=AUTH::user()->id;
+    $db=DB::select("SELECT * from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay = homestay.id  where homestay.id_pemilik=$id");
+    $dbb=DB::select("SELECT * from record_pemesanan_kendaraan inner join kendaraan on record_pemesanan_kendaraan.id_kendaraan = kendaraan.id where kendaraan.id_pemilik=$id");
 
-    	return view('owner.owner',compact('db','dbb'));
-    }
-    public function booking(){
-    	$id=Auth::user()->id;
+    return view('owner.owner',compact('db','dbb'));
+}
+public function booking(){
+ $id=Auth::user()->id;
     	// echo $id;
     	// die();
-    	$test=DB::SELECT('select * from record_pemesanan_homestay
-    		inner join homestay
-    		on record_pemesanan_homestay.id_homestay = homestay.id 
-    		where homestay.id_pemilik=146');
-    	return view('owner.booking',compact('test'));
-    }
+ $test=DB::SELECT('select * from record_pemesanan_homestay
+  inner join homestay
+  on record_pemesanan_homestay.id_homestay = homestay.id 
+  where homestay.id_pemilik=146');
+ return view('owner.booking',compact('test'));
+}
 
     // $config= DB::select('select id from users where email=? AND password=?',[$email,md5($password)]);
 }

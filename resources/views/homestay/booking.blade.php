@@ -1,5 +1,5 @@
 <br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
-@extends('layouts.template')
+
 @include('layouts.alerts')
 
 <!-- <div  style="background: url('/interior-design-ideas-bedroom-wallpaper-bedroom-wallpaper-ideas-with-added-design-bedroom-and-captivating-to-various-settings-layout-of-the-room-bedroom-captivating-2-interior-design-bedroom-wallpaper.jpg')">
@@ -155,5 +155,4 @@ $("#lama").keyup(function(){
  });
 
 </script>
-@section('content')
-@endsection
+

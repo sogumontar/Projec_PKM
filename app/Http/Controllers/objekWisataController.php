@@ -98,4 +98,7 @@ class objekWisataController extends Controller
         }
 
     }
+      public function detail($id){
+            $db=DB::SELECT("SELECT * FROM objek_wisata where id=$id");
+            return view('objekwisata.detail',compact('db')); }  
 }

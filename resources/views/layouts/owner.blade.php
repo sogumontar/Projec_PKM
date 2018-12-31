@@ -110,16 +110,17 @@
                                         @csrf
                                         <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
                                     </form>
-                                  <!-- 
-                                     <a class="dropdown-item" href="{{ route('member.booking') }}"
+                                  
+                                     <a class="dropdown-item" href="{{ route('owner.terimaUang') }}"
                                        >
-                                        Request Booking
-                                    </a> -->
+                                        Hasil Pembayaran Booking
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
+
                             </li>
 
                         @endguest
