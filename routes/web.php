@@ -30,7 +30,7 @@ Route::get('/welcome', 'HomeController@index')->name('welcome');
 // Route::get('/post/create', 'PostController@create')->name('post.create');
 // Route::post('/post/create', 'PostController@store')->name('post.store');
 // Route::get('/post','PostController@view')->name('post.view');
-
+Route::get('/home','homestayController@notif')->name('notifikasi');
 
 //homestay
 
@@ -127,3 +127,4 @@ Route::get('owner/daftar','memberController@daftar')->name('member.daftar');
 Route::post('owner/daftarProcess','memberController@daftarProcess')->name('member.daftarProcess');
 Route::get('kendaraan/{id}/bayar','memberController@bayarKendaraan')->name('kendaraan.bayar');
 Route::PATCH('kendaraan/{id}/edit','memberController@bayarKendaraanProcess')->name('member.bayarKendaraanProcess');
+Route::get('email','PostController@sendEmail')->name('send.email');

@@ -1,11 +1,15 @@
-<br><br>@extends('layouts.template')
+@extends('layouts.template')
 @include('layouts.alerts') 
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
+  <div style="background : URL('/motor.jpg'); background-size: cover;">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
              <div class="container">  
                         
 
 
 <div class="container">
+
       <hr>
       <h5 style="text-align:center;">List Kendaraan</h5>
       <hr>

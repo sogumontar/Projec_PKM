@@ -70,7 +70,7 @@
                          <hr>
                         
                           <hr>
-                          <?php $cek=DB::SELECT("SELECT * FROM promo where id_homestay=$homestays->id"); ?>
+                          <?php $cek=DB::SELECT("SELECT * FROM promo where id_homestay=$homestays->id AND status='start'"); ?>
                           @if(!$cek)
                           <h2>{{$homestays->nama}}</h2><br> 
                          <h3>Rp.{{$homestays->harga}},00</h3> 

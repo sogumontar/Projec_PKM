@@ -17,6 +17,7 @@ use App\record_homestay;
 class homestayController extends Controller
 {
 
+
     public function create(){
     	return view('homestay.create');
     }
@@ -129,6 +130,14 @@ echo $tty=$yyt[0]->id;
 }
 
 public function view(){
+    $s=DB::SELECT("SELECT * FROM promo");
+    $now=date("Y-m-d");
+    $no=strtotime($now);
+    foreach($s as $ss){
+        $on=$ss->selesai;
+        $o=strtotime($on);
+        $test=DB::UPDATE("UPDATE promo set status ='finish' where $no>$o");
+    }
     $homestay =DB::table('homestay')->paginate(6);
 
 
@@ -412,5 +421,11 @@ public function promoProcess(request $request,$id){
    die();
    return redirect('owner.homestay')->with('succes',"Promo berhasil di tambahkan");
 } 
+ public function notif(){
+        $qwe=Auth::user()->id;
+        $DB=DB::UPDATE("UPDATE notifikasi set status='finish' where id_penerima=$qwe");
+      
+      return redirect()->route('welcome');
+    }
 
 }

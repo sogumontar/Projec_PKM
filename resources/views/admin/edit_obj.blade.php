@@ -53,6 +53,7 @@ $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");
                   <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
                   <li><a href="{{route('admin.objekWisata')}}">Objek Wisata</a></li>
                   <li><a href="{{route('admin.request')}}">Request</a></li>
+                  <li class=""><a href="{{route('admin.bayarLihat')}}">Bayar Ke Pemilik</a></li>
                   <li class="">   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">

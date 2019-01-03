@@ -60,5 +60,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        try{
+            Mail::send('email', [$data['nama'] => "hendra", 'pesan' => "Terimakasih telah memberikan kepercayaan kepada kami, karena telah menggunakan website ini.Semoga Applikasi ini dapat membantu anda dalam mencaari penginapan sekitar daerah Toba Samosir"], function ($message) use ($request)
+            {
+                $message->subject("Registrasi Berhasil");
+                $message->from('homestayhotsa@gmail.com', 'KingStay');
+                $message->to($data['email']);
+                
+            });
+            return back()->with('alert-success','Berhasil Kirim Email');
+        }
+        catch (Exception $e){
+            return response (['status' => false,'errors' => $e->getMessage()]);
+        }
     }
 }

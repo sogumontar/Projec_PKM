@@ -11,7 +11,7 @@ use App\User;
 use App\notifikasi;
 use App\member;
 use Session;
-
+use Mail;
 class userController extends Controller
 {
     public function store(request $request)
@@ -21,12 +21,12 @@ class userController extends Controller
          $p2=request('confirmpassword');
          $test =request('mail');
           $hg=DB::SELECT("SELECT * FROM users where email='$test'");
-        
+    
 
         if($p1!=$p2){
-            return view('/welcome')->with('danger','Password tidak sama, coba lagi');
+            return redirect()->route('homestay.view')->with('danger','Password tidak sama, coba lagi');
         }else if($hg){
-            return view('/welcome')->with('danger','email tersebut telah terdaftar coba email lain');
+            return redirect()->route('homestay.view')->with('danger','Gmail tersebut sudah terdaftar, coba lagi');
         }else{
 
              User::create([
@@ -34,7 +34,10 @@ class userController extends Controller
             'email' => request('mail'),
             'password' => Hash::make(request('password')),
              'role'=>"member",
+
         ]);
+             
+             
              $q=DB::select('select id from users order by id desc');
               
                 member::create([
@@ -44,7 +47,7 @@ class userController extends Controller
                 'id_akun'=> $q[0]->id,
 
                 ]);
-                 notifikasi::create([
+            notifikasi::create([
            'nama'=>'Reject',
            'isi'=>'Request Pesanan Ditolak',
            'status'=>'sukses',
@@ -64,7 +67,20 @@ class userController extends Controller
            ]);
 
             }
+           
+            try{
+              Mail::send('email', ['nama' => request('nama'), 'pesan' => "Terimakasih telah memberikan kepercayaan kepada kami, karena telah menggunakan website ini.Semoga Applikasi ini dapat membantu anda dalam mencaari penginapan sekitar daerah Toba Samosir"], function ($message) use ($request)
+              {
+                $message->subject("Registrasi Berhasil");
+                $message->from('homestayhotsa@gmail.com', 'KingStay');
+                $message->to($request['mail']);
+                
+              });
 
+            }
+            catch (Exception $e){
+              return response (['status' => false,'errors' => $e->getMessage()]);
+            }
       
          return view('/welcome')->with('success','Register berhasil');
     }
@@ -99,4 +115,5 @@ class userController extends Controller
         // return redirect()->route('welcome');
         echo "logout";
     }
+
 }

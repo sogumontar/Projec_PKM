@@ -1,4 +1,5 @@
 <br><br>@include('layouts.alerts')
+<link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <!DOCTYPE html>
 <html lang="en">
 <head>
