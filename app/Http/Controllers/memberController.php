@@ -14,7 +14,7 @@ class memberController extends Controller
 {
     public function booking(){
     	$a=Auth::user()->id;
-    	$d=DB::select("SELECT homestay.nama , homestay.id, record_pemesanan_homestay.date,record_pemesanan_homestay.jumlah_kamar , record_pemesanan_homestay.status , record_pemesanan_homestay.id, record_pemesanan_homestay.lama_menginap from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id where  id_member=$a order by record_pemesanan_homestay.status ASC");
+    	$d=DB::select("SELECT homestay.nama , homestay.id, record_pemesanan_homestay.date,record_pemesanan_homestay.jumlah_kamar , record_pemesanan_homestay.status , record_pemesanan_homestay.id,record_pemesanan_homestay.created_at, record_pemesanan_homestay.lama_menginap from record_pemesanan_homestay inner join homestay on record_pemesanan_homestay.id_homestay=homestay.id where  id_member=$a order by record_pemesanan_homestay.status ASC");
 
     	// $g=DB::select('select * from homestay')
     	return view('booking',compact('d'));
@@ -105,6 +105,7 @@ return redirect()->route('kendaraan.view')->with('success','Pembayaran Berhasil'
     public function daftarProcess(request $request){
 
              $gambar = $request->file('foto_ktp');
+
              $pathw= $request->file('foto_ktp')->store(''); 
              $request->file('foto_ktp')->move('owner',$pathw);
 
@@ -113,7 +114,6 @@ return redirect()->route('kendaraan.view')->with('success','Pembayaran Berhasil'
              $request->file('foto_diri')->move('owner',$pathw2);
 
         $dol=Auth::user()->id;
-        echo $dol;
 
              pemilik::create([
             'nama'=>request('nama'),
@@ -130,8 +130,8 @@ return redirect()->route('kendaraan.view')->with('success','Pembayaran Berhasil'
            'nama'=>'Request',
            'isi'=>'Berhasil mengirimkan request, menunggu respon admin.',
            'status'=>'sukses',
-           'id_penerima'=>$idd,
+           'id_penerima'=>$dol,
            ]);
-             return redirect()->route('home')->with('success','Request Sukses');
+             return view('/welcome')->with('success','Request Sukses');
     }
 }

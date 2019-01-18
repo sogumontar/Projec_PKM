@@ -50,7 +50,7 @@ $db=DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun = $test")
         <div class="col">
           <input type="number" hidden=""  style="color:#e67e22"  name="total" id="total" style="color:#e67e22"  class="form-control" readonly="">
         </div><div align="right" class="col-md-12"><br>
-         <input type="submit" class="btn btn-primary" name=""></div>
+         <input type="submit" value="Pesan" class="btn btn-primary" name=""></div>
           </div><br>
         </div>
     </form>

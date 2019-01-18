@@ -43,7 +43,6 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-        <li class=" "><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li class="active"><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
@@ -52,7 +51,7 @@
         <li class=""><a href="{{route('admin.bayarLihat')}}">Bayar Ke Pemilik</a></li>
         <li class="">  <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
                                     </form>
       </ul><br>
       <div class="input-group">
@@ -72,7 +71,7 @@
                         
                         <!-- panel heading starat -->
                         <div class="panel-heading">
-                            <h3 class="panel-title">Daftar Homestay</h3>
+                            <h3 class="panel-title">Daftar Penginapan</h3>
                             <div class="pull-right">
                             
                         </div>
@@ -85,9 +84,10 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="filters">
-                                    <th><p>Nama Homestay</p></th>
+                                    <th><p>Nama Penginapan</p></th>
                                     <th><p>Keterangan</p></th> 
                                     <th><p>Nama Pemilik</p></th>
+                                    <th><p>Aksi</p></th>
 
 <!--
                                     <th><input type="text" class="form-control" placeholder="endTime" disabled></th>
@@ -99,7 +99,7 @@
                                 <div>
                                   <tr>
                                     <td>{{$a->nama }}</td>
-                                     <td>{{$a->keterangan}}</td>
+                                     <td><?php echo $a->keterangan?></td>
                                       <td>{{$a->name}}</td>
                                     
 

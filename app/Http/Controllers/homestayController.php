@@ -208,7 +208,7 @@ public function update(Request $request,$id){
     }
 }
 public function search(request $request){
-    $ag=request('lokasi');
+    $ag=$request->lokasi;
 
         // $b=request('waktu_awal');
         // $c=request('waktu_akhir');
@@ -222,14 +222,23 @@ public function search(request $request){
 
 
     $ghgh=DB::SELECT("SELECT * from homestay");
-    echo $ag;
+  
 
     $trtr=$ghgh[$i]->kecamatan;
     $tes=DB::select("SELECT * from  homestay where kecamatan like '%$ag%'");
+   
 
+    $tt=DB::table('homestay')->where('kecamatan','LIKE','%'.$ag.'%')->paginate(6);
+   $t=0;
+   foreach ($tt as $y) {
+       $t++;
+   }
+   if($t==0){
+        return back()->with('danger','Belum ada homestay yang terdaftar di kecamatan ini');
+   }else{
 
-
-    return view('homestay.search',compact('ag','qq','tes','d'));
+    return view('homestay.search',compact('tt'));
+    }
 }
 public function booking($id){
     $homestay =DB::SELECT("SELECT * FROM record_pemesanan_homestay INNER JOIN homestay where record_pemesanan_homestay.id_homestay=homestay.id");

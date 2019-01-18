@@ -4,7 +4,7 @@
 </div>
 <br>
 
-
+<br><br>
 <div class="panel panel-primary filterable container">
     <?php 
         $idd=Auth::user()->id;
@@ -38,7 +38,7 @@
             @endif
                         
                         <!-- panel heading starat -->
-                        <div class="col-md-8 card"  style="background-color: #eedddd">
+                        <div class="col-md-12 card"  style="background-color: #dbdbdb">
                             <h7>Bayar Ke:99873211417010(MANDIRI)</h7> 
                             <h7>Atas Nama:Sogumontar Simangunsong</h7><br>  
                             <h7>Bayar Ke:99873211417030(BNI)</h7>
@@ -48,7 +48,8 @@
                             <br>    <br>    
                           
                         </div>
-                          <h3 class="panel-title">Daftar Pesanan Homestay </h3>
+                        <br>
+                          <h3 class="panel-title">Daftar Pesanan Homestay </h3><br>
                             <div class="pull-right">
                             
                         </div>
@@ -60,6 +61,7 @@
                       <table class="table table-hover table-bordered ">
                             <thead style="background-color: #dbdbdb">
                                 <tr class="filters">
+                                    <th><p>Tanggal Request</p></th>
                                     <th><p>Waktu Kedatangan</p></th>
                                     <th><p>Nama Homestay</p></th>
                                     <th><p>Jumlah Kamar</p></th>
@@ -75,6 +77,7 @@
                                 @foreach($d as $a)
                                 <div>
                                   <tr>
+                                    <td>{{$a->created_at}}</td>
                                     <td>{{$a->date}}</td>
                                      <td>{{$a->nama}}</td>
                                      <td>{{$a->jumlah_kamar}}</td>
@@ -88,9 +91,9 @@
                                      @elseif($a->status=='accepted')
                                     <td><a href="{{route('member.resi',$a->id)}}"><button class="btn btn-success">Cek Resi</button></a>
                                      @elseif($a->status=='expired')
-                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
+                                     <td><a >Expired</a></td>
                                      @else
-                                     <td><a href="{{route('member.bayar',$a->id)}}"><button class="btn btn-primary" disabled="">On Process</button></a></td>
+                                     <td><a >On Process</a></td>
                                      @endif
                                   </tr>
                                 </div>
@@ -105,7 +108,7 @@
 <div class="panel panel-primary filterable container">
                          <h3 class="panel-title">Daftar Pesanan Kendaraan </h3>
                         <!-- panel heading starat -->
-                        <div class="col-md-8 card"  style="background-color: #eedddd">
+                       <!--  <div class="col-md-8 card"  style="background-color: #eedddd">
                             <h7>Bayar Ke:99873211417010(MANDIRI)</h7> 
                             <h7>Atas Nama:Sogumontar Simangunsong</h7><br>  
                             <h7>Bayar Ke:99873211417030(BNI)</h7>
@@ -114,7 +117,7 @@
                             <h7>Atas Nama:Kristopel Lumbantoruan</h7><br>   
                             <br>    <br>    
                           
-                        </div>
+                        </div> -->
 
                         <?php
                           $idd=Auth::user()->id;
@@ -157,9 +160,9 @@
                                     @elseif($a->status=='reject')
                                     
                                      @elseif($a->status=='expired')
-                                     <td><a href="{{route('kendaraan.bayar',$a->id)}}"><button class="btn btn-secondary" disabled="">Expired</button></a></td>
+                                     <td><a >Expired</a></td>
                                      @else
-                                     <td><a href="{{route('kendaraan.bayar',$a->id)}}"><button class="btn btn-primary" disabled="">On Process</button></a></td>
+                                     <td><a>On Process</a></td>
                                      @endif
                                   </tr>
                                 </div>

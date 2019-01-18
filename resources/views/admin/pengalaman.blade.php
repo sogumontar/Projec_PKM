@@ -43,7 +43,6 @@
     <div class="col-sm-3 sidenav fixed-top">
       <br>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
@@ -52,7 +51,7 @@
         <li class=""><a href="{{route('admin.bayarLihat')}}">Bayar Ke Pemilik</a></li>
         <li class="">  <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
                                     </form>
       </ul><br>
       <div class="input-group">

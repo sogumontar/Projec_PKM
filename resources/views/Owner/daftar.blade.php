@@ -1,6 +1,7 @@
 @extends('layouts.template')
 @include('layouts.alerts')
-<div class="container-fluid" style="background: URL('/bg2.jpg')">
+
+<div class=" overlay"  style="">
  <div class="modal-body">
  		<font color="#ffffff">
  		
@@ -31,13 +32,13 @@
 	                          <label><b>Tanggal Lahir:</b></label>
 	                          <input class="form-control" type="date" name="tanggal_lahir"  id="alamat" required="">
 	                        </div>	                        <div align="left">
-	                          <label><b>Foto KTP:</b></label>
-	                          <input class="form-control" type="file" name="foto_ktp"  id="nama" required=""><br>
+	                          <label><b>Foto KTP:</b></label><br>
+	                          <input class="" type="file" name="foto_ktp"  id="nama" required=""><br>
 	                        </div>
 	                        <div align="left">
-	                          <label><b>Foto Diri:</b></label>
-	                          <input class="form-control" type="file" name="foto_diri"  id="nama" required=""><br>
-	                        </div>
+	                          <label><b>Foto Diri:</b></label><br>
+	                          <input class="" type="file" name="foto_diri"  id="nama" required=""><br>
+	                        </div><br>
 	                        <div align="left">
 	                          <div class="row"> 
 	                            <div class="col-md-1" align="left">

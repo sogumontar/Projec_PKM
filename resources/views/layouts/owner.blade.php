@@ -52,9 +52,6 @@
                 <a class="nav-link" href="{{route('owner.homestay')}}">Penginapan</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('owner.owner')}}">Objek Wisata</a>
-              </li>
-              <li class="nav-item active">
                 <a class="nav-link" href="{{route('owner.pengalaman')}}">Pengalaman</a>
               </li>
               <li class="nav-item active">
@@ -153,7 +150,14 @@
                       <form action="{{route('login')}}" method="post">
                           <input class="form-control" type="email" name="email" placeholder="email" id="email"><br>
                           <input class="form-control" type="password" name="password" placeholder="password" id="password"><br>
-                          <input type="submit" class="btn btn-info" name="" value="enter">
+                          <div class="row">
+                              <div class="col-md-9">
+                                 
+                              </div>
+                              <div class="col-md-2">
+                                 <input align="right" type="submit" class="btn btn-info" name="" value="Login">
+                              </div>
+                           </div>
                           <input type="hidden" class="btn btn-info" name="_token" value="{{csrf_token()}}"  class="hidden">
                       </form>
                     </div>
@@ -173,11 +177,7 @@
   </div>
    </div>
     </ul>
-      </nav>
-          <nav class="navbar navbar-expand-sm" style="background-color:#F5F5F5;">
-            <a class="navbar-brand" href="#" style="color:#F5F5F5;">jabukku</a>
-            </div>
-          </nav>
+     
 
         </header>
 
@@ -186,9 +186,7 @@
         
 
 
-      <div class="jumbotron text-center" style="background-color:grey;">
-        
-      </div>
+      @include('layouts.footer')
     </main>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></script>

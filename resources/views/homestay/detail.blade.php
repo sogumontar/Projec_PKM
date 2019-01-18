@@ -1,6 +1,6 @@
     <br><br><link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 
-    @extends('layouts.template')
+    @extends('layouts.homestay')
     @include('layouts.alerts')
     @foreach($db as $s)
     <?php if(Auth::user()){ $test=Auth::user()->id;
@@ -20,12 +20,15 @@
     <div class="col-md-3" > 
       <h2 >Tempat Wisata Terdekat</h2><br><hr><br>
       <ol>
-
+<?php $a=0;?>
         @foreach($FF as $f)
-        <font size="2" color="#000000" ><li><b><a style="color: #000000" href="{{route('objekWisata.view')}}">{{$f->nama}}</a></b></li></font>
-
+        <?php $a++;?>
+        <font size="2" color="#000000" ><li>&nbsp;&nbsp;&nbsp;<a style="color: #000000" href="{{route('objekWisata.detail',$f->id)}}"><img src="/objekwisata/{{$f->gambar}}" style="width: 60px; height: 45px">{{$f->nama}}</a></li></font>
+<br> 
         @endforeach
-
+        @if($a==0)
+        <h4>Tidak ada tempat wisata yang dekat dengan homestay ini</h4>
+        @endif
       </ol><br>  <br>  <br>  <br>  <br>  <br>  
       <br>  <br>  <br>  <br>  <br>  <br>  
 
@@ -39,9 +42,14 @@
 
       <center><a href="/uploadgambar/{{$s->gambar}}"><img style="width: 490px; height: 390px;" src="/uploadgambar/{{$s->gambar}}" class="img-thumbnail shadow" style="border-radius: 38px"></a>
        <div class="row">
+        <?php
+          $tei=DB::SELECT("SELECT * FROM promo where id_homestay=$s->id And status !='finish'");
+        ?>
+        @if($tei)
         <div  class="col-md-1">
           <img src="/diskon.png" style="width: 35px;">
         </div>
+        @endif  
         <div class="col-md-12" align="center">  
           <center> <h1 align="center"><?php echo $home[0]->nama;?></h1></center>
         </div>
@@ -64,15 +72,15 @@
         <p>Anda Sudah Rating Homestay Ini</p>
         @else
 
-        <input value="3" name="jumlah" type="number" class="rating" required="" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5"><br>
-        <textarea rows="3" class="form-control" name="review" required=""></textarea><br>  
-        <input type="submit" class="btn btn-primary" value="save" name="">
+        <input value="<?php echo $s->rating ?>" name="jumlah" type="number" class="rating" required="" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5"><br>
+        <input type="text" rows="3" class="form-control" name="review" ><br>  
+        <input type="submit" class="btn btn-primary" value="Simpan" name="">
 
 
         @endif
         @else
         <input value="<?php echo  $s->rating / $s->jumlah_booking?>" data-target="#exampleModal" name="jumlah" type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5"  data-toggle="modal"><br>
-        <input type="submit" class="btn btn-primary" value="save" name="" data-toggle="modal" data-target="#exampleModal"><br>
+        <input type="submit" class="btn btn-primary" value="Simpan" name="" data-toggle="modal" data-target="#exampleModal"><br>
       
        @endif
        </form>
@@ -84,13 +92,13 @@
           <h2><strike>Rp.<?php echo number_format($harga,2,',','.') ?></strike></h2>
         </div>
         <div class="col-md-6">
-         <h2 style="color: #EFB417">Rp.{{$test[0]->harga}},00</h2>
+         <h2 style="color: ##FFA500">Rp.{{$test[0]->harga}},00</h2>
        </div>
      </div>
 
      @else
      <?php $harga= $s->harga;?>
-     <h2>Rp.<?php echo number_format($harga,2,',','.') ?></h2>
+     <h2 style="color: #FFA500">Rp.<?php echo number_format($harga,2,',','.') ?></h2>
 
 
      @endif
@@ -99,11 +107,12 @@
      <br>  <hr>  
      <div class="row">
       <div class="col-md-12" align="right">
-        <p> {{$s->id}}</p>
+        
         <!-- <a href="{{route('homestay.booking',$s->id)}}" float="left"><button class="btn btn-primary">Booking</button></a> -->
         <a href="{{route('homestay.booking',$s->id)}}"><button class="btn btn-primary" >Booking</button></a>
       </div>
     </div>
+    <br>
   </div>
   <div class="col-md-3"> 
 
@@ -124,10 +133,10 @@
 </div>
 
 <div class="container row">
-  <div class="col-md-2">
+  <div class="col-md-4">
     <br>   
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6">
     <?php $FF=DB::SELECT("SELECT *  FROM rating where id_homestay =$id"); $oo=0; 
 
     ?>
@@ -136,6 +145,7 @@
 
     ?>
     @endforeach
+    <br><br><hr>
     <h2 align="center">Ulasan tentang homestay ini</h2><br>  <br> 
 
     @foreach($FF as $f)
@@ -144,32 +154,38 @@
     $oop=$del->id_member;
     $dol=DB::SELECT("SELECT * from users where id=$oop");
     ?>
-    <h2>{{$dol[$ind]->name}}</h2>
-    <div class="container"> 
+    
+    <div class="container card"> 
+      <h2>{{$dol[$ind]->name}}</h2>
+      <p>{{$dol[$ind]->created_at}}</p>
       <hr>  
       <ol>
         <div>
-          <textarea class="form-control card" rows="5"> {{$f->review}}</textarea>
+          <p class="" rows="5"> <?php echo $f->review ?></p>
         </div>
 
 
         <font size="0" style="size: 1px;"> <input value="<?php echo  $s->rating / $s->jumlah_booking?>" style="width: 20px;"   name="jumlah" type="number" class="rating" min=0 max=5 step=1 data-size="sm" data-stars="5" productId="5" disabled=""></font>
+        <hr>
       </ol>
     </div>
   </div>
   <?php $ind++; ?>
   @endforeach
-  <div class="col-md-1"> 
+  <br><br>
+  <div class="col-md-2"> 
     <br>  
   </div>
-  <br>  <br>  <br>  <br>  
+
+  <br>  <br>  <br>  <br> <br><br> 
 
 
 
 </div>
 </div>
 </div>
-
+<br><br><br>
+<br><br>
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/test.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/star-rating.min.css')}}">
 <script type="text/javascript" src="{{asset('vendor/jss/js/jquery.min.js')}}"></script>

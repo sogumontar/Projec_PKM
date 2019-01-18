@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\objekWisata;
@@ -30,7 +30,8 @@ class objekWisataController extends Controller
 
     }
     public function view(){
-    	$test=objekWisata::all();
+    	$test=DB::table('objek_wisata')->paginate(6);
+        // $test=objekWisata::all();
     	return view('objekwisata.view',compact('test'));
     }
     public function delete($id){

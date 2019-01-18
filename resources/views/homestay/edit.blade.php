@@ -3,12 +3,12 @@
 @endif
 @include('layouts.alerts')
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
-<br>
-<h2 align="center">Update Data Homestay</h2><br><br>
+<br><font face="segoe ui">
+<h2 align="center">Update Data Homestay</h2><br><hr class="container"><br>
 <br>    <br>    
-<h5 align="" class="container" style="margin-right: -515px;"><i>Tambahkan Promo pada Homestay ini</i></h5>
+<h5 align="" class="container" style="margin-right: -305px;">Tambahkan Promo pada Homestay ini</h5></font>
 <div class=" container" align="right"> 
-    <a href="{{route('homestay.promo',$homestay->id)}}" style="margin-right: 190px;"><button class="btn btn-primary"> Tambah</button></a>
+    <a href="{{route('homestay.promo',$homestay->id)}}" style="margin-right: 190px;"><button class="btn btn-success"> Tambah</button></a><br><br>
 </div>
 <div class="container">
         <div class="row" align="left">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan Homestay</label>
-                        <textarea type="text" class="form-control" name="keterangan" ><?php echo $homestay->keterangan ?></textarea>
+                        <textarea type="text" class="ckeditor" name="keterangan" ><?php echo $homestay->keterangan ?></textarea>
                     </div>
                       <div class="form-group">
                         <label>Nama Homestay</label>

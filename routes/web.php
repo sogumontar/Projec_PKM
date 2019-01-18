@@ -21,7 +21,8 @@ Route::get('/index',['middleware'=>'cekStatus',function(){
 Auth::routes();
 // Route::view('/register', 'register');
 // Route::view('/login', 'login');
-// Route::post('/store','userController@store')->name('user.register');
+// Route::get('/register','userController@store')->name('user.register');
+Route::get('reg','userController@reg')->name('user.register');
 Route::post('/register','userController@store')->name('reg');
 // Route::post('/login','userController@login')->name('user.login');
 // Route::get('/logout','userController@logout')->name('user.logout');
@@ -48,7 +49,7 @@ Route::post('homestay/{id}/detail','homestayController@rating')->name('homestay.
 Route::get('homestay/{id}/promo','homestayController@promo')->name('homestay.promo');
 Route::post('homestay/{id}/promo','homestayController@promoProcess')->name('homestay.promoProcess');
 
-Route::patch('admin/{id}/new','adminController@reject')->name('reject');
+Route::patch('admin/{id}/Accept','adminController@reject')->name('reject');
 Route::patch('admin/{id}/accept','adminController@accept')->name('accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@acceptBooking')->name('booking.accept');
 // Route::patch('homestay/{record->id}/kelola','homestayController@rejectBooking')->name('booking.reject');
@@ -65,7 +66,7 @@ Route::get('kendaraan/create','kendaraanController@create')->name('kendaraan.cre
 Route::post('kendaraan/create','kendaraanController@store')->name('kendaraan.store');
 Route::get('kendaraan/view','kendaraanController@view')->name('kendaraan.view');
 Route::get('kendaraan/{id}/edit','kendaraanController@edit')->name('kendaraan.edit');
-Route::PATCH('kendaraan/{id}/edit','kendaraanController@update')->name('kendaraan.update');
+Route::PATCH('kendaraan/{id}/edits','kendaraanController@update')->name('kendaraan.update');
 Route::delete('/kendaraan/{kendaraan}/delete','kendaraanController@destroy')->name('kendaraan.destroy');
 Route::get('kendaraan/{id}/booking','kendaraanController@booking')->name('kendaraan.booking');
 Route::post('kendaraan/{id}/booking','kendaraanController@bookingProcess')->name('kendaraan.booking.process');

@@ -47,7 +47,6 @@ $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");
               <div class="col-sm-3 sidenav fixed-side">
 
                 <ul class="nav nav-pills nav-stacked">
-                  <li class="active"><a href="#section1">Home</a></li>
                   <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
                   <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
                   <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
@@ -56,7 +55,7 @@ $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");
                   <li class=""><a href="{{route('admin.bayarLihat')}}">Bayar Ke Pemilik</a></li>
                   <li class="">   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
                   </form>
                 </li>
               </ul><br>
@@ -104,7 +103,7 @@ $hendra=DB::SELECT("SELECT * FROM notifikasi where id_penerima=$iod");
                       </div>
 
                       <div class="form-group">
-                        <label>Gambar Homestay</label>
+                        <label>Gambar Objek Wisata</label>
                         <center><a href="/objewisata/{{$dd->gambar}}"><img class="card" style="width: 300px; height: 250px;"  src="/objekwisata/{{$dd->gambar}}"></a></center><br>
                         <input type="file" class="form-control" name="gambar" id="gambar" >
                       </div>

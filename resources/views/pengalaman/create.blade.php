@@ -25,9 +25,9 @@
 								@foreach($DB as $s)
 								<option value="{{$s->nama}}">{{$s->nama}}</option>
 								@endforeach
-							</select><br>
+							</select><br><br>
 							<label><b>Keterangan</b></label>
-							<textarea rows="5" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan Pengalaman"></textarea>
+							<textarea rows="5" class="ckeditor" name="keterangan" id="keterangan" placeholder="Keterangan Pengalaman"></textarea>
 							<br>
 							<label><b>Gambar</b></label>
 							<input type="file" class="form-control" placeholder="Gambar" name="gambar" id="gambar"><br>

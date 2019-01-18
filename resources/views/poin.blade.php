@@ -7,9 +7,10 @@ $asd=Auth::user()->id;
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @include('layouts.alerts')
 @extends('layouts.template')
+<br><br>
 </div>
 <br>
-<h2 class="container">Bayar Pessansan</h2><br>	
+<h2 class="container">Bayar Pesanan</h2><br>	
 <div class="container">
 	@foreach($ddd as $a)
 		

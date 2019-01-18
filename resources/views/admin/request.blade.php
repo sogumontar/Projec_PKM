@@ -42,7 +42,6 @@
   <div class="row content">
     <div class="col-sm-3 sidenav fixed-side">
       <ul class="nav nav-pills nav-stacked"><br>
-        <li ><a href="{{route('admin.akun')}}">Home</a></li>
         <li class=""><a href="{{route('admin.akun')}}">Akun</a></li>
         <li><a href="{{route('admin.homestay')}}">Homestay</a></li>
         <li><a href="{{route('admin.kendaraan')}}">Kendaraan</a></li>
@@ -51,7 +50,7 @@
         <li class=""><a href="{{route('admin.bayarLihat')}}">Bayar Ke Pemilik</a></li>
         <li class="">  <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <input type="submit" class="form-control" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
+                                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn" value="Logout" name="" onclick="return confirm('Anda ingin keluar?')">
                                     </form>
       </ul><br>
       <div class="input-group">
@@ -131,7 +130,7 @@
                                       <td>{{$a->NIK}}</td>
                                       <td><a href="/owner/{{$a->foto_ktp}}"><img src="/owner/{{$a->foto_ktp}}" style="width: 100px; height: 55px;"></a></td>
                                       <td><a href="/owner/{{$a->foto_diri}}"><img src="/owner/{{$a->foto_diri}}" style="width: 100px; height: 55px;"></a></td>
-                                  @if($a->status=='On')
+                                  
                                      <td> 
                                       <form method="post" action="{{route('admin.acc',$a->id_akun )}}">
                                         {{csrf_field()}}
@@ -146,22 +145,7 @@
                                        <input type="submit" class="btn btn-danger"  value="Tolak">
                                       </form>
                                      </td>
-                                     @else
-                                     <td> 
-                                      <form method="post" action="{{route('accept',$a->id )}}">
-                                        {{csrf_field()}}
-                                        {{ method_field('PATCH') }}
-                                        <input type="submit" class="btn btn-success"  value="Terima">
-                                      </form>
-                                    </td>
-                                     <td> 
-                                      <form method="post" action="{{route('reject',$a->id )}}">
-                                        {{csrf_field()}}
-                                        {{ method_field('PATCH') }}
-                                       <input type="submit" class="btn btn-danger"  value="Tolak">
-                                      </form>
-                                     </td>
-                                   @endif  
+                                    
                                   </tr>
                                 </div>
                                 @endforeach
@@ -222,14 +206,14 @@
                                      @elseif($a->status=='On Process')
                                      <td><center><a href="/struk/{{$a->gambar}}"><img src="/struk/{{$a->gambar}}" style="width: 75px; height: 50px;"></a></center></td>
                                      <td> 
-                                      <form method="post" action="{{route('admin.acc',$a->id )}}">
+                                      <form method="post" action="{{route('accept',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                         <input type="submit" class="btn btn-success"  value="Terima">
                                       </form>
                                     </td>
                                      <td> 
-                                      <form method="post" action="{{route('admin.rej',$a->id )}}">
+                                      <form method="post" action="{{route('reject',$a->id )}}">
                                         {{csrf_field()}}
                                         {{ method_field('PATCH') }}
                                        <input type="submit" class="btn btn-danger"  value="Tolak">

@@ -38,7 +38,7 @@ class pengalamanController extends Controller
     	return redirect()->route('pengalaman.view');
     }
     public function  view(){
-    	$pengalaman=pengalaman::all();
+    	$pengalaman=DB::table('pengalaman')->paginate(5);
     	return view('pengalaman.view',compact('pengalaman'));
     }
     public function detail($id){

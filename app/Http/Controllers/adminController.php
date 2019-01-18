@@ -16,6 +16,7 @@ use App\objekWisata;
 use App\record_homestay;
 use App\notifikasi;
 use App\bayarPemilik;
+use Mail;
 class adminController extends Controller
 {
    public function objekWisata(){
@@ -81,7 +82,29 @@ public function request(){
     }
 }
 public function accept($id){
+
      if(Auth::user()){
+                 $connected = @fsockopen("www.google.com", 80); 
+                                          //website, port  (try 80 or 443)
+      if ($connected){
+          $is_conn = true; //action when connected
+          fclose($connected);
+        }else{
+          $is_conn = false; //action in connection failure
+        }
+    if($connected){
+     $uu=DB::SELECT("SELECT * FROM record_pemesanan_homestay");
+     $ou=$uu[0]->id_homestay;
+     $ppo=$uu[0]->id_member;
+     $uo=DB::SELECT("SELECT * FROM homestay where id=$ou"); 
+     $asd=$uo[0]->poin;
+     
+
+     $gfh=DB::SELECT ("SELECT * FROM member where id_akun=$ppo");
+     $jkl=$gfh[0]->poin;
+     $bb=$jkl+$asd;
+     
+     $uo=DB::UPDATE("UPDATE member set poin=$bb where id_akun=$ppo"); 
          $i=0;
          $DB=DB::select("SELECT * FROM record_pemesanan_homestay");
 
@@ -116,6 +139,33 @@ public function accept($id){
  ]);
 
    $test= DB::update("update record_pemesanan_homestay set status='accepted' where id=$id");
+
+    try{
+               $tr=DB::SELECT("SELECT * FROM users WHERE id=$dsaq");
+         $ee=$tr[0]->email;
+         
+         
+              Mail::send('email', ['nama' => $tr[0]->name, 'pesan' => "Selamat , Request anda telah di setujui.Anda Bisa melakukan penginapan di homestay yang telah anda pesan di hari yang telah anda tentukan.Semoga menikmati Penginapan anda"], function ($message) use($id)
+              {
+               $qqe=DB::SELECT("SELECT * FROM record_pemesanan_homestay where id=$id");
+   $dsaq=$qqe[0]->id_member;
+                  $tr=DB::SELECT("SELECT * FROM users WHERE id=$dsaq");
+         $ee=$tr[0]->email;
+               
+
+                $message->subject("Request Disetujui");
+                $message->from('homestayhotsa@gmail.com', 'KingStay');
+                $message->to($ee);
+                
+              });
+
+            }
+            catch (Exception $e){
+              return response (['status' => false,'errors' => $e->getMessage()]);
+            }
+}else{
+     return redirect()->route('admin.request')->with('danger','Koneksi Bermasalah');
+}
    return redirect()->route('admin.request')->with('success','Process Berhasil');
 }
 }
@@ -164,15 +214,45 @@ public function reject($id){
 }
 public function acc($id){
      if(Auth::user()){
+           $connected = @fsockopen("www.google.com", 80); 
+                                          //website, port  (try 80 or 443)
+      if ($connected){
+          $is_conn = true; //action when connected
+          fclose($connected);
+        }else{
+          $is_conn = false; //action in connection failure
+        }
+    if($connected){
 
          $pemilik_homestay_kendaraan =DB::SELECT("SELECT * FROM pemilik_homestay_kendaraan where id_akun=$id");
          $tess =user::find($id);
          echo$fq= $pemilik_homestay_kendaraan[0]->nama;
 
-
+        
          $ew=DB::UPDATE("UPDATE pemilik_homestay_kendaraan set status='accept' where id_akun=$id");
          $mem=DB::DELETE("DELETE FROM member where id_akun=$id");
          $sr=DB::UPDATE("UPDATE users set name= '$fq' ,role='owner' where id=$id");
+          try{
+               $tr=DB::SELECT("SELECT * FROM users WHERE id=$id");
+         $ee=$tr[0]->email;
+         
+         
+              Mail::send('email', ['nama' => $tr[0]->name, 'pesan' => "Selamat, sekarang anda sudah resmi menjadi owner homestay.kendaraan di applikasi ini.Anda bisa menambahkan data homestay atau kendaraan anda di applikasi ini"], function ($message) use($id)
+              {
+                  $tr=DB::SELECT("SELECT * FROM users WHERE id=$id");
+         $ee=$tr[0]->email;
+               
+
+                $message->subject("Daftar Jadi Owner Berhasil");
+                $message->from('homestayhotsa@gmail.com', 'KingStay');
+                $message->to($ee);
+                
+              });
+
+            }
+            catch (Exception $e){
+              return response (['status' => false,'errors' => $e->getMessage()]);
+            }
 
          notifikasi::create([
            'nama'=>'Selamat',
@@ -180,6 +260,9 @@ public function acc($id){
            'status'=>'sukses',
            'id_penerima'=>$id,
       ]);
+    }else{
+     return redirect()->route('admin.request')->with('danger','Koneksi Anda Bermasalah');
+    }
 
          return redirect()->route('admin.request')->with('success','Accept Proses berhasil');
     }
@@ -196,12 +279,26 @@ public function rej($id){
          $mem=DB::DELETE("DELETE FROM pemilik_homestay_kendaraan where id_akun=$id");
 
 
+
          notifikasi::create([
            'nama'=>'Warning',
            'isi'=>'Maaf anda gagal di angkat menjadi pengelola homestay/kendaraan',
            'status'=>'sukses',
            'id_penerima'=>$id,
       ]);
+          try{
+              Mail::send('email', ['nama' => Auth::user()->name, 'pesan' => "Terimakasih telah memberikan kepercayaan kepada kami, karena telah menggunakan website ini.Semoga Applikasi ini dapat membantu anda dalam mencaari penginapan sekitar daerah Toba Samosir"], function ($message) use ($request)
+              {
+                $message->subject("Registrasi Berhasil");
+                $message->from('homestayhotsa@gmail.com', 'KingStay');
+                $message->to(Auth::user()->name);
+                
+              });
+
+            }
+            catch (Exception $e){
+              return response (['status' => false,'errors' => $e->getMessage()]);
+            }
 
          return redirect()->route('admin.request')->with('success','Reject Proses berhasil');
     }

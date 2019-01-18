@@ -40,6 +40,7 @@ for (var x = 0; x < input.files.length; x++) {
           <tr class="filters">
             <th><p>Nama</p></th>
             <th><p>Harga</p></th> 
+            <th><p>Jumlah Kamar</p></th> 
             <th><p>Keterangan</p></th>
             <th></th>
             <th></th>
@@ -56,7 +57,8 @@ for (var x = 0; x < input.files.length; x++) {
                                   <td>{{$a->nama }}</td>
 
                                   <td>{{$a->harga}}</td>
-                                  <td><textarea class="form-control" rows="3" disabled=""><?php echo $a->keterangan ?></textarea></td>
+                                  <td>{{$a->nomor_kamar}}</td>
+                                  <td><p class="" rows="3" disabled=""><?php echo $a->keterangan ?></p></td>
                                   <td> <a href="{{route('homestay.update',$a->id)}}" class="btn btn-primary">Update</a></td>
                                   <td> <form method="post" action="{{route('homestay.destroy',$a->id)}}">
                                     {{csrf_field()}}
@@ -232,6 +234,20 @@ for (var x = 0; x < input.files.length; x++) {
                                   </label>
                                 </div>
                               </div>
+                               <div class="col-md-2">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" name="check[]" value="kamar mandi dalam" id="customCheck9">
+                                  <label class="custom-control-label" for="customCheck9">Kamar Mandi Dalam
+                                  </label>
+                                </div>
+                              </div>
+                               <div class="col-md-2">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" name="check[]" value="kipas angin" id="customCheck9">
+                                  <label class="custom-control-label" for="customCheck9">Kipas Angin
+                                  </label>
+                                </div>
+                              </div>
                             </div>
                             <div class="form-group row">
                               <div class="col-md-3">
@@ -251,11 +267,11 @@ for (var x = 0; x < input.files.length; x++) {
                             </div>
                             <hr>
                             <div class="form-group row">
-                              <div class="col-md-10">
+                              <div class="col-md-11">
                               </div>
-                              <div class="col-md-2" style="color:grey;">
+                              <div class="col-md-1" align="right" style="color:grey;">
 
-                                <button class="btn btn-success btn-sm" type="submit">Save
+                                <button  class="btn btn-primary btn-sm" type="submit">Simpan
                                 </button>
 
                               </div>

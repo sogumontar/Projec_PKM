@@ -20,8 +20,8 @@ class kendaraanController extends Controller
     if(Auth::user()){
         $rew=request('gambar');
         echo Auth::user()->id;
-        die();
-        if($req!=''){
+        
+       
 
            $file       = $request->file('gambar');
            $fileName   = $file->getClientOriginalName();
@@ -41,25 +41,16 @@ class kendaraanController extends Controller
                'gambar'=>$pathw,
            ]);
 
-       }else {
-        kendaraan::create([
-            'jenis_kendaraan'=>request('jenis'),
-            'Merk_kendaraan'=>request('merk'),
-            'id_pemilik'=>Auth::user()->id,
-            'plat_nomor'=>request('plat'),
-            'harga'=>request('harga'),
-            
-        ]);
-    }
+      
 
     return redirect()->route('owner.kendaraan');
 }
 }
 public function view(){
-    if(Auth::user()){
+    
     	$kendaraan=DB::table('kendaraan')->paginate(6);
     	return view('kendaraan.view',compact('kendaraan'));
-    }
+    
 }
 public function edit($id){
     if(Auth::user()){
@@ -121,6 +112,8 @@ public function booking($id){
     if(Auth::user()){
         $kendaraan =kendaraan::find($id);
         return view('kendaraan.booking',compact('kendaraan'));
+    }else{
+         return back()->with('danger','Anda Belum Login');
     }
 }
 public function bookingProcess(request $request,$id){

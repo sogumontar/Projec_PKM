@@ -27,7 +27,7 @@
 
 ?>
 
-@extends('layouts.template')
+@extends('layouts.homestay')
 @include('layouts.alerts') 
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/test.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('vendor/jss/css/star-rating.min.css')}}">
@@ -41,7 +41,7 @@
 
 <div class="container card">
       <hr>
-      <h5 style="text-align:center;">List Homestay </h5>
+      <h3 style="text-align:center;">List Homestay </h3>
       <hr>
         <!-- Example row of columns -->
         <div class="form-group">
@@ -64,7 +64,7 @@
 
                      <div class="" style="width: 30rem;">
                        <div class="card-body" >
-                         <img class="card-img-top" style="width: 300px; height: 200px;" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
+                         <img class="card-img-top" style="width: 320px; height: 200px;" src="/uploadgambar/{{$homestays->gambar}}" alt="Card image cap">
                          
                         
                          <hr>
@@ -73,7 +73,11 @@
                           <?php $cek=DB::SELECT("SELECT * FROM promo where id_homestay=$homestays->id AND status='start'"); ?>
                           @if(!$cek)
                           <h2>{{$homestays->nama}}</h2><br> 
-                         <h3>Rp.{{$homestays->harga}},00</h3> 
+                          <?php 
+                            $hasil_rupiah = "Rp " . number_format($homestays->harga,2,',','.');
+                          ?>
+                       
+                         <h3 style="color:#e67e22;">{{$hasil_rupiah}}</h3> 
                          @else
                           <div class="row">
                           <div class="col-md-1">
@@ -103,21 +107,22 @@
                           
                         </div>
                          <div class="col-lg-3" align="left">
-                          <a href="{{route('homestay.booking',$homestays->id)}}"><button class="btn btn-primary" >Booking</button></a>
+                          <a style="font-size: 15px" href="{{route('homestay.booking',$homestays->id)}}"><button style="font-size: 15px" class="btn btn-primary" >Booking</button></a>
                         
                         </div>
                         <div class="col-lg-7" align="right">
-                          <a href="{{route('homestay.detail',$homestays->id)}}"><button class="btn btn-primary" >Detail..</button></a>
+                          <a href="{{route('homestay.detail',$homestays->id)}}" style="color: #ffffff"><button style="font-size: 15px ; color: #ffffff; background-color: #FFA500" class="btn " >Detail..</button></a>
                         </div>
                       </div>
                      
                        <div class="row">
                           <div class="col-lg-1">
                           @if($homestays->jumlah_booking ==0)  
-                           <li class=""><input value="0"  type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled=""></li>
+                           <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<input value="0"  type="number" class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" disabled=""></li>
                            @else
-                           <li class=""><input value="<?php echo  $homestays->rating / $homestays->jumlah_booking?>"  type="number" disabled class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" ></li>
+                           <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<input value="<?php echo  $homestays->rating / $homestays->jumlah_booking?>"  type="number" disabled class="rating" min=0 max=5 step=1 data-size="md" data-stars="5" productId="5" ></li>
                            @endif
+                           <br>
                           </div>
                         </div>
                       <div class="container">
@@ -140,11 +145,11 @@
        
              
        
-                           
+                      <br>     
            @endforeach
            <br>
-           <div class="col-md-12" align="center">
-             {!! $homestay->render() !!}
+           <div class="col-md-12" align="center" style="">
+             <font size="2px">{!! $homestay->render() !!}</font>
            </div>
            @endif
            @if(!$p)
@@ -154,6 +159,7 @@
            </div>
          @endif
       </div>
+
 
                     	
                  

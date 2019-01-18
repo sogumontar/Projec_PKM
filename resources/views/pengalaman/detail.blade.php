@@ -16,12 +16,15 @@
 
 @extends('layouts.template')
 @include('layouts.alerts')
+<br><br>
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 </div>
-<div class="container card" style="background-color: #F5F5F5;">
+<div class="container card" style="background-color: #dbdbdb;">
+
       @foreach($detail as $s)
+
       <?php
-            $DB=DB::SELECT("SELECT * FROM member where id_akun=$s->id_member");
+            $DB=DB::SELECT("SELECT * FROM users where id=$s->id_member");
        ?>
   <div class="row mt-3">
     <div class="col-md-12">
@@ -37,19 +40,24 @@
     <center>  
       <div class="row">
       <div class="col-md-3">
-        <h5>{{$DB[0]->nama}}</h5>
-        <h6>{{$s->date}}</h6>
+        
+        <h5>{{$DB[0]->name}}</h5>
+        <br>
+        <h6>Tgl dipost :{{$s->date}}</h6>
       </div>
    <div class="vr">
      
    </div>
       
       
-      <div class="col-md-7" style="background-color: #F1ECEC">
-        <textarea style="background-color: #F1ECEC" class="form-control" rows="5" disabled="">{{$s->keterangan}}</textarea>
+      <div class="col-md-7" >
+        <textarea style="background-color: #dbdbdb" class="form-control" rows="5" disabled="">{{$s->keterangan}}</textarea>
       </div>
  @endforeach
+ <br><br>
 </div>
 <br><br>
 </center>
 </div>
+
+<br><br><br><br>

@@ -5,7 +5,7 @@
         <!-- Add Your Content Inside -->
         <div class="content">
             <!-- Remove This Before You Start -->
-            <h1>Anak IT -  Send Email</h1>
+            <h1>KingStay -  Send Email</h1>
             @if(\Session::has('alert-failed'))
                 <div class="alert alert-failed">
                     <div>{{Session::get('alert-failed')}}</div>

@@ -4,7 +4,7 @@
 @include('layouts.alerts')
 <link rel="icon" type="image/png" href="/logokingstay.png" style="width: 30px;">
 <br>
-<h2 align="center">Tambahkan promo pada homestay ini</h2><br><br>
+<font face="segoe ui"><h2 align="center">Tambahkan promo pada homestay ini</h2><br><br></font>
 <?php $del =DB::SELECT("SELECT * FROM homestay where id=$id");?>
 <div class="container">
         <div class="row" align="left">
@@ -16,11 +16,11 @@
                 <form action="{{route('homestay.promoProcess',$id)}}"  method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label>Nama Promo</label>
+                        <font face="segoe ui"><p>Nama Promo</p>
                         <input type="text" class="form-control" name="nama" value="">
                     </div>
                     <div class="form-group">
-                        <label>Tanggal mulai promo</label>
+                        <p>Tanggal mulai promo</p>
                         <input type="date" class="form-control" name="mulai">
                     </div>
                     <div class="form-group">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan Promo</label>
-                        <textarea class="form-control" name="keterangan" ></textarea>
+                        <textarea class="ckeditor" name="keterangan" ></textarea>
                     </div>
                      
 
@@ -42,7 +42,7 @@
                         <input type="submit" class="btn btn-primary" value="save"> 
                     </div>
                 </form>
-                
+                </font>
             </div>
         </div>
     </div>

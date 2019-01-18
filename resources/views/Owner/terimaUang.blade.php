@@ -12,7 +12,7 @@
 
 	<!-- panel heading starat -->
 	<div class="panel-heading">
-		<h3 class="panel-title">List request menjadi owner homestay</h3>
+		<h3 class="panel-title">Pembayaran Pesan homestay</h3>
 		<div class="pull-right">
 
 		</div>
